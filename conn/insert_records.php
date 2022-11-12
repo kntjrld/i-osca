@@ -16,10 +16,9 @@ if(isset($_POST['submit'])){
     $fx_barangay = $_POST['barangay'];
     $fn_age = $_POST['age'];
     $check_value = $_POST['status'];
-    $date = $_POST['status'];
 
 
-    $sql = "insert into tbl_records (fx_id, fx_firstname, fx_lastname, fx_contact, fd_birthdate, fx_barangay, fn_age, fn_status,)
+    $sql = "insert into tbl_records (fx_id, fx_firstname, fx_lastname, fx_contact, fd_birthdate, fx_barangay, fn_age, fn_status)
     values('$fx_id', '$fx_firstname','$fx_lastname','$fx_contact','$fd_birthdate','$fx_barangay','$fn_age','$check_value')";
     $result = mysqli_query($conn, $sql);
     if($result){

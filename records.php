@@ -2,19 +2,17 @@
 session_start();
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 ?>
-
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Records</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/global_style.css">
+        <link rel="stylesheet" type="text/css" href="css/g_style.css">
         <link rel="stylesheet" type="text/css" href="css/records_style.css">
     </head>
 
@@ -201,7 +199,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     $query = "SELECT * FROM tbl_records";   
                     $query_run = mysqli_query($conn, $query);
                     ?>
-                    <table id="rtable" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Senior ID</th>
@@ -239,9 +237,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     echo "No Record Found";
                     }
                     ?>
-                     </table>
-                </div>
-
+                     </table>    
+        </div>
+                <!-- start -->
+                
+                <!-- end -->
     </div>    
                 <!-- Bootstrap / js-->
                 <script src="lib/records.js"></script>
