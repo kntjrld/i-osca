@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+    --main-color:#393E46;
+    --secondary-color: #6D9886;
+    --next-color: #F2E7D5;
+    --last-color: #F7F7F7;
+    --gray: #808080;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    list-style: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    background: #fff;
+}
+
+/* Navigation */
+
+.side-nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    background: var(--main-color);
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 10px 0 10px 0;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-weight: bold;
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+a{
+    position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--last-color);
+    display: table;
+    width: 300px;
+    padding: 10px;
+}
+
+li i {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    color: var(--last-color);
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-item {
+    position: relative;
+    top: 12px;
+    margin-left: 20px;
+}
+
+#nav-list:hover{
+    background: #fff;
+    border-radius: 30px 0 0 30px;
+}
+
+
+#nav-list:hover i{
+    color: var(--main-color);
+}
+
+li a.active{
+    background: #fff;
+    color: var(--main-color);
+    border-radius: 30px 0 0 30px;
+}
+
+a.active i{
+    color: var(--main-color);
+}
+
+.side-nav:hover {
+    width: 280px;
+    transition: all 0.5 ease;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+}
+
+/* Main Content */
+.main-content {
+    padding: 0 0 0 90px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-wrapper img {
+    margin-top: 10px;
+}

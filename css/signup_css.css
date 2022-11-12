@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&family=Ubuntu:wght@400;500;700&display=swap');
+
+/* color primary #495C83 */
+/* color secondary #7A86B6 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', 'sans-serif';
+}
+
+/* header */
+nav {
+    background-color: #ccc;
+}
+
+.logo p {
+    padding: 20px;
+    color: #495C83;
+    font-size: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+section {
+    height: 100vh;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Container */
+.container {
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.container .forms {
+    display: flex;
+    align-items: center;
+    height: 600px;
+    width: 200%;
+    transition: height 0.2s ease;
+}
+/* active container */
+
+.container .form {
+    width: 50%;
+    padding: 30px;
+    margin-top: 20px;
+    background-color: #fff;
+    transition: margin-left 0.18s ease;
+}
+
+.container .form .title {
+    font-size: 27px;
+    font-weight: 600;
+    position: relative;
+}
+
+/* input field */
+.form .input-field {
+    margin-top: 30px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+.input-field input {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    border-bottom-color: #495C83;
+}
+
+.input-field input:is(:focus, :valid)~i {
+    border-bottom-color: #495C83;
+}
+/* icon positions */
+
+.input-field i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+}
+
+.input-field .icon {
+    left: 0;
+}
+
+.input-field .showHidePw {
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* checkbox and text*/
+
+.form .checkbox-text {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox-content {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input {
+    margin: 0 8px -2px 4px;
+    accent-color: #495C83;
+}
+
+.form .text {
+    color: #333;
+    font-size: 14px;
+}
+
+.form a {
+    text-decoration: none;
+}
+
+.form a:hover {
+    text-decoration: underline;
+} 
+/* login button */
+
+.form .button {
+    margin-top: 35px;
+} 
+
+.form .button input {
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: #495C83;
+    transition: all 0.3s ease;
+}
+
+.button input:hover {
+    background-color: #495C83;
+}
+/* Username validation */
+#uname_result{
+    color: #FF0000;
+}
+/* no acc yet?  */
+.form .login-signup {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footerID {
+    display: flex;
+    color: #fff;
+    padding: 20px 0px 5px 0px;
+    background: #495C83;
+    justify-content: center;
+}
+
+.media i {
+    padding: 10px;
+    color: #fff;
+    margin-left: 20px;
+}
+
