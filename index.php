@@ -15,7 +15,7 @@
     <nav>
         <div class="logo">
             <a href="#">
-                <p>KNTJRLD</p>
+                <p>i-OSCA</p>
             </a>
         </div>
     </nav>
