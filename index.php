@@ -1,87 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/login_css.css">
-    <title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<title>Welcome to i-OSCA</title>
 </head>
-
 <body>
-    <nav>
-        <div class="logo">
-            <a href="#">
-                <p>i-OSCA</p>
-            </a>
-        </div>
-    </nav>
-
-    <section>
-        <div class="container">
-            <div class="forms">
-                <div class="form login">
-                    <span class="title">i-OSCA</span>
-                    <form action="conn/login.php" method="post">
-                        <!-- php error code -->
-                        <?php if (isset($_GET['error'])) { ?>
-                        <p class="error" style="color:red;"><?php echo $_GET['error']; ?></p>
-                        <?php } ?>
-                        <!-- continue -->
-                        <div class="input-field">
-                            <input type="text" name="user_name" placeholder="Enter Username" required>
-                            <i class="fa-regular fa-envelope icon"></i>
-                        </div>
-                        <div class="input-field">
-                            <input type="password" name="password" class="password" placeholder="Enter password"
-                                required>
-                            <i class="fa fa-lock icon"></i>
-                            <i class="fa-regular fa-eye-slash showHidePw"></i>
-                        </div>
-
-                        <div class="checkbox-text">
-                            <div class="checkbox-content">
-                                <input type="checkbox" id="logCheck">
-                                <label for="logCheck" class="text">Remember me</label>
-                            </div>
-
-                            <a href="#" class="text">Forget Password?</a>
-                        </div>
-
-                        <div class="input-field button">
-                            <input type="submit" value="Login" required>
-                        </div>
-                    </form>
-
-                    <div class="login-signup">
-                        <span class="text">No account yet?
-                            <a href="signup.php" class="text signup-link">Signup now</a>
-                        </span>
-
+<div class="container">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 b-height">
+            <div class="row b-wrapper"> 
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 b-min-height">
+                    <div class="b-logo swift_left">
+                        <a href="#" target = "_blank"><img src="media/logo.jpg" class="img-fluid"></a>
                     </div>
-
+                    <div class="b-title text-center">
+                        <h1 class="user_title">Welcome to i-OSCA</h1>
+                        <p class="user_subTitle">This is social pension program </br> register at your home.</p>
+                        <button type="button" class="swift sign_in">Get Started</button>
+                    </div>
                 </div>
-            </div>
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                    <div class="b-form text-center">
+                        <div class="b-form-title">
+                            <h1 class="form_title">For administrator</h1>
+                            <p>
+                                <span><a href="#" target = "_blank"><i class="fab fa-facebook-f"></i></a></span>
+                                <span><a href="#" target = "_blank"><i class="fab fa-twitter"></i></a></span>
+                                <span><a href="#" target = "_blank"><i class="fab fa-instagram"></i></a></span>
+                            </p>
+                            <p class="b-subtext">visit our social media</p>
+                            <!-- php error code -->
+                            <?php if (isset($_GET['error'])) {
+                                ?><p class="b-subtext" style="color:red;"><?php echo $_GET['error']; ?></p><?php
+                            }?>
+                        </div>
+                        <form method="post" action="conn/login.php">
+                            <div class="form-group username">
+                                <input class="form-control" type="text" name="user_name" placeholder="Name">
+                                <i class="fas fa-user b-font"></i>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="password" name="password" placeholder="Password">
+                                <i class="fas fa-unlock-alt b-font"></i>
+                            </div>
+                            <div class="form-group">
+                                <span class="b-forgot">Forgot your password?</span>
+                            </div>
+                            <button type="submit" class="sign_in">Sign In</button>
+                        </form>
+                    </div>
+                </div> 
 
-        </div>
-        </div>
-    </section>
-    <footer class="footerID">
-        <div class="footer">
-            <p>Copyright 2022 | Kent Jarold Abulag</p>
-            <div class="media">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
             </div>
         </div>
-    </footer>
+    </div>
+</div>
 
-    <script src="lib/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- <script src="lib/main.js"></script> -->
 </body>
-
 </html>
+
