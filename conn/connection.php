@@ -6,6 +6,7 @@
     $dbname = "iosca";
 
         $conn = mysqli_connect($dbhost, $user_name, $password, $dbname);
+        
          if (!$conn) {
            echo "Connection failed";
         }

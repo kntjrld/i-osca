@@ -19,3 +19,9 @@
     content: "*";
     color: red;
 }
+#name{
+    text-transform: uppercase;
+}
+.modal-header i{
+    color: red;
+}

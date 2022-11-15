@@ -2,7 +2,6 @@
 session_start();
 include('connection.php');
 
-$conn = mysqli_connect($dbhost, $user_name, $password, $dbname);
 if(isset($_POST['submit'])){
     $fx_id = $_POST['sID'];
     $fx_firstname = $_POST['fistname'];
@@ -15,9 +14,9 @@ if(isset($_POST['submit'])){
     $fn_age = $_POST['age'];
     $check_value = $_POST['status'];
     $pension = $_POST['pension'];
-
+    
     $sql = "INSERT INTO tbl_records(fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status)
-    VALUES('$fx_id','$fx_firstname','$fx_lastname','$fx_middlename','$fx_contact','$fd_birthdate', '$fx_gender', '$fx_barangay' ,'$fn_age', '$pension','$check_value')";
+    VALUES('$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$fx_contact','$fd_birthdate', '$fx_gender', '$fx_barangay' ,'$fn_age', '$pension','$check_value')";
     $result = mysqli_query($conn, $sql);
     if($result){
         // echo "success";

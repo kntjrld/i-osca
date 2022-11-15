@@ -69,6 +69,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <img src="media/male.png" width="30px" height="30px" alt="user">
                 <div>
                     <h5><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h5>
+                    <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
                 </div>
             </div>
             

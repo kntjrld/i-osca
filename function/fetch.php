@@ -25,12 +25,22 @@ if(isset($_POST['request'])){
         <th scope="col">Barangay</th>
         <th scope="col">Age</th>
         <th scope="col">Status</th>
-
+        <th scope="col">View</th>
         </tr>
         <?php
 
     }else{
-        echo "no record";
+        ?>
+        <th scope="col">Senior ID</th>
+        <th scope="col">First</th>  
+        <th scope="col">Last</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Barangay</th>
+        <th scope="col">Age</th>
+        <th scope="col">Status</th>
+        <th scope="col">View</th>
+        <?php
     }
     ?>
     </thread>
@@ -49,6 +59,7 @@ if(isset($_POST['request'])){
             <td> <?php echo $row['fx_barangay']; ?> </td>
             <td> <?php echo $row['fn_age']; ?> </td>
             <td> <?php echo $row['fn_status']; ?> </td>
+            <td> <a href="#" class="btn btn-primary" style="width: auto;">View</a></td>
         </tr>
         <?php
         }
@@ -57,4 +68,3 @@ if(isset($_POST['request'])){
 </table>
 <?php
 }
-?>

@@ -2,7 +2,27 @@
 session_start();
 include('conn/connection.php');
 
-$records = $conn->query("SELECT * FROM tbl_records ORDER BY `tbl_records`.`fx_firstname` ASC");
+if(isset($_POST['records-limit'])){
+    $_SESSION['records-limit'] = $_POST['records-limit'];
+}
+
+$limit = isset($_SESSION['records-limit']) ? $_SESSION['records-limit'] : 10;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$paginationStart = ($page - 1) * $limit;
+$records = $conn->query("SELECT * FROM tbl_records ORDER BY `tbl_records`.`fx_firstname` ASC LIMIT $paginationStart, $limit");
+$allrecords = $records->fetch_all(MYSQLI_ASSOC);
+
+// Get total records
+$sql = $conn->query("SELECT count(id) AS id FROM tbl_records");
+$custCount = $sql->fetch_all(MYSQLI_ASSOC);
+$allRecrods = $custCount[0]['id'];
+
+// Calculate total pages
+$totoalPages = ceil($allRecrods / $limit);
+
+// Prev + Next
+$prev = $page - 1;
+$next = $page + 1;
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
@@ -15,24 +35,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Records</title>
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="css/g_style.css">
+    <link rel="stylesheet" type="text/css" href="css/records_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
-
-    <link rel="stylesheet" type="text/css" href="css/g_style.css">
-    <link rel="stylesheet" type="text/css" href="css/records_style.css">
-
-    
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 </head>
 
 <body>
@@ -92,10 +101,51 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </header>
         <!-- table header-->
-        <div class="d-flex justify-content-end">
-            <div class="div-3 p-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add
-                    Record</button>
+        <div class="container p-2">
+            <div class="row" id="tbl_header">
+                <div class="div-2 col-sm">
+                    <select class="form-select" style="width: auto;">
+                        <option>All</option>
+                        <option>With Pension</option>
+                        <option>Without Pension</option>
+                    </select>
+                </div>
+
+                <div class="div-1 col-sm">
+                    <div class="input-group rounded w-75">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                            aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="div-2.1 col-sm">
+                    <select class="form-select" id="bselect" style="width: auto;">
+                        <option>All</option>
+                        <option value="Balansay">Balansay</option>
+                        <option value="Barangay 1">Barangay 1</option>
+                        <option value="Barangay 2">Barangay 2</option>
+                        <option value="Barangay 3">Barangay 3</option>
+                        <option value="Barangay 4">Barangay 4</option>
+                        <option value="Barangay 5">Barangay 5</option>
+                        <option value="Barangay 6">Barangay 6</option>
+                        <option value="Barangay 7">Barangay 7</option>
+                        <option value="Barangay 8">Barangay 8</option>
+                        <option value="Fatima">Fatima</option>
+                        <option value="Payompon">Payompon</option>
+                        <option value="San Luis (Ligang)">San Luis (Ligang)</option>
+                        <option value="Talabaan">Talabaan</option>
+                        <option value="Tangkalan">Tangkalan</option>
+                        <option value="Tayamaan">Tayamaan</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="div-3 col-sm">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add
+                        Record</button>
+                </div>
             </div>
         </div>
 
@@ -186,11 +236,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <div class="col">
                                     <!-- <div class="form-group mb-2"> -->
                                     <label for="">Pension Status</label> <br>
-                                    <input class="form-check-input" type="radio" name="status" value="Received" />
-                                    <label class="form-check-label" for="status">Recieved</label></br>
-                                    <input class="form-check-input" type="radio" name="status" value="Pending"
-                                        checked />
-                                    <label class="form-check-label" for="status">Pending</label>
+                                    <input class="form-check-input" type="radio" name="status" value="Yes" />
+                                    <label class="form-check-label" for="status">Yes</label>
+                                    <input class="form-check-input" type="radio" name="status" value="No" checked />
+                                    <label class="form-check-label" for="status">No</label>
                                     <!-- </div> -->
                                 </div>
                                 <!-- Pension $$$ -->
@@ -255,7 +304,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </thead>
                 <tbody>
                     <!-- Display all records in the table -->
-                    <?php foreach($records as $row) :  ?>
+                    <?php foreach($allrecords as $row) :  ?>
                     <tr>
                         <td id="sid"> <?php echo $row['fx_id']; ?> </td>
                         <td> <?php echo $row['fx_firstname']; ?> </td>
@@ -274,12 +323,36 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <!-- </div> -->
         </div>
-        <!-- Bootstrap / js-->
-        <script src="lib/sweetalert.min.js"></script>
-        <script src="lib/records.js"></script>
-        <script src="lib/app.js"></script>
+        <!-- Pagination start-->
+        <div class="d-flex justify-content-center">
+            <!-- <nav aria-label="Page navigation"> -->
+            <ul class="pagination">
+                <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
+                    <a class="page-link w-100"
+                        href="<?php if($page <= 1){ echo '#'; } else { echo "?page=" . $prev; } ?>">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <?php for($i = 1; $i <= $totoalPages; $i++ ): ?>
+                <li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
+                    <a class="page-link w-100" href="records.php?page=<?= $i; ?>"> <?= $i; ?> </a>
+                </li>
+                <?php endfor; ?>
+                <li class="page-item <?php if($page >= $totoalPages) { echo 'disabled'; } ?>">
+                    <a class="page-link w-100"
+                        href="<?php if($page >= $totoalPages){ echo '#'; } else {echo "?page=". $next; } ?>">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- pagination end -->
+    </div>
+    <!-- Bootstrap / js-->
+    <script src="lib/sweetalert.min.js"></script>
+    <script src="lib/records.js"></script>
+    <script src="lib/app.js"></script>
 
 </body>
 

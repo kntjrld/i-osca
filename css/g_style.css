@@ -122,15 +122,23 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+    width: 100%;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
-
+.header-title{
+  transform: translateY(25%);
+}
 .user-wrapper {
     display: flex;
+    margin-right: 10px;
     align-items: center;
 }
 
+.user-wrapper div p{
+    text-align: center;
+    font-weight: bold;
+}
 .user-wrapper img {
     margin-top: 10px;
 }
-
+@media only screen and (max-width: 650px) {}

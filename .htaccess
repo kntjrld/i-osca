@@ -1,0 +1,3 @@
+#Error
+
+ErrorDocument 404 /i-OSCA/404.php
