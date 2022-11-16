@@ -13,7 +13,7 @@ include("../conn/connection.php");
     $update_age = $_POST['update_age'];
     $update_pension = $_POST['update_pension'];
     $update_status = $_POST['update_status'];
-    
+
     $sql = "UPDATE tbl_records SET fx_firstname=UPPER('$update_firstname'), fx_lastname=UPPER('$update_lastname'),
         fx_middlename=UPPER('$update_middlename'), fx_contact='$update_contact', fd_birthdate='$update_birthdate',
         fx_gender='$update_sex', fx_barangay='$update_barangay', fn_age='$update_age', fn_pension='$update_pension',

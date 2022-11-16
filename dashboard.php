@@ -18,7 +18,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" type="text/css" href="css/d_style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
     <!-- charts -->
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -51,13 +50,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li><a href="#" id="nav-list">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Users</span>
-                </a></li>
             <li><a href="activities.php" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
+                </a></li>
+            <li><a href="profile.php" id="nav-list">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profle</span>
                 </a></li>
             <li><a href="function/logout.php" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
@@ -105,35 +104,41 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $result=mysqli_query($conn,$sql);
         $withoutp=mysqli_fetch_assoc($result);
 
-        // Filter Female from Barangay 1
-        $sql = "SELECT COUNT(*) as total FROM tbl_records WHERE fx_barangay = 'Barangay 1' AND fx_gender = 'Female' ";
-        $result=mysqli_query($conn,$sql);
-        $Fbrgy1=mysqli_fetch_assoc($result);
 
-        // Filter Male from Barangay 1
-        $sql = "SELECT COUNT(*) as total FROM tbl_records WHERE fx_barangay = 'Barangay 1' AND fx_gender = 'Male' ";
-        $result=mysqli_query($conn,$sql);
-        $Mbrgy1=mysqli_fetch_assoc($result);
-        
-        // Filter Female from Barangay 2
-        $sql = "SELECT COUNT(*) as total FROM tbl_records WHERE fx_barangay = 'Barangay 2' AND fx_gender = 'Female' ";
-        $result=mysqli_query($conn,$sql);
-        $Fbrgy2=mysqli_fetch_assoc($result);
-
-        // Filter Male from Barangay 2
-        $sql = "SELECT COUNT(*) as total FROM tbl_records WHERE fx_barangay = 'Barangay 2' AND fx_gender = 'Male' ";
-        $result=mysqli_query($conn,$sql);
-        $Mbrgy2=mysqli_fetch_assoc($result);
+        // START TEST ARRAY
+        $female = array("10", "34", "41", "50", "10", "34", "41", "50", "31", "42", "40", "32", "31", "42", "40");
+        $male = array("12, 32, 32, 23, 53, 12, 25, 42, 34, 23, 34, 23, 23, 33, 55, 40");
+        // END TEST ARRAY
 
         $chart_data = '';
+        // ADD ALL BARANGAY TO ARRAY
         $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-                    ,"Fatima", "Payompon", "San Luis(Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
-        $male = array("32", "31", "42", "40", "32", "31", "42", "40", "31", "42", "40", "32", "31", "42", "40");
-        $female = array("10", "34", "41", "50", "10", "34", "41", "50", "31", "42", "40", "32", "31", "42", "40");
+                    ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
         
-        for ($i = 0; $i < count($brgy); $i++) {
-            $chart_data .= "{ y:'$brgy[$i]', Male:'$male[$i]', Female:'$female[$i]'}, ";
+        // GENERATE NEW(MALE) ARRAY FOR EACH BARANGAY
+        $malearr = array();
+        foreach($brgy as $row){
+            $m_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Male' ";
+            $arr_m = mysqli_query($conn,$m_arr);
+            $xx=mysqli_fetch_assoc($arr_m);
+            $malearr[] = $xx['xxx'];
+
         }
+        // GENERATE NEW(FEMALE) ARRAY FOR EACH BARANGAY
+        $femalearr = array();
+        foreach($brgy as $row){
+            $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Female' ";
+            $arr_f = mysqli_query($conn,$f_arr);
+            $xx=mysqli_fetch_assoc($arr_f);
+            $femalearr[] = $xx['xxx'];
+        }
+
+        // DISPLAY ARRAY(BARANGAY, MALE, FEMALE) TO GRAPH
+        for ($i = 0; $i < count($brgy); $i++) {
+            $chart_data .= "{ y:'$brgy[$i]', Male:'$malearr[$i]', Female:'$femalearr[$i]'}, ";
+        }
+        
+        // QUERY DURATION 4 HOURS
 
         ?>
         <!-- Card -->
@@ -151,6 +156,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="numbers col">15</div>
                     <div class="col" id="iconBox"><i class="fa-solid fa-house-laptop"></i></div>
                     <div class="cardName">Barangays</div>
+
                 </div>
             </div>
             <div class="card">
@@ -158,6 +164,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="numbers col" id="withp"><?php echo $withp['total'];?></div>
                     <div class="col" id="iconBox"><i class="fa-solid fa-people-group"></i></div>
                     <div class="cardName">With Pension</div>
+
                 </div>
             </div>
             <div class="card">
@@ -172,12 +179,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- Data analytics -->
         <div class="details">
             <div class="datalist">
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 w-100 bd-highlight">
+                <div class="d-flex ms-auto">
+                    <div class="p-2">
                         <h3>Analytics</h3>
                     </div>
-                    <div class="p-2 flex-shrink-1 bd-highlight">
-                        <select class="form-select" name="barangay" style="width: auto;">
+                    <div class="p-2 d-flex">
+                        <p>Male</p>
+                        <div class="male"></div>
+                    </div>
+                    <div class="p-2 d-flex">
+                        <p>Female</p>
+                        <div class="female"></div>
+                    </div>
+
+                    <div class="me-2 ms-auto">
+                        <select class="form-select form-select-sm" name="barangay">
                             <option value="All">All</option>
                             <option value="Balansay">Balansay</option>
                             <option value="Barangay 1">Barangay 1</option>
@@ -204,15 +220,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <script>
     Morris.Bar({
-                element: 'analytics',
-                data: [<?php echo $chart_data; ?>],
-                xkey: 'y',
-                ykeys: ['Male', 'Female'],
-                labels: ['Male', 'Female'],
-                stacked: true,
-                resize: true,
-                redraw: true,
-                barColors:['#6D9886', '#393E46'],
+        element: 'analytics',
+        data: [<?php echo $chart_data; ?>],
+        xkey: 'y',
+        ykeys: ['Male', 'Female'],
+        labels: ['Male', 'Female'],
+        stacked: true,
+        resize: true,
+        redraw: true,
+        barColors: ['#6D9886', '#393E46'],
     });
     </script>
 </body>

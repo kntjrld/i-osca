@@ -12,10 +12,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>Records</title>
-
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,13 +23,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
 
+    <!-- DATA TABLE CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
 
-    
+    <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 </head>
@@ -57,13 +57,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li><a href="#" id="nav-list">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Users</span>
-                </a></li>
             <li><a href="activities.php" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
+                </a></li>
+            <li><a href="profile.php" id="nav-list">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profle</span>
                 </a></li>
             <li><a href="function/logout.php" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
@@ -92,10 +92,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </header>
         <!-- table header-->
-        <div class="d-flex justify-content-end">
-            <div class="div-3 p-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add
-                    Record</button>
+        <div class="d-flex">
+            <div class="p-2 me-auto">
+                <button type="button" class="btn btn-primary justify-content-end"><span><i class="fa-solid fa-file-export"></i></span> Export Excel
+                </button>
+            </div>
+            <div class="p-2 ms-auto">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <span><i class="fa-solid fa-plus"></i></span> Add Record</button>
             </div>
         </div>
 
@@ -242,14 +246,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <th scope="col">Senior ID</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
-                        <th scope="col">Middle</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Sex</th>
-                        <th scope="col">Barangay</th>
-                        <th scope="col">Age</th>
-                        <th scope="col">Pension</th>
-                        <th scope="col">Status</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Middle</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Contact</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Sex</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Age</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Pension</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -260,15 +264,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td id="sid"> <?php echo $row['fx_id']; ?> </td>
                         <td> <?php echo $row['fx_firstname']; ?> </td>
                         <td> <?php echo $row['fx_lastname']; ?> </td>
-                        <td> <?php echo $row['fx_middlename']; ?> </td>
-                        <td> <?php echo $row['fx_contact']; ?> </td>
-                        <td> <?php echo $row['fd_birthdate']; ?> </td>
-                        <td> <?php echo $row['fx_gender']; ?> </td>
-                        <td> <?php echo $row['fx_barangay']; ?> </td>
-                        <td> <?php echo $row['fn_age']; ?> </td>
-                        <td> <?php echo $row['fn_pension']; ?> </td>
-                        <td> <?php echo $row['fn_status']; ?> </td>
-                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-primary"
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fd_birthdate']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_pension']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_status']; ?> </td>
+                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-secondary"
                                 style="width: auto;">View</button></td>
                     </tr>
                     <?php endforeach; ?>

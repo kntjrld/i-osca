@@ -23,5 +23,17 @@ swal({
 </script>
 <?php
   unset($_SESSION['updated']);
+}else if(isset($_SESSION['profile']) && $_SESSION['profile'] !=''){
+  ?>
+<script>
+swal({
+  title: "Success!",
+  text: "Profile Updated Successfully!",
+  icon: "success",
+  button: "Ok",
+});
+</script>
+<?php
+  unset($_SESSION['profile']);
 }
 ?>

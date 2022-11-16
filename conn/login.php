@@ -30,8 +30,14 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
             if ($row['user_name'] === $user_name && password_verify($pass, $row['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['email'] = $row['email'];
+            	$_SESSION['full_name'] = $row['full_name'];
+            	$_SESSION['contact_num'] = $row['contact_num'];
             	$_SESSION['user_id'] = $row['user_id'];
             	$_SESSION['user_level'] = $row['user_level'];
+            	$_SESSION['position'] = $row['job_position'];
+            	$_SESSION['fx_street'] = $row['fx_street'];
+            	$_SESSION['fx_municipality'] = $row['fx_municipality'];
+
             	header("Location: ../dashboard.php");
 		        exit();
             }else{

@@ -1,0 +1,236 @@
+<?php 
+session_start();
+include('conn/connection.php');
+
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+    
+?>
+
+
+<!DOCTYPE html>
+<html lang="end">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/g_style.css">
+    <link rel="stylesheet" type="text/css" href="css/user_style.css">
+</head>
+
+<body>
+    <!-- Navigation start -->
+    <nav class="side-nav">
+        <ul>
+            <li>
+                <a href="#" class="logo">
+                    <img src="media/logo.jpg" alt="logo">
+                    <span class="nav-item">i-OSCA</span>
+                </a>
+            </li>
+            <li><a href="dashboard.php" id="nav-list">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+            <li><a href="records.php" id="nav-list">
+                    <i class="fas fa-table"></i>
+                    <span class="nav-item">Records</span>
+                </a></li>
+            <li><a href="reports.php" id="nav-list">
+                    <i class="fas fa-tasks"></i>
+                    <span class="nav-item">Reports</span>
+                </a></li>
+            <li><a href="activities.php" id="nav-list">
+                    <i class="fas fa-solid fa-clock-rotate-left"></i>
+                    <span class="nav-item">Activities</span>
+                </a></li>
+            <li><a href="#" id="nav-list" class="active">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Profle</span>
+                </a></li>
+            <li><a href="function/logout.php" class="logout" id="nav-list">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">Logout</span>
+                </a></li>
+        </ul>
+    </nav>
+    <!-- Navigation end -->
+    <div class="main-content">
+        <header>
+            <div class="header-title">
+                <h2>
+                    <label for="">
+                        <span class="las la-bars">
+                        </span>
+                        Profile
+                </h2>
+            </div>
+            <div class="user-wrapper">
+                <img src="media/male.png" width="30px" height="30px" alt="user">
+                <div>
+                    <h5><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h5>
+                    <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
+                </div>
+            </div>
+
+        </header>
+        <!-- user profile -->
+        <div class="container p-3">
+            <div class="row gutters">
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="account-settings">
+                                <div class="cover-profile">
+                                    <form action="conn/insert_records.php" method="POST" id="form"
+                                        enctype="multipart/form-data">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <div class="cover">
+                                                    <label for="simg">
+                                                        <i class="fa-solid fa-pen-to-square" id="icon_upload"></i>
+                                                    </label>
+                                                    <input type="file" value="" name="simg" id="simg"
+                                                        style="display: none;">
+                                                </div>
+                                                <label for="simg">
+                                                    <img src="media/male.png" id="previewimg" name="previewimg"
+                                                        alt="Profile" />
+                                                </label>
+                                            </div>
+                                            <h5 class="user-name"><?php echo $_SESSION['full_name']; ?></h5>
+                                            <h6 class="user-email"><?php echo $_SESSION['email']; ?></h6>
+                                        </div>
+                                </div>
+                                <div class="about">
+                                    <h5>Roles</h5>
+                                    <p>
+                                        Admin is responsible for all action including deleting records, adding and
+                                        removing user
+                                        from the system.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                    <input type="hidden" name="id" id="id" value="<?php echo $_SESSION['user_id'];?>">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input type="text" class="form-control" name="fullname" id="fullname"
+                                            value="<?php echo $_SESSION['full_name'];?>" placeholder="Enter full name">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="phone">Phone</label>
+                                        <input type="text" class="form-control" name="phone" id="phone"
+                                            value="<?php echo $_SESSION['contact_num'];?>"
+                                            placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="username"
+                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                    <div class="form-group">
+                                        <label for="eMail">Email</label>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            value="<?php echo $_SESSION['email'];?>" placeholder="Enter email ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="Street">Street</label>
+                                        <input type="name" class="form-control" name="street" id="street"
+                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="ciTy">City/Municipality</label>
+                                        <input type="name" class="form-control" name="city" id="city"
+                                            placeholder="Enter City/Municipality"
+                                            value="<?php echo $_SESSION['fx_municipality'];?>">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mt-3 mb-2 text-primary">Security</h6>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="sTate">Old Password</label>
+                                        <input type="password" class="form-control" name="oldpassword" id="oldpassword"
+                                            placeholder="Old Password">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="zIp">New/Confirm Password</label>
+                                        <input type="password" class="form-control" name="newpassword" id="newpassword"
+                                            placeholder="New Password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gutters p-2">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="text-right">
+                                        <button type="button" id="cancel" name="cancel"
+                                            class="btn btn-secondary">Cancel</button>
+                                        <button type="update" id="update" name="update"
+                                            class="btn btn-primary">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="lib/sweetalert.min.js"></script>
+    <script>
+    simg.onchange = evt => {
+        const [file] = simg.files
+        if (file) {
+            previewimg.src = URL.createObjectURL(file)
+        }
+    }
+    </script>
+</body>
+
+</html>
+<?php 
+}else{
+     header("Location: index.php");
+     exit();
+}
+ ?>
+<?php include('conn/script.php');?>
