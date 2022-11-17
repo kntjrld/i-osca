@@ -31,7 +31,6 @@
     color: #9fa8b9;
 }
 .account-settings .about {
-    margin: 2rem 0 0 0;
     text-align: center;
 }
 .account-settings .about h5 {
@@ -63,3 +62,12 @@
 .cover i{
     color: #fff;
 }
+
+
+/* Media query */
+
+@media only screen and (max-width: 650px) {
+    .form-group {
+        width: 100%;
+        }
+      }

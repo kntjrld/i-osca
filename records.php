@@ -3,7 +3,6 @@ session_start();
 include('conn/connection.php');
 
 $records = $conn->query("SELECT * FROM tbl_records ORDER BY `tbl_records`.`fx_firstname` ASC");
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
 ?>
@@ -13,7 +12,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <title>Records</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +32,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- HAHAHA -->
+    <script src="lib/jquery.table2excel.js"></script>
 </head>
 
 <body>
@@ -65,6 +67,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php"
+                    id="nav-list">
+                    <i class="fas fa-folder"></i>
+                    <span class="nav-item">Admin Panel</span>
+                </a></li>
             <li><a href="function/logout.php" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
@@ -84,7 +91,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </h2>
             </div>
             <div class="user-wrapper">
-                <img src="media/male.png" width="30px" height="30px" alt="user">
+                <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
                 <div>
                     <h6><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h6>
                     <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
@@ -94,7 +101,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- table header-->
         <div class="d-flex">
             <div class="p-2 me-auto">
-                <button type="button" class="btn btn-primary justify-content-end"><span><i class="fa-solid fa-file-export"></i></span> Export Excel
+                <button type="button" id="export" class="btn btn-primary justify-content-end"><span><i
+                            class="fa-solid fa-file-export"></i></span> Export Excel
                 </button>
             </div>
             <div class="p-2 ms-auto">
@@ -254,7 +262,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <th scope="col" class="d-none d-sm-table-cell">Age</th>
                         <th scope="col" class="d-none d-sm-table-cell">Pension</th>
                         <th scope="col" class="d-none d-sm-table-cell">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" class="noExl">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -272,7 +280,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_pension']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_status']; ?> </td>
-                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-secondary"
+                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-secondary noExl"
                                 style="width: auto;">View</button></td>
                     </tr>
                     <?php endforeach; ?>
@@ -284,7 +292,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/records.js"></script>
         <script src="lib/app.js"></script>
-
 </body>
 
 </html>

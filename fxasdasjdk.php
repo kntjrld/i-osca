@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["user_level"]=='admin')) {
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Reports</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-table"></i>
                     <span class="nav-item">Records</span>
                 </a></li>
-            <li><a href="#" class="active" id="nav-list">
+            <li><a href="reports.php" id="nav-list">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -48,8 +48,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php"
-                    id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="#"
+                    id="nav-list" class="active">
                     <i class="fas fa-folder"></i>
                     <span class="nav-item">Admin Panel</span>
                 </a></li>
@@ -67,7 +67,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <label for="">
                         <span class="las la-bars">
                         </span>
-                        Reports
+                        Admin Panel
                 </h2>
             </div>
             <div class="user-wrapper">
@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <?php 
 
 }else{
-     header("Location: index.php");
+     header("Location: index.php?error=We logged you out because you're trying to access a private files, please login again.");
      exit();
 }
  ?>

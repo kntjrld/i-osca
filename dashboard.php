@@ -26,6 +26,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -58,6 +60,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php" id="nav-list">
+                    <i class="fas fa-folder"></i>
+                    <span class="nav-item">Admin Panel</span>
+                </a></li>
             <li><a href="function/logout.php" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
@@ -77,7 +83,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </h2>
             </div>
             <div class="user-wrapper">
-                <img src="media/male.png" width="30px" height="30px" alt="user">
+                <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
                 <div>
                     <h5><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h5>
                     <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
@@ -85,9 +91,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
         </header>
+
         <!-- SELECT -->
         <?php
-        // select total
+        // SELECT TO RECORDS
         $sql="SELECT COUNT(*) as total from tbl_records";
         $result=mysqli_query($conn,$sql);
         $total=mysqli_fetch_assoc($result);
@@ -141,6 +148,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // QUERY DURATION 4 HOURS
 
         ?>
+
         <!-- Card -->
         <div class="cardBox">
             <div class="card">
@@ -226,6 +234,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         ykeys: ['Male', 'Female'],
         labels: ['Male', 'Female'],
         stacked: true,
+        xLabelAngle: 40,
         resize: true,
         redraw: true,
         barColors: ['#6D9886', '#393E46'],

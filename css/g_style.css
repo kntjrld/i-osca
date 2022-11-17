@@ -133,7 +133,11 @@ header {
     margin-right: 10px;
     align-items: center;
 }
-
+.user_img{
+    border-radius: 50%;
+    width : 30px;
+    height:30px;
+}
 .user-wrapper div p{
     text-align: center;
     font-weight: bold;

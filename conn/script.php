@@ -15,10 +15,10 @@ swal({
   ?>
 <script>
 swal({
-  title: "Success!",
-  text: "Record Updated Successfully!",
-  icon: "success",
-  button: "Ok",
+    title: "Success!",
+    text: "Record Updated Successfully!",
+    icon: "success",
+    button: "Ok",
 });
 </script>
 <?php
@@ -27,13 +27,32 @@ swal({
   ?>
 <script>
 swal({
-  title: "Success!",
-  text: "Profile Updated Successfully!",
-  icon: "success",
-  button: "Ok",
+    title: "Success!",
+    text: "Profile Updated Successfully!",
+    icon: "success",
+    button: "Ok",
 });
 </script>
 <?php
   unset($_SESSION['profile']);
+}else if(isset($_SESSION['changed']) && $_SESSION['changed'] !=''){
+  ?>
+<script>
+swal({
+    title: "Success!",
+    text: "Password Changed Successfully!",
+    icon: "success",
+    button: "Ok",
+});
+</script>
+<?php
+  unset($_SESSION['changed']);
+}elseif(isset($_SESSION['xxx']) && $_SESSION['xxx'] !=''){
+?>
+<script>
+swal("Oops", "Something went wrong! Double check old password and new password", "error");
+</script>
+<?php
+  unset($_SESSION['xxx']);
 }
 ?>

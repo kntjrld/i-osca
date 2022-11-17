@@ -30,14 +30,23 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
             if ($row['user_name'] === $user_name && password_verify($pass, $row['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['email'] = $row['email'];
+            	$_SESSION['password'] = $row['password'];
             	$_SESSION['full_name'] = $row['full_name'];
             	$_SESSION['contact_num'] = $row['contact_num'];
             	$_SESSION['user_id'] = $row['user_id'];
             	$_SESSION['user_level'] = $row['user_level'];
-            	$_SESSION['position'] = $row['job_position'];
             	$_SESSION['fx_street'] = $row['fx_street'];
             	$_SESSION['fx_municipality'] = $row['fx_municipality'];
-
+            	$_SESSION['role_description'] = $row['role_description'];
+            	$_SESSION['fm_img'] = $row['fm_img'];
+				
+				$user_name = $row['user_name'];
+				date_default_timezone_set('Asia/Manila');
+           		$date = date("M d, Y - h:i a");					
+				$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Logged in system')";
+				$result = mysqli_query($conn, $act);
+				
+				
             	header("Location: ../dashboard.php");
 		        exit();
             }else{

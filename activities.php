@@ -1,5 +1,9 @@
 <?php 
 session_start();
+include('conn/connection.php');
+
+$records = $conn->query("SELECT * FROM tbl_activities ORDER BY `tbl_activities`.`id` DESC");
+
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -14,7 +18,20 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <title>Activities</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
+    
+    <!-- DATA TABLE CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/g_style.css">
+    <link rel="stylesheet" type="text/css" href="css/records_style.css">
+
+    <!-- DATA TABLE JS -->
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
 </head>
 
 <body>
@@ -47,6 +64,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php"
+                    id="nav-list">
+                    <i class="fas fa-folder"></i>
+                    <span class="nav-item">Admin Panel</span>
+                </a></li>
             <li><a href="function/logout.php" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
@@ -65,15 +87,40 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </h2>
             </div>
             <div class="user-wrapper">
-                <img src="media/male.png" width="30px" height="30px" alt="user">
+                <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
                 <div>
                     <h5><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h5>
                     <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
                 </div>
             </div>
-
         </header>
+        <div class="container p-2">
+            <table class="table" id="datatable">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Date</th>
+                        <th class="text-center" scope="col">User</th>
+                        <th class="text-center" scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display all records in the table -->
+                    <?php foreach($records as $row) :  ?>
+                    <tr>
+                        <td class="text-center"> <?php echo $row['fd_date']; ?> </td>
+                        <td class="text-center"> <?php echo $row['fx_user']; ?> </td>
+                        <td class="text-center"
+                        <?php if(preg_match('/Added/',$row['fx_action'])) echo 'style="color:green;"'; ?>
+                        <?php if(preg_match('/Updated/',$row['fx_action'])) echo 'style="color:green;"'; ?>
+                        <?php if(preg_match('/Deleted/',$row['fx_action'])) echo 'style="color:red;"'; ?>
+                        > <?php echo $row['fx_action']; ?> </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script src="lib/records.js"></script>
 </body>
 
 </html>
