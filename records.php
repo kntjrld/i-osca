@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>
-            <li><a href="dashboard.php" id="nav-list">
+            <li><a href="dashboard" id="nav-list">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Dashboard</span>
                 </a></li>
@@ -55,24 +55,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-table"></i>
                     <span class="nav-item">Records</span>
                 </a></li>
-            <li><a href="reports.php" id="nav-list">
+            <li><a href="reports" id="nav-list">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li><a href="activities.php" id="nav-list">
+            <li><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
-            <li><a href="profile.php" id="nav-list">
+            <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php"
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk"
                     id="nav-list">
                     <i class="fas fa-folder"></i>
                     <span class="nav-item">Admin Panel</span>
                 </a></li>
-            <li><a href="function/logout.php" class="logout" id="nav-list">
+            <li><a href="function/logout" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
                 </a></li>
@@ -98,6 +98,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </header>
+        
         <!-- table header-->
         <div class="d-flex">
             <div class="p-2 me-auto">
@@ -229,8 +230,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <form action="#" method="post" id="updateForm">
                         <div class="modal-header">
                             <h5 class="modal-title">Update Record</h5>
-                            <a href="#" id="delete_row" value="" class="d-flex justify-content-end"
-                                aria-label="Delete"><i class="fi-xnsuxl-trash-bin  fa-2x"></i></a>
+                            <!-- <a href="#" id="delete_row" value="" class="d-flex justify-content-end"
+                                aria-label="Delete"><i class="fi-xnsuxl-trash-bin  fa-2x"></i></a> -->
+                            <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <!-- Form -->
                         <div class="modal-body" id="infoUpdate">
@@ -239,7 +241,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="modal-footer">
                             <button type="submit" name="submit" id="update_record"
                                 class="btn btn-primary">Update</button>
-                            <input type="button" class="btn btn-secondary" id="cancel" value="Cancel"
+                            <input type="button" id="delete_row" class="btn btn-danger" id="delete" value="Delete"
                                 data-bs-dismiss="modal">
                         </div>
                     </form>
@@ -297,7 +299,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 </html>
 <?php
 }else{
-    header("Location: index.php");
+    header("Location: index");
     exit();
 }
 ?>

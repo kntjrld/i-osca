@@ -16,10 +16,10 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
 	$pass = validate($_POST['password']);
 
 	if (empty($user_name)) {
-		header("Location: ../index.php?error=User Name is required");
+		header("Location: ../index?error=User Name is required");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: ../index.php?error=Password is required");
+        header("Location: ../index?error=Password is required");
 	    exit();
 	}else{
 		$sql = "SELECT * FROM users WHERE user_name='$user_name'";
@@ -42,24 +42,26 @@ if (isset($_POST['user_name']) && isset($_POST['password'])) {
 				
 				$user_name = $row['user_name'];
 				date_default_timezone_set('Asia/Manila');
-           		$date = date("M d, Y - h:i a");					
-				$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Logged in system')";
-				$result = mysqli_query($conn, $act);
+           		$date = date("M d, Y - h:i a");	
+				$action = 'Logged in system';				
+
+				$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','$action')";
+				$result = mysqli_query($conn, $act);	
 				
-				
-            	header("Location: ../dashboard.php");
+
+            	header("Location: ../dashboard");
 		        exit();
             }else{
-				header("Location: ../index.php?error=Incorect User name or password");
+				header("Location: ../index?error=Incorect User name or password");
 		        exit();
 			}
 		}else{
-			header("Location: ../index.php?error=Incorect User name or password");
+			header("Location: ../index?error=Incorect User name or password");
 	        exit();
 		}
 	}
 	
 }else{
-	header("Location: ../index.php");
+	header("Location: ../index");
 	exit();
 }

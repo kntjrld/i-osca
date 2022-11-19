@@ -4,7 +4,6 @@ include('conn/connection.php');
 
 $records = $conn->query("SELECT * FROM tbl_activities ORDER BY `tbl_activities`.`id` DESC");
 
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
@@ -20,7 +19,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
-    
+
     <!-- DATA TABLE CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
@@ -44,15 +43,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>
-            <li><a href="dashboard.php" id="nav-list">
+            <li><a href="dashboard" id="nav-list">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Dashboard</span>
                 </a></li>
-            <li><a href="records.php" id="nav-list">
+            <li><a href="records" id="nav-list">
                     <i class="fas fa-table"></i>
                     <span class="nav-item">Records</span>
                 </a></li>
-            <li><a href="reports.php" id="nav-list">
+            <li><a href="reports" id="nav-list">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -60,16 +59,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
-            <li><a href="profile.php" id="nav-list">
+            <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk.php"
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk"
                     id="nav-list">
                     <i class="fas fa-folder"></i>
                     <span class="nav-item">Admin Panel</span>
                 </a></li>
-            <li><a href="function/logout.php" class="logout" id="nav-list">
+            <li><a href="function/logout" class="logout" id="nav-list">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
                 </a></li>
@@ -94,6 +93,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </header>
+        <form method="post" action="function/truncate.php" onSubmit="return confirm('You cannot undo this action, do you want to continue?')">
+            <div class="d-flex">
+                <div class="p-2 ms-auto" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
+                    <button type="submit" name="delete" id="delete"  value="Truncate Table" class="btn btn-danger justify-content-end"><span><i
+                                class="fa-solid fa-trash"></i></span> Delete all activities</button>
+                </div>
+            </div>
+        </form>
         <div class="container p-2">
             <table class="table" id="datatable">
                 <thead>
@@ -110,16 +117,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td class="text-center"> <?php echo $row['fd_date']; ?> </td>
                         <td class="text-center"> <?php echo $row['fx_user']; ?> </td>
                         <td class="text-center"
-                        <?php if(preg_match('/Added/',$row['fx_action'])) echo 'style="color:green;"'; ?>
-                        <?php if(preg_match('/Updated/',$row['fx_action'])) echo 'style="color:green;"'; ?>
-                        <?php if(preg_match('/Deleted/',$row['fx_action'])) echo 'style="color:red;"'; ?>
-                        > <?php echo $row['fx_action']; ?> </td>
+                            <?php if(preg_match('/Added/',$row['fx_action'])) echo 'style="color:green;"'; ?>
+                            <?php if(preg_match('/Updated/',$row['fx_action'])) echo 'style="color:green;"'; ?>
+                            <?php if(preg_match('/Deleted/',$row['fx_action'])) echo 'style="color:red;"'; ?>
+                            <?php if(preg_match('/Trying/',$row['fx_action'])) echo 'style="color:red;"'; ?>>
+                            <?php echo $row['fx_action']; ?> </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
+    <script src="lib/sweetalert.min.js"></script>
     <script src="lib/records.js"></script>
 </body>
 
@@ -127,7 +136,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <?php 
 
 }else{
-     header("Location: index.php");
+     header("Location: index");
      exit();
 }
  ?>

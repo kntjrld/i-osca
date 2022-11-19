@@ -61,7 +61,7 @@
                             </div>
                             <form method="post" action="conn/login.php">
                                 <div class="form-group username">
-                                    <input class="form-control" type="text" name="user_name" placeholder="Name">
+                                    <input class="form-control" type="text" name="user_name" placeholder="Username">
                                     <i class="fas fa-user b-font"></i>
                                 </div>
                                 <div class="form-group">
@@ -84,7 +84,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- <script src="lib/main.js"></script> -->
 </body>
 
 </html>

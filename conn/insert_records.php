@@ -89,10 +89,10 @@ if(isset($_POST['submit'])){
             // if image not upload this code will execute
             $imagename = $_POST['hiddenImage'];
             }
-        header("Location: ../profile.php");
+        header("Location: ../profile");
 	}else{
         $_SESSION['xprofile'] = "Not Added";
-        header("Location: ../profile.php");
+        header("Location: ../profile");
 
     }    
 }elseif(isset($_POST['changepassword'])){
@@ -109,10 +109,10 @@ if(isset($_POST['submit'])){
 
             $_SESSION['changed'] = "Password Changed successfully";
             $_SESSION['password'] = $repassword;
-            header("Location: ../profile.php");
+            header("Location: ../profile");
         }else{
             $_SESSION['xxx'] = "Something went wrong";
-            header("Location: ../profile.php");
+            header("Location: ../profile");
         }
     }     
 ?>
