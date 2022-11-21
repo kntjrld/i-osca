@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <ul>
             <li>
                 <a href="#" class="logo">
-                    <img src="media/logo.jpg" alt="logo">
+                    <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>
@@ -98,13 +98,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </header>
-        
+
         <!-- table header-->
         <div class="d-flex">
             <div class="p-2 me-auto">
-                <button type="button" id="export" class="btn btn-primary justify-content-end"><span><i
-                            class="fa-solid fa-file-export"></i></span> Export Excel
-                </button>
+                    <button type="submit" name="export" id="export"
+                        class="export btn btn-primary justify-content-end"><span><i
+                                class="fa-solid fa-file-export"></i></span> Export Excel
+                    </button>
             </div>
             <div class="p-2 ms-auto">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -188,7 +189,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                         <option value="Talabaan">Talabaan</option>
                                         <option value="Tangkalan">Tangkalan</option>
                                         <option value="Tayamaan">Tayamaan</option>
-                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                                 <div class="col">
@@ -232,7 +232,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <h5 class="modal-title">Update Record</h5>
                             <!-- <a href="#" id="delete_row" value="" class="d-flex justify-content-end"
                                 aria-label="Delete"><i class="fi-xnsuxl-trash-bin  fa-2x"></i></a> -->
-                            <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <!-- Form -->
                         <div class="modal-body" id="infoUpdate">

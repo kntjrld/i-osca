@@ -13,7 +13,5 @@ include("../conn/connection.php");
 				$result = mysqli_query($conn, $act);		
     }else{
 
-    }
-
-    
+    }        
 ?>

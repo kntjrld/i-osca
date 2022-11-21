@@ -39,7 +39,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <ul>
             <li>
                 <a href="#" class="logo">
-                    <img src="media/logo.jpg" alt="logo">
+                    <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>
@@ -120,6 +120,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <?php if(preg_match('/Added/',$row['fx_action'])) echo 'style="color:green;"'; ?>
                             <?php if(preg_match('/Updated/',$row['fx_action'])) echo 'style="color:green;"'; ?>
                             <?php if(preg_match('/Deleted/',$row['fx_action'])) echo 'style="color:red;"'; ?>
+                            <?php if(preg_match('/Removed/',$row['fx_action'])) echo 'style="color:red;"'; ?>
                             <?php if(preg_match('/Trying/',$row['fx_action'])) echo 'style="color:red;"'; ?>>
                             <?php echo $row['fx_action']; ?> </td>
                     </tr>

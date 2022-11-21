@@ -10,74 +10,42 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Welcome to i-OSCA</title>
+    <link rel="stylesheet" href="css/member.css">
+    <title>Be a member</title>
 </head>
 
 <body>
-
-    <div class="star star1"></div>
-    <div class="star star2"></div>
-    <div class="star star3"></div>
-    <div class="star star4"></div>
-    <div class="star star5"></div>
-
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 b-height">
                 <div class="row b-wrapper">
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 b-min-height">
                         <div class="b-logo swift_left">
-                            <a href="#"><img src="media/header.png" class="img-fluid"></a>
                         </div>
-
-                        <div class="star star1"></div>
-                        <div class="star star2"></div>
-                        <div class="star star3"></div>
-                        <div class="star star4"></div>
-                        <div class="star star5"></div>
-
                         <div class="b-title text-center">
-                            <h1 class="user_title">Welcome to i-OSCA</h1>
-                            <p class="user_subTitle">This is Mamburao social pension program,</br> register at your home with ease.
-                            </p>
-                            <a href="member" class="swift getstarted">Get Started</a>
+                        <a href="index"><img src="media/logo.png" class="img-fluid"></a>
+                        <p class="ins">If you want to register, read first the<br><a href="">Guide for registration</a></p>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
-                        <div class="b-form text-center">
-                            <div class="b-form-title">
-                                <h1 class="form_title">For administrator</h1>
-                                <p>
-                                    <span><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></span>
-                                    <span><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></span>
-                                    <span><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></span>
+                    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 a-min-height">
+                        <div class="b-form">
+                            <div class="b-title text-center">
+                                <p class="user_subTitle">
+                                    Register to mamburao senior pension program anytime, anywhere with <span
+                                        class="title">i-OSCA!</span>
                                 </p>
-                                <p class="b-subtext">visit our social media</p>
-                                <!-- php error code -->
-                                <?php if (isset($_GET['error'])) {
-                                ?><p class="b-subtext" style="color:red;"><?php echo $_GET['error']; ?></p><?php
-                            }?>
                             </div>
-                            <form method="post" action="conn/login.php">
-                                <div class="form-group username">
-                                    <input class="form-control" type="text" name="user_name" placeholder="Username">
-                                    <i class="fas fa-user b-font"></i>
-                                </div>
+                            <div class="b-form-title">
                                 <div class="form-group">
-                                    <input class="form-control" type="password" name="password" placeholder="Password">
-                                    <i class="fas fa-unlock-alt b-font"></i>
+                                    <a href="register" class="btn"><i class="fas fa-id-card fa-lg"></i>New Register</a>
                                 </div>
-                                <button type="submit" class="sign_in">Sign In</button>
-                            </form>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="this" onClick="alert('Contact the administrator!')">
-                                    <span class="b-forgot">Forgot your password?</span>
-                                </a>
+
+                                <div class="form-group">
+                                    <a href="#" class="btn"><i class="fas fa-search fa-lg" aria-hidden="true"></i>Check Status</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -105,7 +73,6 @@
 
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
                         <p><i class="fas fa-home mr-3"></i> Mamburao, 5106, Occ. Min.</p>
                         <p><i class="fas fa-envelope mr-3"></i> pgoosca@gmail.com</p>
                         <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
@@ -149,7 +116,7 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2022 Copyright: 
+            © 2022 Copyright:
             <a class="text-white" href="#">i-OSCA</a>
         </div>
         <!-- Copyright -->

@@ -25,7 +25,7 @@
         <div class="error__title">404</div>
         <div class="error__subtitle">Hmmm...</div>
         <div class="error__description">It looks like one of the developers fell asleep</div>
-        <button class="error__button error__button--active">Login</button>
+        <a href="index" class="error__button error__button--active">Login</a>
         <button class="error__button">Contact</button>
     </div>
 

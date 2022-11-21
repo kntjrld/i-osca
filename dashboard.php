@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <ul>
             <li>
                 <a href="#" class="logo">
-                    <img src="media/logo.jpg" alt="logo">
+                    <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>

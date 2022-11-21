@@ -22,6 +22,8 @@ if(isset($_POST["s_id"])) {
 ?>
 
 <input type="hidden" id="s_id" name="s_id" class="form-control" value="<?php echo $select_id ?>">
+<input type="hidden" id="user_name" name="user_name" class="form-control" value="<?php echo $select_username ?>">
+
 
     <div>
         <div class="d-flex justify-content-center p-2">

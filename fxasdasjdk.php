@@ -53,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         <ul>
             <li>
                 <a href="#" class="logo">
-                    <img src="media/logo.jpg" alt="logo">
+                    <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
                 </a>
             </li>
@@ -181,12 +181,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         </div>
                         <form action="" method="post" id="profileForm">
                             <div class="modal-body" id="infoUpdate">
-
                             </div>
-
                         </form>
                         <div class="modal-footer">
-                            <a href="#" name="remove" id="remove" class="remove btn btn-danger">Remove</a>
+                            <button name="remove" id="remove" class="remove btn btn-danger">Remove</button>
                             <button type="submit" id="reset" name="reset" class="reset btn btn-secondary">Reset
                                 Password</button>
                         </div>
@@ -203,7 +201,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             </button>
                         </div>
                         <div class="modal-body" id="newpass">
-
                         </div>
                     </div>
                 </div>
@@ -239,7 +236,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <script src="lib/sweetalert.min.js"></script>
     <script src="lib/admin.js"></script>
 </body>
-
 </html>
 <?php 
 }else{

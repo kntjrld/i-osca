@@ -25,8 +25,6 @@ body {
 }
 
 .img-fluid {
-    width: 40px;
-    height: 40px;
     margin-top: 10px;
     border-radius: 50%;
 }
@@ -34,13 +32,13 @@ body {
 .b-wrapper {
     display: flex;
     align-items: center;
-    min-height: 650px;
+    min-height: 700px;
     background-color: #fff;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, .2);
 }
 
 .b-min-height {
-    height: 650px;
+    height: 700px;
     background: var(--main-color);
 }
 
@@ -49,7 +47,7 @@ body {
 }
 
 .b-title {
-    padding: 50% 0px 0px;
+    padding: 40% 0px 0px;
 }
 
 .b-title h1 {
@@ -62,16 +60,17 @@ body {
     margin: 30px 0px 40px;
 }
 
-.b-title button {
+.b-title .getstarted {
     letter-spacing: 0.4px;
     padding: 15px 85px;
     border-radius: 36px;
     border: 1.5px solid #fff;
-    background: transparent;
     color: #fff;
     text-transform: uppercase;
 }
-
+.getstarted:hover{
+    text-decoration: none!important;
+}
 .b-title button:focus {
     outline: none;
 }
@@ -146,20 +145,21 @@ body {
     outline: none;
 }
 
-.b-form .b-forgot {
+.b-forgot {
     border-bottom: 1px solid #e8e4e4;
-    padding-bottom: 10px;
     color: #7e7e7e;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    display: none;
+    text-decoration: none;
 }
-
-.swift_right {
-    display: none;
+.this{
+    padding: 20px;
 }
-
+.b-forgot:hover{
+    color: var(--main-color);
+    text-decoration: none;
+}
 .swift_element {
     display: flex;
     align-items: unset;
