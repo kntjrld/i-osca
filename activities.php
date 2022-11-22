@@ -55,6 +55,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
+            <li><a href="status" id="nav-list">
+                    <i class="fas fa-check-to-slot"></i>
+                    <span class="nav-item">Pension Status</span>
+                </a></li>
             <li><a href="#" class="active" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
@@ -93,11 +97,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </header>
-        <form method="post" action="function/truncate.php" onSubmit="return confirm('You cannot undo this action, do you want to continue?')">
+        <form method="post" action="function/truncate.php"
+            onSubmit="return confirm('You cannot undo this action, do you want to continue?')">
             <div class="d-flex">
                 <div class="p-2 ms-auto" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
-                    <button type="submit" name="delete" id="delete"  value="Truncate Table" class="btn btn-danger justify-content-end"><span><i
-                                class="fa-solid fa-trash"></i></span> Delete all activities</button>
+                    <button type="submit" name="delete" id="delete" value="Truncate Table"
+                        class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
+                        all activities</button>
                 </div>
             </div>
         </form>

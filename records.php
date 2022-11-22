@@ -59,6 +59,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
+            <li><a href="status" id="nav-list">
+                    <i class="fas fa-check-to-slot"></i>
+                    <span class="nav-item">Pension Status</span>
+                </a></li>
             <li><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
@@ -102,10 +106,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- table header-->
         <div class="d-flex">
             <div class="p-2 me-auto">
-                    <button type="submit" name="export" id="export"
-                        class="export btn btn-primary justify-content-end"><span><i
-                                class="fa-solid fa-file-export"></i></span> Export Excel
-                    </button>
+                <button type="submit" name="export" id="export"
+                    class="export btn btn-primary justify-content-end"><span><i
+                            class="fa-solid fa-file-export"></i></span> Export Excel
+                </button>
             </div>
             <div class="p-2 ms-auto">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">

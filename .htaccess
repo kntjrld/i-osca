@@ -19,3 +19,5 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 
 </IfModule>
+
+Options All -Indexes

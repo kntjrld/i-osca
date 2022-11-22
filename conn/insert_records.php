@@ -16,7 +16,7 @@ if(isset($_POST['submit'])){
     $pension = $_POST['pension'];
     
     $sql = "INSERT INTO tbl_records(fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status)
-    VALUES('$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$fx_contact','$fd_birthdate', '$fx_gender', '$fx_barangay' ,'$fn_age', '$pension','$check_value')";
+    VALUES('$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$fx_contact','$fd_birthdate', '$fx_gender', '$fx_barangay' ,'$fn_age', '$pension','$check_value');"
     $result = mysqli_query($conn, $sql);
     if($result){
         // echo "success";

@@ -52,6 +52,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
+            <li><a href="status" id="nav-list">
+                    <i class="fas fa-check-to-slot"></i>
+                    <span class="nav-item">Pension Status</span>
+                </a></li>
             <li><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
@@ -60,7 +64,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-user"></i>
                     <span class="nav-item">Profle</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="fxasdasjdk"
+                    id="nav-list">
                     <i class="fas fa-folder"></i>
                     <span class="nav-item">Admin Panel</span>
                 </a></li>

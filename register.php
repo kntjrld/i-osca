@@ -11,7 +11,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="css/register.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Be a member</title>
 </head>
 
@@ -23,28 +25,28 @@
                 <div class="ms-auto"><a href="index"><img src="media/header.png" class="img-fluid" alt="header"></a>
                 </div>
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form action="conn/registration.php" enctype="multipart/form-data" method="post">
                 <div class="form">
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Presented ID no.</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" name="idpresented" id="idpresented" class="form-control" required>
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>ID Type</label>
-                            <select class="form-select" name="idtype">
-                                <option value="select">Select</option>
+                            <select class="form-select" id="idtype" name="idtype">
+                                <option value="Null">Select</option>
                                 <option value="Senior ID">Senior ID</option>
                                 <option value="Baptismal Certificate">Baptismal Certificate</option>
                                 <option value="Barangay Clearance">Barangay Clearance</option>
                                 <option value="Birth Certificate">Birth Certificate</option>
                                 <option value="Comelec ID">Comelec ID</option>
-                                <option value="Driver's License">Driver's License</option>
+                                <option value="Drivers License">Driver's License</option>
                                 <option value="GSIS ID/ SSS ID">GSIS ID/ SSS ID</option>
                                 <option value="Marriage Certificate">Marriage Certificate</option>
                                 <option value="Passport">Passport</option>
                                 <option value="Postal ID">Postal ID</option>
-                                <option value="Voter's ID">Voter's ID</option>
+                                <option value="Voters ID">Voter's ID</option>
                                 <option value="PRC ID">PRC ID</option>
                                 <option value="UMID">UMID</option>
                                 <option value="NBI Clearance">NBI Clearance</option>
@@ -56,25 +58,25 @@
                     </div>
                     <div class="row">
                         <div class="col mt-md-0 mt-3">
-                            <label class="form-label required">Fist Name</label>
-                            <input type="text" name="fistname" id="name" class="form-control" placeholder="Juan"
-                                aria-label="First name">
+                            <label class="form-label required">First Name</label>
+                            <input type="text" name="fname" id="fname" class="form-control" placeholder="Juan"
+                                aria-label="First name" required>
                         </div>
                         <div class="col mt-md-0 mt-3">
                             <label class="form-label required">Last Name</label>
-                            <input type="text" name="lastname" id="name" class="form-control" placeholder="Dela cruz"
-                                aria-label="Last name">
+                            <input type="text" name="lastname" id="lastname" class="form-control"
+                                placeholder="Dela cruz" aria-label="Last name" required>
                         </div>
                         <div class="col mt-md-0 mt-3 col-lg-2">
                             <label class="form-label required">I.N</label>
-                            <input type="text" name="middlename" id="name" class="form-control" placeholder="T"
-                                aria-label="Middle name">
+                            <input type="text" name="middlename" id="middlename" class="form-control" placeholder="T"
+                                aria-label="Middle name" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mt-md-0 mt-3">
                             <label>Birthday</label>
-                            <input type="date" class="form-control" required>
+                            <input type="date" id="bday" name="bday" class="form-control" required>
                         </div>
                         <div class="col mt-md-0 mt-3 col-lg-2">
                             <label>Gender</label>
@@ -108,36 +110,36 @@
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Contact(Number or Email)</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" name="contact" class="form-control" required>
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Age</label>
-                            <input type="number" class="form-control" required>
+                            <input type="number" name="age" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <p style="color:red; font-size: 10px">Each file uploaded is must be less than 2MB file size</p>
                         <div class="col  mt-md-0 mt-3">
                             <div class="form-group">
-                                <label for="Idpresentfront">ID Presented Front</label>
-                                <input type="file" class="form-control-file" id="frontid">
-                            </div>
-                            <div class="form-group">
-                                <label for="Idpresentedback">ID Presented Back</label>
-                                <input type="file" class="form-control-file" id="backid">
+                                <label for="idpresentedfile">ID Presented Front and Back<span
+                                        style="color:red; font-size:12px;"> (Must be in pdf format)</span></label>
+                                <input type="file" class="form-control-file" name="idpresentedfile" id="idpresentedfile"
+                                    required>
                             </div>
                         </div>
                         <div class="col mt-md-0 mt-3">
                             <div class="form-group">
-                                <label for="registrationform">Registration Form</label>
-                                <input type="file" class="form-control-file" id="regform">
+                                <label for="registrationfile">Registration Form</label>
+                                <input type="file" name="registrationfile" id="registrationfile"
+                                    class="form-control-file" required>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit</div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit
                 </div>
-            </Form>
         </div>
+        </Form>
+    </div>
     </div>
     <!-- Footer -->
     <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
@@ -211,8 +213,8 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+    <script src="lib/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>

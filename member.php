@@ -23,8 +23,9 @@
                         <div class="b-logo swift_left">
                         </div>
                         <div class="b-title text-center">
-                        <a href="index"><img src="media/logo.png" class="img-fluid"></a>
-                        <p class="ins">If you want to register, read first the<br><a href="">Guide for registration</a></p>
+                            <a href="index"><img src="media/logo.png" class="img-fluid"></a>
+                            <p class="ins">If you want to register, read first the<br><a href="">Guide for
+                                    registration</a></p>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7 a-min-height">
@@ -37,11 +38,15 @@
                             </div>
                             <div class="b-form-title">
                                 <div class="form-group">
-                                    <a href="register" class="btn"><i class="fas fa-id-card fa-lg"></i>New Register</a>
+                                    <a href="register" id= "this" class="btn"><i class="fas fa-id-card fa-lg"></i>New Register</a>
                                 </div>
-
                                 <div class="form-group">
-                                    <a href="#" class="btn"><i class="fas fa-search fa-lg" aria-hidden="true"></i>Check Status</a>
+                                    <a href="#" id="this" class="btn"><i class="fas fa-search fa-lg" aria-hidden="true"></i>Check
+                                        Registration Status</a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="#" id="this" class="btn"><i class="fas fa-money-check"></i></i>Check Pention
+                                        Status</a>
                                 </div>
                             </div>
                         </div>

@@ -46,6 +46,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
+            <li><a href="status" id="nav-list">
+                    <i class="fas fa-check-to-slot"></i>
+                    <span class="nav-item">Pension Status</span>
+                </a></li>
             <li><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
