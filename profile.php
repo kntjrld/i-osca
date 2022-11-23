@@ -97,7 +97,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="card-body">
                             <div class="account-settings">
                                 <div class="cover-profile">
-                                    <form action="conn/insert_records.php" method="POST" id="form"
+                                    <form action="conn/update_profile.php" method="POST" id="form"
                                         enctype="multipart/form-data">
                                         <div class="user-profile">
                                             <div class="user-avatar">
@@ -214,7 +214,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
                     <!-- CHANGE PASSWORD FORM-->
                     <div class="modal-body">
-                        <form action="conn/insert_records.php" method="post" id="changeform">
+                        <form action="conn/update_profile.php" method="post" id="changeform">
                             <div id="id_result"></div>
                             <!-- OLD PASSWORD -->
                             <div class="mb-2">

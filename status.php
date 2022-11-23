@@ -90,7 +90,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="container">
             <div class="wrapper rounded bg-white">
                 <div class="d-flex">
-                    <div class="h3">Status Form</div>
+                    <div class="h5">Pension Form</div>
                     <div class="ms-auto">
                         <input type="button" class="btn btn-primary w-100" id="restatus" value="Reset all status">
                         <p class="ms-auto text-center" style="font-size:10px; color: red;">All registered pension status
@@ -105,7 +105,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <select class="form-select" id="status" name="status">
                                     <option value="null">Select ID</option>
                                     <?php
-                                    $sql = "SELECT fx_id, fn_status, fx_firstname, fx_lastname, fx_middlename, fn_pension, fd_date FROM tbl_records";
+                                    $sql = "SELECT fx_id FROM tbl_records";
                                     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                     while( $rows = mysqli_fetch_assoc($resultset) ) { 
                                     ?>

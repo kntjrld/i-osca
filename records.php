@@ -126,7 +126,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
                     <!-- Form -->
                     <div class="modal-body">
-                        <form action="conn/insert_records.php" method="post" id="form">
+                        <form action="conn/insert_record.php" method="post" id="form">
                             <!-- Senior id -->
                             <div class="mb-3">
                                 <label class="form-label required">ID Number</label>
@@ -258,7 +258,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Senior ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col" class="d-none d-sm-table-cell">Middle</th>

@@ -116,7 +116,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         <div class="d-flex">
             <div class="p-2 ms-auto">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
-                    <span><i class="fa-solid fa-plus"></i></span>Add Record</button>
+                    <span><i class="fa-solid fa-plus"></i></span>Add User</button>
             </div>
         </div>
 
@@ -133,14 +133,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 <div class="card cadmin">
                     <div class="row">
                         <div class="numbers col"><?php echo $admin['adm']?></div>
-                        <div class="col" id="iconBox"><i class="fa-solid fa-house-laptop"></i></div>
+                        <div class="col" id="iconBox"><i class="fa-solid fa-rectangle-ad"></i></i></div>
                         <div class="cardName">Admin role</div>
                     </div>
                 </div>
                 <div class="card cadmin">
                     <div class="row">
                         <div class="numbers col"><?php echo $staff['staff']?></div>
-                        <div class="col" id="iconBox"><i class="fa-solid fa-house-laptop"></i></div>
+                        <div class="col" id="iconBox"><i class="fa-solid fa-clipboard-user"></i></i></div>
                         <div class="cardName">Staff role</div>
                     </div>
                 </div>

@@ -19,7 +19,7 @@
 
 .cardBox .card {
     position: relative;
-    background: var(--main-color);
+    background: #fff;
     padding: 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -30,19 +30,16 @@
     position: relative;
     font-weight: 500;
     font-size: 2.5em;
-    color: #fff
+    color: var(--main-color)
 }
 .cardBox .card .cardName{
-    color: #fff;
+    color: var(--main-color);
     font-size: 1em;
     margin-top: 5px;
 }
 .cardBox .card .iconBox, #iconBox{
     font-size: 3em;
-    color: #fff;
-}
-.card:hover{
-    background-color: var(--secondary-color);
+    color: var(--main-color);
 }
 #container{
     background-color: #fff;

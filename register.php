@@ -13,8 +13,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/register.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Be a member</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <div class="ms-auto"><a href="index"><img src="media/header.png" class="img-fluid" alt="header"></a>
                 </div>
             </div>
-            <form action="conn/registration.php" enctype="multipart/form-data" method="post">
+            <form enctype="multipart/form-data" id="form">
                 <div class="form">
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
@@ -215,6 +215,7 @@
     <!-- Footer -->
     <script src="lib/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="lib/register.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
