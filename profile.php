@@ -50,7 +50,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -155,7 +155,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" name="username" id="username"
-                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>">
+                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>" disabled>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -176,7 +176,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group">
                                         <label for="Street">Street</label>
                                         <input type="name" class="form-control w-100" name="street" id="street"
-                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>">
+                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>" disabled>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -244,7 +244,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
     </div>
     <script src="lib/sweetalert.min.js"></script>
-    <script src="lib/app.js"></script>
     <script>
     simg.onchange = evt => {
         const [file] = simg.files

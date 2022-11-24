@@ -26,7 +26,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -56,7 +55,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
+                    id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -206,7 +206,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
 
                     <div class="me-2 ms-auto">
-                        <select class="form-select form-select-sm" name="barangay">
+                        <select class="form-select form-select-sm" id="barangay" name="barangay">
                             <option value="All">All</option>
                             <option value="Balansay">Balansay</option>
                             <option value="Barangay 1">Barangay 1</option>
@@ -228,6 +228,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <div id="analytics"></div>
+            <!-- <div style="display:none;" id="brgy1"></div> -->
         </div>
     </div>
 
@@ -243,6 +244,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         resize: true,
         redraw: true,
         barColors: ['#6D9886', '#393E46'],
+    });
+
+    $(document).ready(function() {
+        
+        $('#barangay').on('change', function() {
+            if(this.value == 'Payompon') {
+                $("#analytics").show();
+            } else {
+                $("#brgy1").show();
+            }
+        });
     });
     </script>
 </body>

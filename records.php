@@ -2,7 +2,43 @@
 session_start();
 include('conn/connection.php');
 
-$records = $conn->query("SELECT * FROM tbl_records ORDER BY `tbl_records`.`fx_firstname` ASC");
+$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
+,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
+
+if($_SESSION['fx_street'] == $brgy[0]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[0]'");
+}elseif($_SESSION['fx_street'] == $brgy[1]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[1]'");
+}elseif($_SESSION['fx_street'] == $brgy[2]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[2]'");
+}elseif($_SESSION['fx_street'] == $brgy[3]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[3]'");
+}elseif($_SESSION['fx_street'] == $brgy[4]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[4]'");
+}elseif($_SESSION['fx_street'] == $brgy[5]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[5]'");
+}elseif($_SESSION['fx_street'] == $brgy[6]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[6]'");
+}elseif($_SESSION['fx_street'] == $brgy[7]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[7]'");
+}elseif($_SESSION['fx_street'] == $brgy[8]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[8]'");
+}elseif($_SESSION['fx_street'] == $brgy[9]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[9]'");
+}elseif($_SESSION['fx_street'] == $brgy[10]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[10]'");
+}elseif($_SESSION['fx_street'] == $brgy[11]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[11]'");
+}elseif($_SESSION['fx_street'] == $brgy[12]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[12]'");
+}elseif($_SESSION['fx_street'] == $brgy[13]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[13]'");
+}elseif($_SESSION['fx_street'] == $brgy[14]){
+    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[14]'");
+}else{
+$records = $conn->query("SELECT * FROM tbl_records");
+}
+
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
 ?>
@@ -63,7 +99,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -112,7 +148,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </button>
             </div>
             <div class="p-2 ms-auto">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
                     <span><i class="fa-solid fa-plus"></i></span> Add Record</button>
             </div>
         </div>
@@ -234,8 +270,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <form action="#" method="post" id="updateForm">
                         <div class="modal-header">
                             <h5 class="modal-title">Update Record</h5>
-                            <!-- <a href="#" id="delete_row" value="" class="d-flex justify-content-end"
-                                aria-label="Delete"><i class="fi-xnsuxl-trash-bin  fa-2x"></i></a> -->
                             <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>

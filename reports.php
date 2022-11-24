@@ -2,7 +2,60 @@
 session_start();
 include('conn/connection.php');
 
-$records = $conn->query("SELECT * FROM tbl_register ORDER BY `tbl_register`.`fx_lastname` ASC");
+// $records = $conn->query("SELECT * FROM tbl_register ORDER BY `tbl_register`.`fx_lastname` ASC");
+
+$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
+,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
+
+if($_SESSION['fx_street'] == $brgy[0]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[0]'");
+    $header = 'You are viewing a list of application from Barangay 1';
+}elseif($_SESSION['fx_street'] == $brgy[1]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[1]'");
+    $header = 'You are viewing a list of application from Barangay 2';
+}elseif($_SESSION['fx_street'] == $brgy[2]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[2]'");
+    $header = 'You are viewing a list of application from Barangay 3';
+}elseif($_SESSION['fx_street'] == $brgy[3]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[3]'");
+    $header = 'You are viewing a list of application from Barangay 4';
+}elseif($_SESSION['fx_street'] == $brgy[4]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[4]'");
+    $header = 'You are viewing a list of application from Barangay 5';
+}elseif($_SESSION['fx_street'] == $brgy[5]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[5]'");
+    $header = 'You are viewing a list of application from Barangay 6';
+}elseif($_SESSION['fx_street'] == $brgy[6]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[6]'");
+    $header = 'You are viewing a list of application from Barangay 7';
+}elseif($_SESSION['fx_street'] == $brgy[7]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[7]'");
+    $header = 'You are viewing a list of application from Barangay 8';
+}elseif($_SESSION['fx_street'] == $brgy[8]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[8]'");
+    $header = 'You are viewing a list of application from Balansay';
+}elseif($_SESSION['fx_street'] == $brgy[9]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[9]'");
+    $header = 'You are viewing a list of application from Fatima';
+}elseif($_SESSION['fx_street'] == $brgy[10]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[10]'");
+    $header = 'You are viewing a list of application from Payompon';
+}elseif($_SESSION['fx_street'] == $brgy[11]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[11]'");
+    $header = 'You are viewing a list of application from San Luis (Ligang)';
+}elseif($_SESSION['fx_street'] == $brgy[12]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[12]'");
+    $header = 'You are viewing a list of application from Talabaan';
+}elseif($_SESSION['fx_street'] == $brgy[13]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[13]'");
+    $header = 'You are viewing a list of application from Tangkalan';
+}elseif($_SESSION['fx_street'] == $brgy[14]){
+    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[14]'");
+    $header = 'You are viewing a list of application from Tayamaan';
+}else{
+$records = $conn->query("SELECT * FROM tbl_regstatus WHERE fx_status = 'accepted'");
+$header = 'You are viewing a list of application that accepted by each cluster president';
+}
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -61,7 +114,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -90,7 +143,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         </span>
                         Reports(MAINTENANCE)
                 </h2>
-                <p style="font-size: 12px;">You are viewing a list of application that accepted by staff</p>
+                <p style="font-size: 12px;"><?php echo $header ?></p>
             </div>
             <div class="user-wrapper">
                 <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
@@ -135,9 +188,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
-                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-secondary noExl"
-                                style="width: auto;" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">Review</button>
+                        <td> <button id='<?php echo $row['uid']; ?>' class="<?php if($_SESSION['user_level'] == 'staff'){
+                            echo 'viewasstaff btn btn-secondary noExl';
+                            }else{
+                             echo 'viewasadmin btn btn-secondary noExl';  
+                            }?>"style="width: auto;" data-bs-toggle="modal"
+                                data-bs-target="<?php if($_SESSION['user_level'] == 'staff'){
+                                    #staticBackdrop
+                                }else{
+                                    #adminmodal
+                                } ?>">Review</button>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -150,84 +210,32 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="d-flex">
-                            <div class="ms-auto"> <i class="fa fa-close close" data-bs-dismiss="modal"></i> </div>
-                        </div>
-                        <div class="container">
-                            <h5 class="text-uppercase">XXX 25, 1982</h5>
-                            <h5 class="h6">Date of application</h5>
-                            <div class="mb-3">
-                                <hr class="new1">
-                            </div>
-                            <div class="text-center  mt-5">
-                                <div class="d-flex justify-content-between">
-                                    <div class="pdl">
-                                        <p class="xx ml-md-6">Presented ID number: <span class="xxx">000-000-000</span>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">Presented ID type: <span class="xxx">idtype name</span></p>
-                                        </p>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="text-center mt-2">
-                                <div class="d-flex justify-content-between">
-                                    <div class="pdl">
-                                        <p class="xx ml-md-6">Last name: <span class="xxx">name xx xx</span>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">First name: <span class="xxx">lastxsx x</span></p>
-                                        </p>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">Middle initial: <span class="xxx">x</span></p>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="text-center mt-2">
-                                <div class="d-flex justify-content-between">
-                                    <div class="pdl">
-                                        <p class="xx ml-md-6">Birthday: <span class="xxx">May 09, 1892</span>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">Gender: <span class="xxx">Male</span></p>
-                                        </p>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">Barangay: <span class="xxx">Payompon</span></p>
-                                        </p>
-                                    </div>
-                                    <div class="pdr">
-                                        <p class="xx">Age: <span class="xxx">00</span></p>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <hr class="new1">
-                            </div>
-                            <h6>Proof of Identity<span style="font-size:14px;">(Click to view/print)</span></h6>
-                            <p class="xx">ID Presented: <span class="xxx">This is pdf file</span></p>
-                            <p class="xx">Registration Form: <span class="xxx">This is pdf file</span></p>
-                            <div class="text-center mt-5">
-                                <p style="font-size: 12px;">All accepted application will proceed to next step and review by admin
-                                </p>
-                                <button class="btn btn-primary">Accept</button>
-                                <button class="btn btn-danger">Reject</button>
-                            </div>
-                        </div>
+                    <div class="modal-body" id="infoUpdate">
+                        <!-- insert here -->
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- end -->
     </div>
+    </div>
+    <!-- end -->
+    <!-- modal 2 -->
+    <div class="modal fade" id="adminmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="adminmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body" id="adminview">
+                    <!-- insert here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- modal 2 end -->
+    </div>
+    <script src="lib/sweetalert.min.js"></script>
+    <script src="lib/reports.js"></script>
     <script>
     // DATATABLE record
     $(document).ready(function() {

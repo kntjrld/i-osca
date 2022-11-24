@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -105,7 +105,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <select class="form-select" id="status" name="status">
                                     <option value="null">Select ID</option>
                                     <?php
-                                    $sql = "SELECT fx_id FROM tbl_records";
+                                    $brgy = $_SESSION['fx_street'];
+                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy'";
                                     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                     while( $rows = mysqli_fetch_assoc($resultset) ) { 
                                     ?>

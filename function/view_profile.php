@@ -55,4 +55,3 @@ if(isset($_POST["s_id"])) {
             </div>
         </div>
     </div>
-</div>
