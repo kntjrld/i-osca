@@ -52,7 +52,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <title>Records</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -233,7 +232,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 </div>
                                 <div class="col">
                                     <label class="form-label required">Age</label>
-                                    <input type="number" name="age" class="form-control" placeholder=" > 59"
+                                    <input type="number" name="age" class="form-control" placeholder=""
                                         aria-label="Age">
                                 </div>
                                 <div class="col">

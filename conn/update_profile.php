@@ -6,10 +6,10 @@ if(isset($_POST['update'])){
     
     $get_id = $_SESSION['user_id'];
     $update_firstname = $_POST['fullname'];
-    $update_username = $_POST['username'];
+    // $update_username = $_POST['username']; //DON'T 555555
     $update_phone = $_POST['phone'];
     $update_email = $_POST['email'];
-    $update_street = $_POST['street'];
+    // $update_street = $_POST['street']; //DON'T 555555
     $update_city = $_POST['city'];
 
     
@@ -34,18 +34,16 @@ if(isset($_POST['update'])){
         $filename = $_POST['hiddenImage'];
     }
 
-    $sql = "UPDATE users SET fm_img = '$filename', full_name ='$update_firstname', user_name = '$update_username', email = '$update_email', contact_num = '$update_phone',
-    fx_street = '$update_street', fx_municipality = '$update_city' WHERE user_id = '$get_id' ";
+    $sql = "UPDATE users SET fm_img = '$filename', full_name ='$update_firstname', email = '$update_email', contact_num = '$update_phone',
+    fx_municipality = '$update_city' WHERE user_id = '$get_id' ";
     $run = mysqli_query($conn, $sql);
     
     if($run){
         // echo "success";
         $_SESSION['profile'] = "Added successfully";
         $_SESSION['full_name'] = $update_firstname;
-        $_SESSION['user_name'] = $update_username;
         $_SESSION['email'] = $update_email;
         $_SESSION['contact_num'] = $update_phone;
-        $_SESSION['fx_street'] = $update_street;
         $_SESSION['fx_municipality'] = $update_city;
     
         if (isset($_FILES["simg"]["tmp_name"]) && $_FILES["simg"]["tmp_name"] != "") {

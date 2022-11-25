@@ -25,33 +25,33 @@ if(isset($_POST["s_id"])) {
 <input type="hidden" id="user_name" name="user_name" class="form-control" value="<?php echo $select_username ?>">
 
 
-    <div>
-        <div class="d-flex justify-content-center p-2">
-            <img src="image/<?php echo $select_img ?>" class="view_img" />
+<div>
+    <div class="d-flex justify-content-center p-2">
+        <img src="image/<?php echo $select_img ?>" class="view_img" />
+    </div>
+    <div class="d-flex justify-content-center">
+        <h5><?php echo $select_fullname ?></h1>
+    </div>
+    <div class="d-block">
+        <div class="d-flex">
+            <p class="label">Username:</p>
+            <p><?php echo $select_username ?></p>
         </div>
-        <div class="d-flex justify-content-center">
-            <h5><?php echo $select_fullname ?></h1>
+        <div class="d-flex">
+            <p class="label">Email:</p>
+            <p><?php echo $select_email ?></p>
         </div>
-        <div class="d-block">
-            <div class="d-flex">
-                <p class="label">Username:</p>
-                <p><?php echo $select_username ?></p>
-            </div>
-            <div class="d-flex">
-                <p class="label">Email:</p>
-                <p><?php echo $select_email ?></p>
-            </div>
-            <div class="d-flex">
-                <p class="label">Contact Number:</p>
-                <p><?php echo $select_contactnum ?></p>
-            </div>
-            <div class="d-flex">
-                <p class="label">Address:</p>
-                <p><?php echo $select_street, ', ' ,$select_municipality ?></p>
-            </div>
-            <div class="d-flex">
-                <p class="label">User type:</p>
-                <p><?php echo $select_userlevel ?></p>
-            </div>
+        <div class="d-flex">
+            <p class="label">Contact Number:</p>
+            <p><?php echo $select_contactnum ?></p>
+        </div>
+        <div class="d-flex">
+            <p class="label">Address:</p>
+            <p><?php echo $select_street, ', ' ,$select_municipality ?></p>
+        </div>
+        <div class="d-flex">
+            <p class="label">User type:</p>
+            <p><?php echo $select_userlevel ?></p>
         </div>
     </div>
+</div>

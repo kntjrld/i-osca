@@ -1,10 +1,31 @@
 <?php
 session_start();
 include('conn/connection.php');
+include('function/dashboard_query.php');
+include('selectgraph/select_barangay1.php');
+include('selectgraph/select_barangay2.php');
+include('selectgraph/select_barangay3.php');
+include('selectgraph/select_barangay4.php');
+include('selectgraph/select_barangay5.php');
+include('selectgraph/select_barangay6.php');
+include('selectgraph/select_barangay7.php');
+include('selectgraph/select_barangay8.php');
+include('selectgraph/select_balansay.php');
+include('selectgraph/select_fatima.php');
+include('selectgraph/select_payompon.php');
+include('selectgraph/select_ligang.php');
+include('selectgraph/select_talabaan.php');
+include('selectgraph/select_tangkalan.php');
+include('selectgraph/select_tayamaan.php');
+
+
+
+
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +38,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/d_style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
 
     <!-- charts -->
-
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-
 </head>
 
 <body>
@@ -97,63 +116,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         </header>
 
-        <!-- SELECT -->
-        <?php
-        // SELECT TO RECORDS
-        $sql="SELECT COUNT(*) as total from tbl_records";
-        $result=mysqli_query($conn,$sql);
-        $total=mysqli_fetch_assoc($result);
-        // select distinct total barangay
-        $sql="SELECT COUNT(DISTINCT fx_barangay) as total from tbl_records";
-        $result=mysqli_query($conn,$sql);
-        $totalbarangay=mysqli_fetch_assoc($result);
-        // filter with
-        $sql="SELECT COUNT(*) as total from tbl_records WHERE fn_status = 'Received'";
-        $result=mysqli_query($conn,$sql);
-        $withp=mysqli_fetch_assoc($result);
-        // filter without
-        $sql="SELECT COUNT(*) as total from tbl_records WHERE fn_status = 'Pending'";
-        $result=mysqli_query($conn,$sql);
-        $withoutp=mysqli_fetch_assoc($result);
-
-
-        // START TEST ARRAY
-        $female = array("10", "34", "41", "50", "10", "34", "41", "50", "31", "42", "40", "32", "31", "42", "40");
-        $male = array("12, 32, 32, 23, 53, 12, 25, 42, 34, 23, 34, 23, 23, 33, 55, 40");
-        // END TEST ARRAY
-
-        $chart_data = '';
-        // ADD ALL BARANGAY TO ARRAY
-        $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-                    ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
-        
-        // GENERATE NEW(MALE) ARRAY FOR EACH BARANGAY
-        $malearr = array();
-        foreach($brgy as $row){
-            $m_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Male' ";
-            $arr_m = mysqli_query($conn,$m_arr);
-            $xx=mysqli_fetch_assoc($arr_m);
-            $malearr[] = $xx['xxx'];
-
-        }
-        // GENERATE NEW(FEMALE) ARRAY FOR EACH BARANGAY
-        $femalearr = array();
-        foreach($brgy as $row){
-            $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Female' ";
-            $arr_f = mysqli_query($conn,$f_arr);
-            $xx=mysqli_fetch_assoc($arr_f);
-            $femalearr[] = $xx['xxx'];
-        }
-
-        // DISPLAY ARRAY(BARANGAY, MALE, FEMALE) TO GRAPH
-        for ($i = 0; $i < count($brgy); $i++) {
-            $chart_data .= "{ y:'$brgy[$i]', Male:'$malearr[$i]', Female:'$femalearr[$i]'}, ";
-        }
-        
-        // QUERY DURATION 4 HOURS
-
-        ?>
-
         <!-- Card -->
         <div class="cardBox">
             <div class="card">
@@ -166,7 +128,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <div class="card">
                 <div class="row">
-                    <div class="numbers col">15</div>
+                    <div class="numbers col"><?php echo $totalbarangay['total'];?></div>
                     <div class="col" id="iconBox"><i class="fa-solid fa-house-laptop"></i></div>
                     <div class="cardName">Barangays</div>
 
@@ -206,9 +168,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
 
                     <div class="me-2 ms-auto">
-                        <select class="form-select form-select-sm" id="barangay" name="barangay">
+                        <select class="form-select form-select-sm" id="barangay" name="barangay"
+                            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
                             <option value="All">All</option>
-                            <option value="Balansay">Balansay</option>
                             <option value="Barangay 1">Barangay 1</option>
                             <option value="Barangay 2">Barangay 2</option>
                             <option value="Barangay 3">Barangay 3</option>
@@ -217,6 +179,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <option value="Barangay 6">Barangay 6</option>
                             <option value="Barangay 7">Barangay 7</option>
                             <option value="Barangay 8">Barangay 8</option>
+                            <option value="Balansay">Balansay</option>
                             <option value="Fatima">Fatima</option>
                             <option value="Payompon">Payompon</option>
                             <option value="San Luis (Ligang)">San Luis (Ligang)</option>
@@ -227,34 +190,446 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
                 </div>
             </div>
-            <div id="analytics"></div>
-            <!-- <div style="display:none;" id="brgy1"></div> -->
+            <div style="height:320px;" id="analytics"></div>
         </div>
     </div>
-
+    <script src="lib/dashboard.js"></script>
     <script>
+        // CHARTS
     Morris.Bar({
         element: 'analytics',
-        data: [<?php echo $chart_data; ?>],
+        data: [
+            <?php
+                echo $chart_data;
+            ?>
+        ],
         xkey: 'y',
-        ykeys: ['Male', 'Female'],
-        labels: ['Male', 'Female'],
-        stacked: true,
-        xLabelAngle: 40,
+        ykeys: [
+            <?php echo $keys; ?>
+
+        ],
+        labels: [
+            <?php echo $keys; ?>
+        ],
+        <?php 
+        $level = $_SESSION['user_level'];
+        if( $level == 'staff'){
+            echo 'stacked: false,';
+            
+        }else if($level == 'admin'){
+            echo 'stacked: true,';
+            echo 'xLabelAngle: 40,';
+        }
+        ?>
         resize: true,
         redraw: true,
-        barColors: ['#6D9886', '#393E46'],
+        barColors: [
+            <?php echo $colors; ?>
+        ],
     });
+    </script>
+    <script>
+    $('select').on('change', function() {
+        selectval = $(this).val();
+        // alert(selectval);   
+        if (selectval == 'Barangay 1') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy1;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
 
-    $(document).ready(function() {
-        
-        $('#barangay').on('change', function() {
-            if(this.value == 'Payompon') {
-                $("#analytics").show();
-            } else {
-                $("#brgy1").show();
-            }
-        });
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 2') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy2;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 3') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy3;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 4') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy4;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 5') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy5;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 6') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy6;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 7') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy7;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Barangay 8') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy8;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Balansay') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_balansay;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Fatima') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_fatima;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Payompon') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_payompon;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'San Luis (Ligang)') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_ligang;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Talabaan') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_talabaan;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Tangkalan') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_tangkalan;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }else if (selectval == 'Tayamaan') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $brgy_tayamaan;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                stacked: false,
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        }
+        else if (selectval == 'All') {
+            $("#analytics").empty();
+            Morris.Bar({
+                element: 'analytics',
+                data: [
+                    <?php
+                echo $chart_data;
+            ?>
+                ],
+                xkey: 'y',
+                ykeys: [
+                    <?php echo $keys; ?>
+
+                ],
+                labels: [
+                    <?php echo $keys; ?>
+                ],
+                <?php 
+        $level = $_SESSION['user_level'];
+        if( $level == 'staff'){
+            echo 'stacked: false,';
+            
+        }else if($level == 'admin'){
+            echo 'stacked: true,';
+            echo 'xLabelAngle: 40,';
+        }
+        ?>
+                resize: true,
+                redraw: true,
+                barColors: [
+                    <?php echo $colors; ?>
+                ],
+            });
+        } else {
+
+        }
+
     });
     </script>
 </body>

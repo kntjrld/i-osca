@@ -9,69 +9,68 @@ $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 
 
 if($_SESSION['fx_street'] == $brgy[0]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[0]'");
-    $header = 'You are viewing a list of application from Barangay 1';
+    $header = 'You are viewing a list of online application from Barangay 1';
 }elseif($_SESSION['fx_street'] == $brgy[1]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[1]'");
-    $header = 'You are viewing a list of application from Barangay 2';
+    $header = 'You are viewing a list of online application from Barangay 2';
 }elseif($_SESSION['fx_street'] == $brgy[2]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[2]'");
-    $header = 'You are viewing a list of application from Barangay 3';
+    $header = 'You are viewing a list of online application from Barangay 3';
 }elseif($_SESSION['fx_street'] == $brgy[3]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[3]'");
-    $header = 'You are viewing a list of application from Barangay 4';
+    $header = 'You are viewing a list of online application from Barangay 4';
 }elseif($_SESSION['fx_street'] == $brgy[4]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[4]'");
-    $header = 'You are viewing a list of application from Barangay 5';
+    $header = 'You are viewing a list of online application from Barangay 5';
 }elseif($_SESSION['fx_street'] == $brgy[5]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[5]'");
-    $header = 'You are viewing a list of application from Barangay 6';
+    $header = 'You are viewing a list of online application from Barangay 6';
 }elseif($_SESSION['fx_street'] == $brgy[6]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[6]'");
-    $header = 'You are viewing a list of application from Barangay 7';
+    $header = 'You are viewing a list of online application from Barangay 7';
 }elseif($_SESSION['fx_street'] == $brgy[7]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[7]'");
-    $header = 'You are viewing a list of application from Barangay 8';
+    $header = 'You are viewing a list of online application from Barangay 8';
 }elseif($_SESSION['fx_street'] == $brgy[8]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[8]'");
-    $header = 'You are viewing a list of application from Balansay';
+    $header = 'You are viewing a list of online application from Balansay';
 }elseif($_SESSION['fx_street'] == $brgy[9]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[9]'");
-    $header = 'You are viewing a list of application from Fatima';
+    $header = 'You are viewing a list of online application from Fatima';
 }elseif($_SESSION['fx_street'] == $brgy[10]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[10]'");
-    $header = 'You are viewing a list of application from Payompon';
+    $header = 'You are viewing a list of online application from Payompon';
 }elseif($_SESSION['fx_street'] == $brgy[11]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[11]'");
-    $header = 'You are viewing a list of application from San Luis (Ligang)';
+    $header = 'You are viewing a list of online application from San Luis (Ligang)';
 }elseif($_SESSION['fx_street'] == $brgy[12]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[12]'");
-    $header = 'You are viewing a list of application from Talabaan';
+    $header = 'You are viewing a list of online application from Talabaan';
 }elseif($_SESSION['fx_street'] == $brgy[13]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[13]'");
-    $header = 'You are viewing a list of application from Tangkalan';
+    $header = 'You are viewing a list of online application from Tangkalan';
 }elseif($_SESSION['fx_street'] == $brgy[14]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[14]'");
-    $header = 'You are viewing a list of application from Tayamaan';
+    $header = 'You are viewing a list of online application from Tayamaan';
 }else{
 $records = $conn->query("SELECT * FROM tbl_regstatus WHERE fx_status = 'accepted'");
-$header = 'You are viewing a list of application that accepted by each cluster president';
+$header = 'You are viewing a list of online application that accepted by each cluster president';
 }
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="end">
+<html lang="en">
 
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Reports</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- DATA TABLE CSS -->
@@ -79,12 +78,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
-    <link rel="stylesheet" type="text/css" href="css/reports.css">
+    <link rel="stylesheet" type="text/css" href="css/reports.css">    
 
     <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </head>
 
@@ -92,7 +91,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Navigation start -->
     <nav class="side-nav">
         <ul>
-            <li>
+        <li>
                 <a href="#" class="logo">
                     <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
@@ -106,7 +105,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-table"></i>
                     <span class="nav-item">Records</span>
                 </a></li>
-            <li><a href="#" class="active" id="nav-list">
+            <li><a href="#" class="active"id=" nav-list">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -141,7 +140,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <label for="">
                         <span class="las la-bars">
                         </span>
-                        Reports(MAINTENANCE)
+                        Reports
                 </h2>
                 <p style="font-size: 12px;"><?php echo $header ?></p>
             </div>
@@ -236,6 +235,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </div>
     <script src="lib/sweetalert.min.js"></script>
     <script src="lib/reports.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
     // DATATABLE record
     $(document).ready(function() {

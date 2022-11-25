@@ -92,8 +92,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <div class="d-flex">
                     <div class="h5">Pension Form</div>
                     <div class="ms-auto">
-                        <input type="button" class="btn btn-primary w-100" id="restatus" value="Reset all status">
-                        <p class="ms-auto text-center" style="font-size:10px; color: red;">All registered pension status
+                        <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?> class="btn btn-primary w-100" id="restatus" value="Reset all status">
+                        <p class="ms-auto text-center" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?> style="font-size:10px; color: red;">All registered pension status
                             will back to pending</p>
                     </div>
                 </div>

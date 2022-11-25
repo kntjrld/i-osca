@@ -155,7 +155,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" name="username" id="username"
-                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>" disabled>
+                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -176,7 +176,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group">
                                         <label for="Street">Street</label>
                                         <input type="name" class="form-control w-100" name="street" id="street"
-                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>" disabled>
+                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

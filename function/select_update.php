@@ -18,6 +18,7 @@ if(isset($_POST["s_id"])) {
         $update_age = $row['fn_age'];
         $update_pension = $row['fn_pension'];
         $update_status = $row['fn_status'];
+        $life_status = $row['life_status'];
     }
 }
 ?>
@@ -114,8 +115,17 @@ if(isset($_POST["s_id"])) {
         <input type="number" id="update_age" name="update_age" class="form-control" placeholder=" > 59" aria-label="Age"
             value="<?php echo $update_age ?>">
     </div>
+</div>
+
+<!-- Pension $$$ -->
+<div class="row">
     <div class="col">
-        <!-- <div class="form-group mb-2"> -->
+        <label class="form-label required">Pension</label>
+        <input type="number" id="update_pension" name="update_pension" class="form-control"
+            value="<?php echo $update_pension ?>">
+    </div>
+
+    <div class="col">
         <label for="">Pension Status</label> <br>
         <input class="form-check-input" id="update_status" type="radio" name="update_status"
             <?php if($update_status=="Received") {echo "checked";}?> value="Received" />
@@ -125,10 +135,15 @@ if(isset($_POST["s_id"])) {
             <?php if($update_status=="Pending") {echo "checked";}?> value="Pending" />
         <label class="form-check-label" for="status">Pending</label>
     </div>
-    <!-- Pension $$$ -->
-    <div class="mb-2">
-        <label class="form-label required">Pension</label>
-        <input type="number" id="update_pension" name="update_pension" class="form-control"
-            value="<?php echo $update_pension ?>" disabled>
+
+    <div class="col">
+        <label for="">Life Status</label> <br>
+        <input class="form-check-input" id="life_status" type="radio" name="life_status"
+            <?php if($life_status=="alive") {echo "checked";}?> value="alive" />
+        <label class="form-check-label" for="life_status">Alive</label></br>
+
+        <input class="form-check-input" id="life_status" type="radio" name="life_status"
+            <?php if($life_status=="dead") {echo "checked";}?> value="dead" />
+        <label class="form-check-label" for="life_status">Death</label>
     </div>
 </div>
