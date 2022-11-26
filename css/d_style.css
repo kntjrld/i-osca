@@ -62,6 +62,20 @@
     margin: 5px 10px 10px 10px;
 }
 
+.alive{
+    height: 10px;
+    width: 10px;
+    background-color: #4b6043;
+    margin: 5px 10px 10px 10px;
+}
+
+.dead{
+    height: 10px;
+    width: 10px;
+    background-color: #301934;
+    margin: 5px 10px 10px 10px;
+}
+
 /* Media query */
 
 @media only screen and (max-width: 650px) {

@@ -8,6 +8,7 @@ if(isset($_POST["s_id"])) {
     $result = mysqli_query($conn, $sql); 
 
     while($row = mysqli_fetch_array($result)){
+        $uid = $row['uid'];
         $idnumber = $row['fx_idnumber'];
         $idtype = $row['fx_idpresented'];
         $firstname = $row['fx_firstname'];
@@ -31,19 +32,14 @@ if(isset($_POST["s_id"])) {
 </div>
 <div class="container">
     <div class="d-flex">
-        <div class="container">
+        <div class="p-1">
             <h5 class="text-uppercase"><?php echo $applicationdate ?></h5>
             <h5 class="h6">Date of application</h5>
         </div>
 
-        <div class="container">
-            <h5 class="text-uppercase"><?php echo $accepteddate ?></h5>
-            <h5 class="h6">Date accepted by cluster</h5>
-        </div>
-
-        <div class="container text-center">
-            <h5 class="text-uppercase" style="color:green;">ACCEPTED</h5>
-            <h5 class="h6 text-center">Status</h5>
+        <div class="p-1 ms-auto">
+            <h5 class="text-uppercase"><p style="font-size:12px; font-weight:bold;"><?php echo $uid ?></p></h5>
+            <h5 class="h6 text-center"><p style="font-size:12px;">Application number</p></h5>
         </div>
     </div>
 

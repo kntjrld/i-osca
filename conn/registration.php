@@ -1,6 +1,6 @@
 <?php
 include "connection.php";
-
+require('../pdf/fpdf.php');  
 
     function getGUIDnoHash(){
             mt_srand((double)microtime()*10000);
@@ -33,14 +33,36 @@ include "connection.php";
     $result = mysqli_query($conn, $sql);
 
     if($result){
+        // Move idpresented file to folder
         $file_tmp = $_FILES['idpresentedfile']['tmp_name'];
         move_uploaded_file($file_tmp,"../registration/".$pdfidpresented);
-
+        // Move registration file to folder
         $file_tmp = $_FILES['registrationfile']['tmp_name'];
         move_uploaded_file($file_tmp,"../registration/".$pdfregistrationform);
-        header("Location: ../register");
+
+        // Create pdf for id of each registration
+        $_SESSION['applicatonid'] = $uid;
+        // ob_start();
+        // $pdf = new FPDF();
+        // $pdf->AddPage();
+        // $pdf->SetTextColor(0,0,0); 
+        // $pdf->SetFont('Arial', 'B', 9);
+        // $pdf->Text (10, 10,  'Use this id to view your application status', 0); 
+        // $pdf->SetTextColor(0,0,0); 
+        // $pdf->SetFont('Arial', 'B', 12);
+        // $pdf->MultiCell(0,10,utf8_decode($uid));
+        // $fileName = $firstname.'_'.$lastname.'applicationnumber'.'.pdf';
+        // // return the generated output
+        // $pdf->Output($fileName,'D');
+        // ob_end_flush(); 
+        // header('Content-Type: application/download');
+        // header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
+        // header("Content-Length: " . filesize($pdf));
+
+        // header location
+        // header("Location: ../register");
     }else{
-        header("Location: ../register");
+        // header("Location: ../register");
     }
 
 ?>

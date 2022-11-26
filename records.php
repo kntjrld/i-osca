@@ -51,14 +51,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     <title>Records</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
 
-    <!-- DATA TABLE CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- DATA TABLE CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">

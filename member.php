@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Boostrap css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/member.css">
+    <!-- Boostrap js and jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Be a member</title>
 </head>
 
@@ -38,18 +43,49 @@
                             </div>
                             <div class="b-form-title">
                                 <div class="form-group">
-                                    <a href="register" id= "this" class="btn"><i class="fas fa-id-card fa-lg"></i>New Register</a>
+                                    <a href="register" id="this" class="btn"><i class="fas fa-id-card fa-lg"></i>New
+                                        Register</a>
                                 </div>
                                 <div class="form-group">
-                                    <a href="#" id="this" class="btn"><i class="fas fa-search fa-lg" aria-hidden="true"></i>Check
+                                    <a href="#" data-toggle="modal" data-target="#myModal" id="this" class="btn"><i
+                                            class="fas fa-search fa-lg" aria-hidden="true"></i>Check
                                         Registration Status</a>
                                 </div>
                                 <div class="form-group">
-                                    <a href="#" id="this" class="btn"><i class="fas fa-money-check"></i></i>Check Pention
+                                    <a href="#" id="this" class="btn"><i class="fas fa-money-check"></i></i>Check
+                                        Pention
                                         Status</a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL FOR CHECK REGISTRATION STATUS -->
+        <div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registration status</h5>
+                        <a class="close" data-dismiss="modal">&times;</a>
+                    </div>
+                    <form action="" method="post" id="profileForm">
+                        <div class="modal-body" id="infoUpdate">
+                            <div class="input-group">
+                                <!-- 53509855529849995454 -->
+                                <div class="form-outline w-100">
+                                    <input id="search-input" type="text" class="form-control" maxlength="20"
+                                        placeholder="20 digit unique ID" />
+                                    <button type="button" id="btn-search"
+                                        class="btn btn-primary w-100 p-2 mt-2">Search</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <p>i-osca 2022</p>
                     </div>
                 </div>
             </div>
@@ -127,8 +163,8 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="lib/member.js"></script>
 </body>
 
 </html>

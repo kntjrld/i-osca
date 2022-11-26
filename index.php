@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
@@ -49,11 +49,11 @@
                             <div class="b-form-title">
                                 <h1 class="form_title">For administrator</h1>
                                 <p>
-                                    <span><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></span>
-                                    <span><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></span>
-                                    <span><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></span>
+                                    <span><i class="fa-solid fa-shield"></i></span>
+                                    <span><i class="fa-solid fa-list-check"></i></span>
+                                    <span><i class="fa-solid fa-clock-rotate-left"></i></span>
                                 </p>
-                                <p class="b-subtext">visit our social media</p>
+                                <p class="b-subtext">. . .</p>
                                 <!-- php error code -->
                                 <?php if (isset($_GET['error'])) {
                                 ?><p class="b-subtext" style="color:red;"><?php echo $_GET['error']; ?></p><?php

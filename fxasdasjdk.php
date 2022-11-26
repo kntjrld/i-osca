@@ -29,14 +29,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
 
     <title>Admin Panel</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
+    <!-- ICONS AND JQUERY -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- DATA TABLE CSS -->
+    <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- DATA TABLE CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
@@ -45,6 +47,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>

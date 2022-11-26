@@ -48,7 +48,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
+                    id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -90,12 +91,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="container">
             <div class="wrapper rounded bg-white">
                 <div class="d-flex">
-                    <div class="h5">Pension Form</div>
+                    <div class="h5 p-3">Pension Form</div>
                     <div class="ms-auto">
-                        <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?> class="btn btn-primary w-100" id="restatus" value="Reset all status">
-                        <p class="ms-auto text-center" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?> style="font-size:10px; color: red;">All registered pension status
+                        <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
+                            class="btn btn-primary w-100" id="restatus" value="Reset all status">
+                        <p class="ms-auto text-center"
+                            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
+                            style="font-size:10px; color: red;">All registered pension status
                             will back to pending</p>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <hr class="new1">
                 </div>
                 <form method="post" action="function/updatepension.php">
                     <div class="form">
@@ -151,8 +158,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="row">
                             <div class="col-md-6 mt-md-0 mt-3">
                                 <label class="form-label required">Date Release</label>
-                                <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>" class="datepicker form-control"
-                                    placeholder="" aria-label="Control Number" required>
+                                <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>"
+                                    class="datepicker form-control" placeholder="" aria-label="Control Number" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>

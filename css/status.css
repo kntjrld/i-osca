@@ -17,7 +17,7 @@
 .wrapper {
     max-width: 100%;
     padding: 30px;
-    box-shadow: 5px 25px 35px #3535356b;
+    border: 1px solid var(--main-color);
 }
 
 .wrapper label {

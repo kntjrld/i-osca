@@ -9,6 +9,7 @@ if(isset($_POST["s_id"])) {
     $result = mysqli_query($conn, $sql); 
 
     while($row = mysqli_fetch_array($result)){
+        $uid = $row['uid'];
         $idnumber = $row['fx_idnumber'];
         $idtype = $row['fx_idpresented'];
         $firstname = $row['fx_firstname'];
@@ -26,12 +27,21 @@ if(isset($_POST["s_id"])) {
 }
 ?>
 
-    <div class="d-flex">
+<div class="d-flex">
     <div class="ms-auto"> <i class="fa fa-close close" data-bs-dismiss="modal"></i> </div>
 </div>
 <div class="container">
-    <h5 class="text-uppercase"><?php echo $applicationdate ?></h5>
-    <h5 class="h6">Date of application</h5>
+    <div class="d-flex">
+        <div class="p-1">
+            <h5 class="text-uppercase"><?php echo $applicationdate ?></h5>
+            <h5 class="h6">Date of application</h5>
+        </div>
+        <div class="p-1 ms-auto">
+            <h5 class="text-uppercase"><p style="font-size:12px; font-weight:bold;"><?php echo $uid ?></p></h5>
+            <h5 class="h6 text-center"><p style="font-size:12px;">Application number</p></h5>
+        </div>
+    </div>
+
     <div class="mb-3">
         <hr class="new1">
     </div>

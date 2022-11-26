@@ -34,11 +34,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Custom css -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/d_style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+    
 
     <!-- charts -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -166,6 +173,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <p>Female</p>
                         <div class="female"></div>
                     </div>
+                    <div class="p-2 d-flex">
+                        <p <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?> class="text">
+                            Alive</p>
+                        <div <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?> class="alive">
+                        </div>
+                    </div>
+                    <div class="p-2 d-flex">
+                        <p <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?> class="text">Dead
+                        </p>
+                        <div <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>class="dead">
+                        </div>
+                    </div>
 
                     <div class="me-2 ms-auto">
                         <select class="form-select form-select-sm" id="barangay" name="barangay"
@@ -195,7 +214,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </div>
     <script src="lib/dashboard.js"></script>
     <script>
-        // CHARTS
+    // CHARTS
     Morris.Bar({
         element: 'analytics',
         data: [
@@ -205,11 +224,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         ],
         xkey: 'y',
         ykeys: [
-            <?php echo $keys; ?>
-
+            <?php
+            $level = $_SESSION['user_level'];
+            if ($level == 'staff') {
+                echo $keys;
+            } else if ($level == 'admin') {
+                echo $akeys;
+            }
+            ?>
         ],
         labels: [
-            <?php echo $keys; ?>
+            <?php
+            $level = $_SESSION['user_level'];
+            if ($level == 'staff') {
+                echo $keys;
+            } else if ($level == 'admin') {
+                echo $akeys;
+            }
+            ?>
         ],
         <?php 
         $level = $_SESSION['user_level'];
@@ -224,7 +256,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         resize: true,
         redraw: true,
         barColors: [
-            <?php echo $colors; ?>
+            <?php
+            $level = $_SESSION['user_level'];
+            if ($level == 'staff') {
+                echo $colors;
+            } else if ($level == 'admin') {
+                echo $acolors;
+            }
+            ?>
         ],
     });
     </script>
@@ -234,6 +273,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // alert(selectval);   
         if (selectval == 'Barangay 1') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
+
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -256,8 +299,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 2') {
+        } else if (selectval == 'Barangay 2') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -280,8 +326,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 3') {
+        } else if (selectval == 'Barangay 3') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -304,8 +353,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 4') {
+        } else if (selectval == 'Barangay 4') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -328,8 +380,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 5') {
+        } else if (selectval == 'Barangay 5') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -352,8 +407,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 6') {
+        } else if (selectval == 'Barangay 6') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -376,8 +434,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 7') {
+        } else if (selectval == 'Barangay 7') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -400,8 +461,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Barangay 8') {
+        } else if (selectval == 'Barangay 8') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -424,8 +488,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Balansay') {
+        } else if (selectval == 'Balansay') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -448,8 +515,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Fatima') {
+        } else if (selectval == 'Fatima') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -472,8 +542,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Payompon') {
+        } else if (selectval == 'Payompon') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -496,8 +569,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'San Luis (Ligang)') {
+        } else if (selectval == 'San Luis (Ligang)') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -520,8 +596,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Talabaan') {
+        } else if (selectval == 'Talabaan') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -544,8 +623,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Tangkalan') {
+        } else if (selectval == 'Tangkalan') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -568,8 +650,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }else if (selectval == 'Tayamaan') {
+        } else if (selectval == 'Tayamaan') {
             $("#analytics").empty();
+            $(".text").show();
+            $(".dead").show();
+            $(".alive").show();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -592,9 +677,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <?php echo $colors; ?>
                 ],
             });
-        }
-        else if (selectval == 'All') {
+        } else if (selectval == 'All') {
             $("#analytics").empty();
+            $(".text").hide();
+            $(".dead").hide();
+            $(".alive").hide();
             Morris.Bar({
                 element: 'analytics',
                 data: [
@@ -604,26 +691,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 ],
                 xkey: 'y',
                 ykeys: [
-                    <?php echo $keys; ?>
+                    <?php echo $akeys; ?>
 
                 ],
                 labels: [
-                    <?php echo $keys; ?>
+                    <?php echo $akeys; ?>
                 ],
-                <?php 
-        $level = $_SESSION['user_level'];
-        if( $level == 'staff'){
-            echo 'stacked: false,';
-            
-        }else if($level == 'admin'){
-            echo 'stacked: true,';
-            echo 'xLabelAngle: 40,';
-        }
-        ?>
+                stacked: true,
+                xLabelAngle: 40,
                 resize: true,
                 redraw: true,
                 barColors: [
-                    <?php echo $colors; ?>
+                    <?php echo $acolors; ?>
                 ],
             });
         } else {

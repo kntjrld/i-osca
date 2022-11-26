@@ -88,6 +88,7 @@ body {
 .b-form-title a{
     color: var(--main-color);
 }
+
 @media only screen and (max-width: 650px) {
  .b-form-title{
     width: 90%;

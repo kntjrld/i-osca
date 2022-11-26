@@ -26,16 +26,21 @@ if(isset($_POST["accept"])) {
 
     $app_status = 'accepted';
     $acceptdate = date("M d, Y");
-    $acceptbyadmin = 'Under review';
+    $adminstatus = 'Under review';
 
-    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_status, fd_acceptedbycluster, fd_acceptedbyadmin)
-    VALUES('$id', '$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$acceptdate', '$acceptbyadmin')";
+    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_statusbycluster, fd_acceptedbycluster, fd_acceptedbyadmin, fx_statusbyadmin)
+    VALUES('$id', '$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$acceptdate', '$adminstatus', '$adminstatus')";
     $request = mysqli_query($conn, $accept);
 
     if($request){
-
     $remove = "DELETE FROM tbl_register WHERE uid = '$id'";
     $request = mysqli_query($conn, $remove);
+        
+        date_default_timezone_set('Asia/Manila');
+        $date = date("M d, Y - h:i a");
+        $user_name = $_SESSION['user_name'];					
+		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Accepted a application id #$id')";
+		$result = mysqli_query($conn, $act);
 
     }
 }elseif(isset($_POST["reject"])) {
@@ -62,14 +67,21 @@ if(isset($_POST["accept"])) {
 
     $app_status = 'rejected';
     $rejectdate = date("M d, Y");
-    $acceptbyadmin = 'N/A';
+    $adminstatus = 'N/A';
 
-    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_status, fd_acceptedbycluster, fd_acceptedbyadmin)
-    VALUES('$id','$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$rejectdate', '$acceptbyadmin')";
+    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_statusbycluster, fd_acceptedbycluster, fd_acceptedbyadmin, fx_statusbyadmin)
+    VALUES('$id','$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$rejectdate', '$adminstatus', '$adminstatus')";
     $request = mysqli_query($conn, $accept);
 
     if($request){
     $remove = "DELETE FROM tbl_register WHERE uid = '$id'";
     $request = mysqli_query($conn, $remove);
+
+    date_default_timezone_set('Asia/Manila');
+    $date = date("M d, Y - h:i a");
+    $user_name = $_SESSION['user_name'];					
+    $act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Rejected a application with id #$id')";
+    $result = mysqli_query($conn, $act);
+
     }   
 }

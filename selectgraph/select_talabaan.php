@@ -46,7 +46,5 @@ $agelabel = array("60 - 65", "66 - 70", "71 - Above");
 // DISPLAY ARRAY(BARANGAY, MALE, FEMALE) TO GRAPH AND EACH BARANGAY ANALYTICS
 for ($i = 0; $i < count($agelabel); $i++) {
     $brgy_talabaan .= "{ y:'$agelabel[$i]', Male:'$MaleAgeArr[$i]', Female:'$FemaleAgeArr[$i]', Alive:'$alive[$i]', Dead:'$dead[$i]'}, ";
-    $keys = "'Male', 'Female', 'Alive', 'Dead' ";
-    $colors = " '#6D9886', '#393E46' , '#4b6043' , '#808080'";
 }
 ?>

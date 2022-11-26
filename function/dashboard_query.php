@@ -1,5 +1,10 @@
 <?php
-
+// admin dashboard colors and labels
+$akeys = "'Male', 'Female'";
+$acolors = "'#6D9886', '#393E46'";
+// staff dasboard colors and lables
+$keys = "'Male', 'Female', 'Alive', 'Dead' ";
+$colors = " '#6D9886', '#393E46' , '#4b6043' , '#301934'";
 // ALL BARANGAY TO ARRAY
 $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
             ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
@@ -115,14 +120,10 @@ $agelabel = array("60 - 65", "66 - 70", "71 - Above");
 if($ulevel == 'admin'){    
     for ($i = 0; $i < count($brgy); $i++) {
         $chart_data .= "{ y:'$brgy[$i]', Male:'$malearr[$i]', Female:'$femalearr[$i]'}, ";
-        $keys = "'Male', 'Female'";
-        $colors = "'#6D9886', '#393E46'";
     }
 }else{  
     for ($i = 0; $i < count($agelabel); $i++) {
         $chart_data .= "{ y:'$agelabel[$i]', Male:'$Mage1[$i]', Female:'$Fage1[$i]', Alive:'$alive[$i]', Dead:'$dead[$i]'}, ";
-        $keys = "'Male', 'Female', 'Alive', 'Dead' ";
-        $colors = " '#6D9886', '#393E46' , '#4b6043' , '#808080'";
     }
 }
 // QUERY DURATION 4x HOURS

@@ -53,7 +53,7 @@ if($_SESSION['fx_street'] == $brgy[0]){
     $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[14]'");
     $header = 'You are viewing a list of online application from Tayamaan';
 }else{
-$records = $conn->query("SELECT * FROM tbl_regstatus WHERE fx_status = 'accepted'");
+$records = $conn->query("SELECT * FROM tbl_regstatus WHERE fx_statusbycluster = 'accepted' AND fx_statusbyadmin = 'Under review'");
 $header = 'You are viewing a list of online application that accepted by each cluster president';
 }
 
@@ -69,12 +69,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Reports</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- DATA TABLE CSS -->
+    <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- DATA TABLE CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
