@@ -15,13 +15,6 @@
 </head>
 
 <body>
-
-    <div class="star star1"></div>
-    <div class="star star2"></div>
-    <div class="star star3"></div>
-    <div class="star star4"></div>
-    <div class="star star5"></div>
-
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 b-height">

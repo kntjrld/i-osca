@@ -37,8 +37,7 @@
                         <div class="b-form">
                             <div class="b-title text-center">
                                 <p class="user_subTitle">
-                                    Register to mamburao senior pension program anytime, anywhere with <span
-                                        class="title">i-OSCA!</span>
+                                    Register to mamburao senior pension program anytime and anywhere.
                                 </p>
                             </div>
                             <div class="b-form-title">
