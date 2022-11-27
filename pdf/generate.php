@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     $pdf->AddPage();
                     $pdf->SetTextColor(255,0,0); 
                     $pdf->SetFont('Arial', 'B', 9);
-                    $pdf->Text (10, 10,  'Please change your username and password including your personal information after you login using this credentials', 0); 
+                    $pdf->Text (10, 10,  'Please change your password including your personal information after you login using this credentials', 0); 
                     $pdf->SetTextColor(0,0,0); 
                     $pdf->SetFont('Arial', 'B', 12);
                     $pdf->MultiCell(0,10,utf8_decode('Username:'.$username . chr(10) . 'Password:'.$password));

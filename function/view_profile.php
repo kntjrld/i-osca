@@ -25,8 +25,6 @@ if(isset($_POST["s_id"])) {
 <input type="hidden" id="user_name" name="user_name" class="form-control" value="<?php echo $select_username ?>">
 <input type="hidden" id="user_type" name="user_type" class="form-control" value="<?php echo $select_userlevel ?>">
 
-
-
 <div>
     <div class="d-flex justify-content-center p-2">
         <img src="image/<?php echo $select_img ?>" class="view_img" />
@@ -49,10 +47,17 @@ if(isset($_POST["s_id"])) {
         </div>
         <div class="d-flex">
             <p class="label">Address:</p>
-            <p><?php echo $select_street, ', ' ,$select_municipality ?></p>
+            <p><?php 
+            if($select_userlevel == 'admin'){
+                echo $select_municipality;
+            }else{
+                echo $select_street, ', ' ,$select_municipality;
+            }           
+
+            ?></p>
         </div>
         <div class="d-flex">
-            <p class="label">User type:</p>
+            <p class="label">User level:</p>
             <p><?php echo $select_userlevel ?></p>
         </div>
     </div>

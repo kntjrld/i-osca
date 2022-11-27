@@ -178,7 +178,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 </div>
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="form-group">
+                                    <div class="form-group" <?php if($_SESSION['user_level'] == 'admin'){
+                                        echo 'style="display:none;"';
+                                    } ?>>
                                         <label for="Street">Street</label>
                                         <input type="name" class="form-control w-100" name="street" id="street"
                                             placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>" disabled="disabled">

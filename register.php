@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION['applicatonid'] = '1';
+$applicationid = $_SESSION['applicatonid'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,10 +140,26 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Submit
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    <p style="font-size:12px; margin-top:5px;">By clicking Submit, you agree to our Terms and Privacy Policy</p>
                 </div>
         </div>
         </Form>
+    </div>
+    <!-- DISPLAY REGISTRATION ID -->
+    <div class="modal" id="applicationid">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex">
+                    <h5 class="modal-title">Application ID</h5>
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    </button>
+                </div>
+                <div class="modal-body text-center" id="applicationidbody">
+                    <!-- id -->
+                </div>  
+            </div>
+        </div>
     </div>
     </div>
     <!-- Footer -->
@@ -214,8 +235,19 @@
     </footer>
     <!-- Footer -->
     <script src="lib/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="lib/register.js"></script>
+    <script>
+    let copy = new ClipboardJS('#idbutton');
+    copy.on('success', function(e) {
+        // alert("Copied the text");
+        swal("Good job!", "Application ID copied!", "success");
+        setInterval(function() {
+                window.location = "member";
+                }, 1000);
+    });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 

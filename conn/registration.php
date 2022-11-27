@@ -1,6 +1,6 @@
 <?php
+session_start();
 include "connection.php";
-require('../pdf/fpdf.php');  
 
     function getGUIDnoHash(){
             mt_srand((double)microtime()*10000);
@@ -39,30 +39,14 @@ require('../pdf/fpdf.php');
         // Move registration file to folder
         $file_tmp = $_FILES['registrationfile']['tmp_name'];
         move_uploaded_file($file_tmp,"../registration/".$pdfregistrationform);
-
-        // Create pdf for id of each registration
-        $_SESSION['applicatonid'] = $uid;
-        // ob_start();
-        // $pdf = new FPDF();
-        // $pdf->AddPage();
-        // $pdf->SetTextColor(0,0,0); 
-        // $pdf->SetFont('Arial', 'B', 9);
-        // $pdf->Text (10, 10,  'Use this id to view your application status', 0); 
-        // $pdf->SetTextColor(0,0,0); 
-        // $pdf->SetFont('Arial', 'B', 12);
-        // $pdf->MultiCell(0,10,utf8_decode($uid));
-        // $fileName = $firstname.'_'.$lastname.'applicationnumber'.'.pdf';
-        // // return the generated output
-        // $pdf->Output($fileName,'D');
-        // ob_end_flush(); 
-        // header('Content-Type: application/download');
-        // header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
-        // header("Content-Length: " . filesize($pdf));
-
-        // header location
-        // header("Location: ../register");
     }else{
         // header("Location: ../register");
     }
 
 ?>
+
+<div class="d-block p-2">
+    <h1 id="targetext" class="w-100"><?php echo $uid; ?></h1>
+    <p style="font-size:12px;">Copy and saved your application ID</p>
+    <button tyle="button" class="btn btn-primary" id="idbutton" data-clipboard-target="#targetext">Copy text</button>
+</div>

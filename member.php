@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Be a member</title>
     <!-- Boostrap css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -15,8 +16,6 @@
     <!-- Boostrap js and jquery -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <title>Be a member</title>
 </head>
 
 <body>
@@ -29,7 +28,8 @@
                         </div>
                         <div class="b-title text-center">
                             <a href="index"><img src="media/logo.png" class="img-fluid"></a>
-                            <p class="ins">If you want to register, read first the<br><a href="">Guide for
+                            <p class="ins">If you want to register, read first the<br><a href="" data-toggle="modal"
+                                    data-target="#modallong">Guide for
                                     registration</a></p>
                         </div>
                     </div>
@@ -68,22 +68,43 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Registration status</h5>
-                        <a class="close" data-dismiss="modal">&times;</a>
+                        <button class="btn" id="closexx">&times;</button>
                     </div>
-                    <form action="" method="post" id="profileForm">
-                        <div class="modal-body" id="infoUpdate">
-                            <div class="input-group">
-                                <!-- 53509855529849995454 -->
-                                <div class="form-outline w-100">
-                                    <input id="search-input" type="text" class="form-control" maxlength="20"
-                                        placeholder="20 digit unique ID" />
-                                    <button type="button" id="btn-search"
-                                        class="btn btn-primary w-100 p-2 mt-2">Search</button>
-                                </div>
-
+                    <div class="modal-body" id="infoUpdate">
+                        <div class="input-group">
+                            <!-- 53509855529849995454 -->
+                            <div class="form-outline w-100">
+                                <input id="search-input" type="text" class="form-control" maxlength="20"
+                                    placeholder="20 digit unique ID" />
+                                <button type="button" id="btn-search"
+                                    class="btn btn-primary w-100 p-2 mt-2">Search</button>
                             </div>
+
                         </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <p>i-osca 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal instruction -->
+        <div class="modal fade" id="modallong" tabindex="-1" role="dialog" aria-labelledby="modallong"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">Instruction for online application</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>1. Download a copy of registration form <span><a href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank"> here</a></span></p>
+                        <p>2. Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
+                        <p>3. Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
+                        <p>4. After successful registration, copy your application ID. You can use it to check your registration status.</p>
+                    </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>
                     </div>
@@ -91,6 +112,7 @@
             </div>
         </div>
     </div>
+
     <!-- Footer -->
     <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
         <!-- Grid container -->
@@ -163,8 +185,14 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="lib/member.js"></script>
+    <script>
+    $('#closexx').click(function() {
+        window.location = "member.php";
+    });
+    </script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
 <!DOCTYPE html>
-<html lang="end">
+<html lang="en">
 
 <head>
 
@@ -186,7 +186,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     });
                     $.ajax({
                         type: "POST",
-                        url: "function/status.php",
+                        url: "function/statusquery.php",
                         data: {
                             restatus: 'restatus'
                         },

@@ -59,82 +59,91 @@ if(isset($_POST["uid"])) {
     }
 }
 ?>
+
 <div class="d-block text-center p-2">
     <p class="label" style="letter-spacing: 1px;">Application #<?php echo $id ?></p>
-    <p style="font-weight: bold; font-size:20px; text-transform: uppercase; <?php if($statusbyadmin == 'accepted' && $statusbycluster == 'accepted'){
-             echo 'color: green;';
-             }else if($statusbycluster == 'rejected'){
+    <p style="font-weight: bold; font-size:20px; text-transform: uppercase; 
+    <?php if($statusbyadmin == 'accepted' && $statusbycluster == 'accepted'){
+                echo 'color: green;';
+            }else if($statusbycluster == 'rejected'){
                 echo 'color: red;';
-                }else if($count == 1 && $statusbyadmin == 'rejected'){
-                 echo 'color: red;';
-                }
-                ?>
-        "><?php if($count == 1 && $statusbyadmin == 'N/A'){
-                    echo $statusbycluster;
-                }else if($count == 1 && $statusbyadmin == 'accepted'){
-                    echo $statusbyadmin;
-                }
-                    else if($countreg == 1){
-                    echo $statusbycluster;
-                }else if($count == 1 && $statusbyadmin == 'Under review'){
-                    echo $statusbyadmin;
-                }else if($count == 1 && $statusbyadmin == 'rejected'){
-                    echo 'rejected';
-                }
-                else{
-                    echo 'No record';
-                } ?></p>
+            }else if($count == 1 && $statusbyadmin == 'rejected'){
+                echo 'color: red;';
+            }?>">
+            <?php if($count == 1 && $statusbyadmin == 'N/A'){
+                echo $statusbycluster;
+            }else if($count == 1 && $statusbyadmin == 'accepted'){
+                echo $statusbyadmin;
+            }else if($countreg == 1){
+                echo $statusbycluster;
+            }else if($count == 1 && $statusbyadmin == 'Under review'){
+                echo $statusbyadmin;
+            }else if($count == 1 && $statusbyadmin == 'rejected'){
+                echo 'rejected';
+            }else{
+                echo 'No record';
+            }?></p>
+
     <div class="text-center">
         <p style="font-size:10px;">If no result or your data is incorrect, please check your id number</p>
     </div>
 </div>
 <div class="d-block">
     <div class="d-flex">
-        <p class="label" <?php if($count == 0 && $countreg == 0){
-    echo 'style="display:none;"';
-}?>>Hi Mr./Mrs. </p>
-        <p style="margin-left:5px;<?php if($count == 0 && $countreg == 0){
-    echo 'display:none';
-}?>"><?php echo $lastname, ', ' , $firstname ?></p>
-    </div>
-    <div class="d-flex">
-        <p class="label" <?php if($count == 0 && $countreg == 0){
-    echo 'style="display:none;"';
-}?>>Application date:</p>
-        <p style="margin-left:5px;<?php if($count == 0 && $countreg == 0){
-    echo 'display:none';
-}?>"><?php echo $date_application ?></p>
-    </div>
-    <div class="d-flex">
-        <p class="label" <?php if($count == 0 && $countreg == 0){
-    echo 'style="display:none;"';
-}?>>Cluster President Status: </p>
-        <p style="margin-left:5px; <?php if($count == 0 && $countreg == 0){
-    echo 'display:none;';
-}?>"><?php echo $date_acceptedbycluster ?></p>
-        <p style="margin-left:5px; 
-        <?php if($statusbycluster == 'accepted'){
-             echo 'color: green;';
-             }else if($statusbycluster == 'rejected'){
-                echo 'color:red;';
-                }else if($count == 0 && $countreg == 0){
-                    echo 'display:none;'; } ?>
-        "><?php echo '- ', $statusbycluster ?></p>
-    </div>
-    <div class="d-flex">
-        <p class="label" <?php if($count == 0 && $countreg == 0){
-    echo 'style="display:none;"';
-}?>>Admin Status: </p>
-        <p style="margin-left:5px; <?php if($count == 0 && $countreg == 0){
-    echo 'display:none;';
-}?>"><?php echo $date_acceptedbyadmin ?></p>
+        <p class="label"
+            <?php if($count == 0 && $countreg == 0){
+                echo 'style="display:none;"';
+            }?>>Hi Mr./Mrs. </p>
         <p style="margin-left:5px;
-        <?php if($statusbyadmin == 'accepted'){
-             echo 'color: green;';
-             }else if($statusbyadmin == 'rejected'){
-                echo 'color:red;';
+            <?php if($count == 0 && $countreg == 0){
+                echo 'display:none';
+            }?>">
+            <?php echo $lastname, ', ' , $firstname ?></p>
+    </div>
+    <div class="d-flex">
+            <p class="label" 
+                <?php if($count == 0 && $countreg == 0){
+                    echo 'style="display:none;"';
+                }?>>Application date:</p>
+            <p style="margin-left:5px;
+                <?php if($count == 0 && $countreg == 0){
+                    echo 'display:none';
+                }?>"><?php echo $date_application ?></p>
+    </div>
+    <div class="d-flex">
+            <p class="label" 
+                <?php if($count == 0 && $countreg == 0){
+                    echo 'style="display:none;"';
+                }?>>Cluster President Status: </p>
+            <p style="margin-left:5px; 
+                <?php if($count == 0 && $countreg == 0){
+                 echo 'display:none;';
+                }?>"><?php echo $date_acceptedbycluster ?></p>
+            <p style="margin-left:5px; 
+                <?php if($statusbycluster == 'accepted'){
+                    echo 'color: green;';
+                }else if($statusbycluster == 'rejected'){
+                    echo 'color:red;';
                 }else if($count == 0 && $countreg == 0){
-                    echo 'display:none;'; } ?>
-        "><?php echo '- ', $statusbyadmin ?></p>
+                    echo 'display:none;'; 
+                }?>"><?php echo '- ', $statusbycluster ?></p>
+    </div>
+                
+    <div class="d-flex">
+            <p class="label" 
+                <?php if($count == 0 && $countreg == 0){
+                    echo 'style="display:none;"';
+                }?>>Admin Status: </p>
+            <p style="margin-left:5px; <?php if($count == 0 && $countreg == 0){
+                    echo 'display:none;';
+                }?>"><?php echo $date_acceptedbyadmin ?></p>
+            <p style="margin-left:5px;
+            <?php if($statusbyadmin == 'accepted'){
+                    echo 'color: green;';
+                }else if($statusbyadmin == 'rejected'){
+                    echo 'color:red;';
+                }else if($count == 0 && $countreg == 0){
+                    echo 'display:none;'; 
+                } ?>"><?php echo '- ', $statusbyadmin ?></p>
     </div>
 </div>
