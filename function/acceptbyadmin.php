@@ -36,8 +36,8 @@ if(isset($_POST["accept"])) {
         $fn_pension = 0;
         $check_value = 'Pending';
         $life_status = 'alive';
-        $insert = "INSERT INTO tbl_records(fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status)
-        VALUES('$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status')";
+        $insert = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status)
+        VALUES('$id','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status')";
         $request = mysqli_query($conn, $insert);
 
         if($request){

@@ -23,16 +23,10 @@
                         <div class="b-logo swift_left">
                             <a href="#"><img src="media/header.png" class="img-fluid"></a>
                         </div>
-
-                        <div class="star star1"></div>
-                        <div class="star star2"></div>
-                        <div class="star star3"></div>
-                        <div class="star star4"></div>
-                        <div class="star star5"></div>
-
                         <div class="b-title text-center">
                             <h1 class="user_title">Welcome to i-OSCA</h1>
-                            <p class="user_subTitle">This is Mamburao social pension program,</br> register at your home with ease.
+                            <p class="user_subTitle">This is Mamburao social pension program,</br> register at your home
+                                with ease.
                             </p>
                             <a href="member" class="swift getstarted">Get Started</a>
                         </div>
@@ -64,7 +58,7 @@
                                 <button type="submit" class="sign_in">Sign In</button>
                             </form>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="this" onClick="alert('Contact the administrator!')">
+                                <a href="#" class="this" id="forgotpass">
                                     <span class="b-forgot">Forgot your password?</span>
                                 </a>
                             </div>
@@ -142,14 +136,22 @@
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2022 Copyright: 
+            © 2022 Copyright:
             <a class="text-white" href="#">i-OSCA</a>
         </div>
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
+    <script src="lib/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.this').click(function() {
+            swal("System message!", "Contact the administrator");
+        });
+    });
+    </script>
 </body>
 
 </html>
