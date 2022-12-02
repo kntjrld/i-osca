@@ -107,13 +107,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <form method="post" action="function/updatepension.php">
                     <div class="form">
                         <div class="row">
-                            <div class="col-md-6 mt-md-0 mt-3">
+                            <div class="col-md-6 mt-md-0">
                                 <label>Registered ID</label>
                                 <select class="form-select" id="status" name="status">
                                     <option value="null">Select ID</option>
                                     <?php
                                     $brgy = $_SESSION['fx_street'];
-                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy'";
+                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy' AND fn_status = 'Pending' AND account_status = 'acti'";
                                     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                     while( $rows = mysqli_fetch_assoc($resultset) ) { 
                                     ?>
@@ -124,7 +124,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     ?>
                                 </select>
                             </div>
-                            <div class="col mt-md-0 mt-3 col-lg-2">
+                            <div class="col mt-md-0 col-lg-2">
                                 <label>Pension Status</label>
                                 <select class="form-select" id="id_status" name="id_status">
                                     <option value="Pending">Pending</option>
@@ -133,36 +133,36 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col mt-md-0 mt-3">
+                            <div class="col mt-md-0">
                                 <label class="form-label required">Fist Name</label>
                                 <input type="text" name="id_firstname" id="id_firstname" class="form-control"
                                     placeholder="Juan" aria-label="First name" disabled>
                             </div>
-                            <div class="col mt-md-0 mt-3">
+                            <div class="col mt-md-0">
                                 <label class="form-label required">Last Name</label>
                                 <input type="text" name="id_lastname" id="id_lastname" class="form-control"
                                     placeholder="Dela cruz" aria-label="Last name" disabled>
                             </div>
-                            <div class="col mt-md-0 mt-3">
+                            <div class="col mt-md-0">
                                 <label class="form-label required">I.N</label>
                                 <input type="text" name="id_initial" id="id_initial" class="form-control"
                                     placeholder="T" aria-label="Middle name" disabled>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mt-md-0 mt-3">
+                            <div class="col-md-6 mt-md-0">
                                 <label>Amount Receive</label>
                                 <input type="number" id="id_amount" name="id_amount" class="form-control" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mt-md-0 mt-3">
+                            <div class="col-md-6 mt-md-0">
                                 <label class="form-label required">Date Release</label>
                                 <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>"
                                     class="datepicker form-control" placeholder="" aria-label="Control Number" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </Form>
             </div>

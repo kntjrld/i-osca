@@ -12,7 +12,6 @@
     margin: 0;
     padding: 0;
     outline: none;
-    border: none;
     list-style: none;
     box-sizing: border-box;
     text-decoration: none;
@@ -39,9 +38,9 @@ body {
 
 .logo {
     text-align: center;
-    display: flex;
+    /* display: flex; */
     transition: all 0.5s ease;
-    margin: 20px 0 20px -10px;
+    margin: 20px 0 20px -50px;
 }
 
 .logo img {
@@ -51,12 +50,15 @@ body {
 }
 
 .logo span {
-    font-weight: bold;
-    padding-left: 15px;
-    font-size: 18px;
+    font-weight: 900;
+    font-size: 30px;
 }
 
-a{
+.side-nav a:hover{
+    color:var(--main-color);
+}
+
+.side-nav a{
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 14px;

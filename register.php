@@ -122,6 +122,20 @@ $applicationid = $_SESSION['applicatonid'];
                             <input type="number" name="age" class="form-control" required>
                         </div>
                     </div>
+                    <div class="d-flex">
+                        <div class="d-flex m-1">
+                            <label for="pwd">Person with Disability:</label> <br>
+                        </div>
+                        <div class="d-flex m-1">
+                            <input class="form-check-input" type="radio" name="pwd" value="Yes" />
+                            <label class="form-check-label" for="pwd">Yes</label></br>
+
+                        </div>
+                        <div class="d-flex m-1">
+                            <input class="form-check-input" type="radio" name="pwd" value="No" />
+                            <label class="form-check-label" for="pwd">No</label>
+                        </div>
+                    </div>
                     <div class="row">
                         <p style="color:red; font-size: 10px">Each file uploaded is must be less than 2MB file size</p>
                         <div class="col  mt-md-0 mt-3">
@@ -141,7 +155,8 @@ $applicationid = $_SESSION['applicatonid'];
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                    <p style="font-size:12px; margin-top:5px;">By clicking Submit, you agree to our Terms and Privacy Policy</p>
+                    <p style="font-size:12px; margin-top:5px;">By clicking Submit, you agree to our Terms and Privacy
+                        Policy</p>
                 </div>
         </div>
         </Form>
@@ -157,7 +172,7 @@ $applicationid = $_SESSION['applicatonid'];
                 </div>
                 <div class="modal-body text-center" id="applicationidbody">
                     <!-- id -->
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -244,8 +259,8 @@ $applicationid = $_SESSION['applicatonid'];
         // alert("Copied the text");
         swal("Good job!", "Application ID copied!", "success");
         setInterval(function() {
-                window.location = "member";
-                }, 1000);
+            window.location = "member";
+        }, 1000);
     });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -3,15 +3,15 @@ session_start();
 include("../conn/connection.php");
 
     $uid = $_POST['uid'];
-    $fx_statusbyadmin = 'accepted';
-    $fd_acceptedbyadmin = date("M d, Y");
+    $fx_statusbyadmin = 'rejected';
+    $fd_rejectedbyadmin = date("M d, Y");
     $remarks = $_POST['remarks'];
 
     $sql = "SELECT * FROM tbl_regstatus WHERE uid = '$uid'";
     $result = mysqli_query($conn, $sql);
 
     while($row = mysqli_fetch_array($result)){
-        $idnumber = $row['fx_idnumber'];
+        $uidnumber = $row['fx_uidnumber'];
         $uidtype = $row['fx_uidpresented'];
         $firstname = $row['fx_firstname'];
         $lastname = $row['fx_lastname'];
@@ -21,7 +21,6 @@ include("../conn/connection.php");
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];
         $age = $row['fn_age'];
-        $pwd = $row['fx_pwd'];
         $pdfuidpresented = $row['fl_uidpresented'];
         $fileFORM = $row['fl_form'];
         $appdate = $row['fd_application'];
@@ -29,26 +28,17 @@ include("../conn/connection.php");
         $dateacceptedbycluster = $row['fd_acceptedbycluster'];
     }
 
-    $sql = "UPDATE tbl_regstatus SET fd_acceptedbyadmin='$fd_acceptedbyadmin', fx_statusbyadmin ='$fx_statusbyadmin',
+    $sql = "UPDATE tbl_regstatus SET fd_acceptedbyadmin='$fd_rejectedbyadmin', fx_statusbyadmin ='$fx_statusbyadmin', 
     fx_remarks = '$remarks' WHERE uid = '$uid'";
     $result = mysqli_query($conn, $sql);
 
     if($result){
-        $fn_pension = 0;
-        $check_value = 'Pending';
-        $life_status = 'alive';
-        $insert = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
-        VALUES('$uid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status', 'active', '$pwd','$fd_acceptedbyadmin')";
-        $request = mysqli_query($conn, $insert);
-
-        if($request){
         date_default_timezone_set('Asia/Manila');
-        $date = date("M d, Y - h:i a"); 
+        $date = date("M d, Y - h:i a");
         $user_name = $_SESSION['user_name'];					
-		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Accepted a application id #$uid')";
+		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Rejected a application with uid #$uid')";
 		$result = mysqli_query($conn, $act);
-        }
-    }else{
 
     }
+
 ?>

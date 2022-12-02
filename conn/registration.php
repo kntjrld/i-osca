@@ -21,6 +21,8 @@ include "connection.php";
     $barangay = $_POST['barangay'];
     $contact = $_POST['contact'];
     $age = $_POST['age'];
+    $pwd = $_POST['pwd'];
+
     date_default_timezone_set('Asia/Manila');
     $appdate = date("M d, Y");
 
@@ -28,8 +30,8 @@ include "connection.php";
     $pdfidpresented = $_FILES['idpresentedfile']['name'];
     $pdfregistrationform = $_FILES['registrationfile']['name'];
 
-    $sql = "INSERT INTO tbl_register(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application)
-    VALUES('$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$pdfregistrationform', '$appdate')";
+    $sql = "INSERT INTO tbl_register(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_pwd)
+    VALUES('$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$pdfregistrationform', '$appdate', '$pwd')";
     $result = mysqli_query($conn, $sql);
 
     if($result){

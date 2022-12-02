@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group">
                                     <a href="#" id="this" data-toggle="modal" data-target="#pensionModal" class="btn"><i class="fas fa-money-check"></i></i>Check
-                                        Pention
+                                        Pension
                                         Status</a>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                         <p>1. Download a copy of registration form <span><a href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank"> here</a></span></p>
                         <p>2. Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
                         <p>3. Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
-                        <p>4. After successful registration, copy your application ID. You can use it to check your registration and pention status.</p>
+                        <p>4. After successful registration, copy your application ID. You can use it to check your registration and pension status.</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>

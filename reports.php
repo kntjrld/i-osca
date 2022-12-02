@@ -1,61 +1,7 @@
 <?php 
 session_start();
 include('conn/connection.php');
-
-// $records = $conn->query("SELECT * FROM tbl_register ORDER BY `tbl_register`.`fx_lastname` ASC");
-
-$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
-
-if($_SESSION['fx_street'] == $brgy[0]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[0]'");
-    $header = 'You are viewing a list of online application from Barangay 1';
-}elseif($_SESSION['fx_street'] == $brgy[1]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[1]'");
-    $header = 'You are viewing a list of online application from Barangay 2';
-}elseif($_SESSION['fx_street'] == $brgy[2]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[2]'");
-    $header = 'You are viewing a list of online application from Barangay 3';
-}elseif($_SESSION['fx_street'] == $brgy[3]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[3]'");
-    $header = 'You are viewing a list of online application from Barangay 4';
-}elseif($_SESSION['fx_street'] == $brgy[4]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[4]'");
-    $header = 'You are viewing a list of online application from Barangay 5';
-}elseif($_SESSION['fx_street'] == $brgy[5]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[5]'");
-    $header = 'You are viewing a list of online application from Barangay 6';
-}elseif($_SESSION['fx_street'] == $brgy[6]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[6]'");
-    $header = 'You are viewing a list of online application from Barangay 7';
-}elseif($_SESSION['fx_street'] == $brgy[7]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[7]'");
-    $header = 'You are viewing a list of online application from Barangay 8';
-}elseif($_SESSION['fx_street'] == $brgy[8]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[8]'");
-    $header = 'You are viewing a list of online application from Balansay';
-}elseif($_SESSION['fx_street'] == $brgy[9]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[9]'");
-    $header = 'You are viewing a list of online application from Fatima';
-}elseif($_SESSION['fx_street'] == $brgy[10]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[10]'");
-    $header = 'You are viewing a list of online application from Payompon';
-}elseif($_SESSION['fx_street'] == $brgy[11]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[11]'");
-    $header = 'You are viewing a list of online application from San Luis (Ligang)';
-}elseif($_SESSION['fx_street'] == $brgy[12]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[12]'");
-    $header = 'You are viewing a list of online application from Talabaan';
-}elseif($_SESSION['fx_street'] == $brgy[13]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[13]'");
-    $header = 'You are viewing a list of online application from Tangkalan';
-}elseif($_SESSION['fx_street'] == $brgy[14]){
-    $records = $conn->query("SELECT * FROM tbl_register WHERE fx_barangay = '$brgy[14]'");
-    $header = 'You are viewing a list of online application from Tayamaan';
-}else{
-$records = $conn->query("SELECT * FROM tbl_regstatus WHERE fx_statusbycluster = 'accepted' AND fx_statusbyadmin = 'Under review'");
-$header = 'You are viewing a list of online application that accepted by each cluster president';
-}
+include('function/reports_query.php');
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -80,7 +26,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
-    <link rel="stylesheet" type="text/css" href="css/reports.css">    
+    <link rel="stylesheet" type="text/css" href="css/reports.css">
 
     <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -93,7 +39,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Navigation start -->
     <nav class="side-nav">
         <ul>
-        <li>
+            <li>
                 <a href="#" class="logo">
                     <img src="media/header.png" alt="logo">
                     <span class="nav-item">i-OSCA</span>
@@ -107,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-table"></i>
                     <span class="nav-item">Records</span>
                 </a></li>
-            <li><a href="#" class="active"id=" nav-list">
+            <li><a href="#" class="active" id=" nav-list">
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -115,7 +61,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
+                    id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -193,8 +140,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             echo 'viewasstaff btn btn-secondary noExl';
                             }else{
                              echo 'viewasadmin btn btn-secondary noExl';  
-                            }?>"style="width: auto;" data-bs-toggle="modal"
-                                data-bs-target="<?php if($_SESSION['user_level'] == 'staff'){
+                            }?>" style="width: auto;" data-bs-toggle="modal" data-bs-target="<?php if($_SESSION['user_level'] == 'staff'){
                                     #staticBackdrop
                                 }else{
                                     #adminmodal
@@ -209,13 +155,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- start -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-body" id="infoUpdate">
-                        <!-- insert here -->
+            <form id="updatestatus">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body" id="infoUpdate">
+                            <!-- insert here -->
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     </div>
@@ -223,13 +171,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- modal 2 -->
     <div class="modal fade" id="adminmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="adminmodalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-body" id="adminview">
-                    <!-- insert here -->
+        <form id="adminstatus">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body" id="adminview">
+                        <!-- insert here -->
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     </div>
     </div>

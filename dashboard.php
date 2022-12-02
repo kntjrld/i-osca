@@ -19,13 +19,9 @@ include('selectgraph/select_tangkalan.php');
 include('selectgraph/select_tayamaan.php');
 
 
-
-
-
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,10 +30,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
 
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -45,7 +37,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Custom css -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/d_style.css">
-    
+
 
     <!-- charts -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -212,6 +204,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div style="height:320px;" id="analytics"></div>
         </div>
     </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="lib/dashboard.js"></script>
     <script>
     // CHARTS
@@ -267,11 +260,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         ],
     });
     </script>
+
     <script>
     $('select').on('change', function() {
         selectval = $(this).val();
         // alert(selectval);   
         if (selectval == 'Barangay 1') {
+            <?php $testval = $brgy[0]; ?>
             $("#analytics").empty();
             $(".text").show();
             $(".dead").show();
@@ -280,14 +275,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             Morris.Bar({
                 element: 'analytics',
                 data: [
-                    <?php
-                echo $brgy1;
-            ?>
+                    <?php     
+                    echo $brgy1; ?>
                 ],
                 xkey: 'y',
                 ykeys: [
                     <?php echo $keys; ?>
-
                 ],
                 labels: [
                     <?php echo $keys; ?>

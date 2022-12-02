@@ -7,14 +7,6 @@
     --last-color: #F7F7F7;
     --gray: #808080;
 }
-.modal-header {
-    background: var(--main-color);
-    color: #fff;
-    justify-content: center;
-}
-.btn-close{
-    color: #fff;
-}
 .required:after {
     content: "*";
     color: red;
@@ -27,4 +19,20 @@
 }
 #close{
     background-color: #fff;
+}
+.input-group-text{
+    font-size: 12px;
+}
+
+.table_actions{
+    display: flex;
+}
+.e-button{
+    width: 100%;
+}
+/* Media query */
+@media only screen and (max-width: 650px) {
+.table_actions{
+    display: block;
+}
 }

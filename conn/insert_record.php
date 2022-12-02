@@ -12,21 +12,22 @@ if(isset($_POST['submit'])){
     $fx_gender = $_POST['sex'];
     $fx_barangay = $_POST['barangay'];
     $fn_age = $_POST['age'];
-    $check_value = $_POST['status'];
+    $status = $_POST['status'];
     $pension = $_POST['pension'];
-    
+    $pwd = $_POST['pwd'];
+    $date_started = $_POST['started'];
+
     function getGUIDnoHash(){
         mt_srand((double)microtime()*10000);
         $charid = md5(uniqid(rand(), true));
         $c = unpack("C*",$charid);
         $c = implode("",$c);
-        return substr($c,0,20);
-}
+        return substr($c,0,20);}
 
-$uid = getGUIDnoHash();
+    $uid = getGUIDnoHash();
 
-    $sql = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status)
-    VALUES('$uid','$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$fx_contact','$fd_birthdate','$fx_gender','$fx_barangay','$fn_age','$pension','$check_value', 'alive')";
+    $sql = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
+    VALUES('$uid','$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$fx_contact','$fd_birthdate','$fx_gender','$fx_barangay','$fn_age','$pension','$status', 'alive', 'active', '$pwd', '$date_started')";
     $result = mysqli_query($conn, $sql);
 
     if($result){
@@ -35,7 +36,7 @@ $uid = getGUIDnoHash();
         date_default_timezone_set('Asia/Manila');
         $date = date("M d, Y - h:i a");
         $user_name = $_SESSION['user_name'];					
-		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Added a record with a senior id #$fx_id')";
+		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Added a record with a account id #$uid')";
 		$result = mysqli_query($conn, $act);
 
         header("Location: ../records.php");

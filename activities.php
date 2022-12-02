@@ -2,7 +2,7 @@
 session_start();
 include('conn/connection.php');
 
-$records = $conn->query("SELECT * FROM tbl_activities ORDER BY `tbl_activities`.`id` DESC");
+$records = $conn->query("SELECT * FROM tbl_activities ORDER BY `tbl_activities`.`id` ASC");
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -15,7 +15,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Activities</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -102,7 +101,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="p-2 ms-auto">
                 <button type="submit" name="delete" id="delete" value="Truncate Table"
                     class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
-                    all activities</button>
+                    activities</button>
             </div>
         </div>
         <div class="container p-2">
@@ -136,7 +135,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
     </div>
     <script src="lib/sweetalert.min.js"></script>
-    <script src="lib/records.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    </script>
     <script>
     $("#delete").click(function() {
         swal({

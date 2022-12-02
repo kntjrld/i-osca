@@ -20,12 +20,15 @@ if(isset($_POST["s_id"])) {
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];
         $age = $row['fn_age'];
+        $pwd = $row['fx_pwd'];
         $fileID = $row['fl_idpresented'];
         $fileFORM = $row['fl_form'];
         $applicationdate = $row['fd_application'];
     }
 }
 ?>
+
+<input type="hidden" id="uid" name="uid" class="form-control" value="<?php echo $uid ?>">
 
 <div class="d-flex">
     <div class="ms-auto"> <i class="fa fa-close close" data-bs-dismiss="modal"></i> </div>
@@ -37,78 +40,101 @@ if(isset($_POST["s_id"])) {
             <h5 class="h6">Date of application</h5>
         </div>
         <div class="p-1 ms-auto">
-            <h5 class="text-uppercase"><p style="font-size:12px; font-weight:bold;"><?php echo $uid ?></p></h5>
-            <h5 class="h6 text-center"><p style="font-size:12px;">Application number</p></h5>
+            <h5 class="text-uppercase">
+                <p style="font-size:12px; font-weight:bold;"><?php echo $uid ?></p>
+            </h5>
+            <h5 class="h6 text-center">
+                <p style="font-size:12px;">Application number</p>
+            </h5>
         </div>
     </div>
 
     <div class="mb-3">
         <hr class="new1">
     </div>
-    <div class="text-center  mt-5">
-        <div class="d-flex justify-content-between">
-            <div class="pdl">
-                <p class="xx ml-md-6">Presented ID number: <span class="xxx"><?php echo $idnumber ?></span>
-            </div>
-            <div class="pdr">
-                <p class="xx">Presented ID type: <span class="xxx"><?php echo $idtype ?></span></p>
-                </p>
-            </div>
-
+    <div class="row">
+        <div class="col">
+            <label class="form-label required">ID Presented Number</label>
+            <input type="text" name="idnumber" id="idnumber" class="form-control" placeholder=""
+                aria-label="ID number" value="<?php echo $idnumber ?>" disabled>
         </div>
-    </div>
-
-    <div class="text-center mt-2">
-        <div class="d-flex justify-content-between">
-            <div class="pdl">
-                <p class="xx ml-md-6">Last name: <span class="xxx"><?php echo $lastname ?></span>
-            </div>
-            <div class="pdr">
-                <p class="xx">First name: <span class="xxx"><?php echo $firstname ?></span></p>
-                </p>
-            </div>
-            <div class="pdr">
-                <p class="xx">Middle initial: <span class="xxx"><?php echo $initial ?></span></p>
-                </p>
-            </div>
+        <div class="col">
+            <label class="form-label required">ID Presented type</label>
+            <input type="text" name="idpresented" id="idpresented" class="form-control" placeholder=""
+                aria-label="ID Presented" value="<?php echo $idtype ?>" disabled>
         </div>
-    </div>
 
-    <div class="text-center mt-2">
-        <div class="d-flex justify-content-between">
-            <div class="pdl">
-                <p class="xx ml-md-6">Birthday: <span class="xxx"><?php echo $birthdate ?></span>
+        <div class="row">
+            <div class="col">
+                <label class="form-label required">Fist Name</label>
+                <input type="text" name="firstname" id="firstname" class="form-control" placeholder=""
+                    aria-label="First name" value="<?php echo $firstname ?>" disabled>
             </div>
-            <div class="pdr">
-                <p class="xx">Gender: <span class="xxx"><?php echo $gender ?></span></p>
-                </p>
+            <div class="col">
+                <label class="form-label required">Last Name</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" placeholder=""
+                    aria-label="Last name" value="<?php echo $lastname ?>" disabled>
             </div>
-            <div class="pdr">
-                <p class="xx">Barangay: <span class="xxx"><?php echo $barangay ?></span></p>
-                </p>
-            </div>
-            <div class="pdr">
-                <p class="xx">Age: <span class="xxx"><?php echo $age ?></span></p>
-                </p>
+            <div class="col col-lg-2">
+                <label class="form-label required">I.N</label>
+                <input type="text" name="initial" id="initial" class="form-control" placeholder=""
+                    aria-label="Middle name" value="<?php echo $initial ?>" disabled>
             </div>
         </div>
-    </div>
-    <div class="mb-3">
-        <hr class="new1">
-    </div>
-    <h6>Proof of Identity<span style="font-size:14px;">(Click to view/print)</span></h6>
-    <div class="d-flex">
 
-        <p class="xx">ID Presented: <a href="registration/<?php echo $fileID ?>" target="_blank"
-                style="color:#0d6efd;"><?php echo $fileID ?></a></p>
-        <p class="xx">Registration Form: <a href="registration/<?php echo $fileFORM ?>" target="_blank"
-                style="color:#0d6efd;"><?php echo $fileFORM ?></a></p>
-    </div>
+        <div class="row">
+            <div class="col">
+                <label class="form-label required">Birthday</label>
+                <input type="date" name="bday" id="bday" class="form-control" placeholder="" aria-label="Birthday"
+                    value="<?php echo $birthdate ?>" disabled>
+            </div>
+            <div class="col">
+                <label class="form-label required">Gender</label>
+                <input type="text" name="gender" id="gender" class="form-control" placeholder="" aria-label="Gender"
+                    value="<?php echo $gender ?>" disabled>
+            </div>
+            <div class="col">
+                <label class="form-label required">Barangay</label>
+                <input type="text" name="barangay" id="barangay" class="form-control" placeholder=""
+                    aria-label="Barangay" value="<?php echo $barangay ?>" disabled>
+            </div>
+        </div>
 
-    <div class="text-center mt-5">
-        <p style="font-size: 12px;">All accepted application will proceed to next step and
-            review by admin
-        </p>
-        <button class="btn btn-primary" id="<?php echo $id ?>">Accept</button>
-        <input type="button" class="btn btn-danger" id="<?php echo $id ?>" value="Reject">
-        <!-- <button class="btn btn-danger" id="reject">Reject</button> -->
+        <div class="row">
+            <div class="col">
+                <label class="form-label required">Age</label>
+                <input type="text" name="age" id="age" class="form-control" placeholder="" aria-label="Age"
+                    value="<?php echo $age ?>" disabled>
+            </div>
+            <div class="col">
+                <label class="form-label required">PWD</label>
+                <input type="text" name="pwd" id="pwd" class="form-control" placeholder="" aria-label="pwd"
+                    value="<?php echo $pwd ?>" disabled>
+            </div>
+        </div>
+        <div class="mb-3">
+            <hr class="new1">
+        </div>
+        <h6>Proof of Identity<span style="font-size:14px;">(Click to view/print)</span></h6>
+        <div class="d-flex">
+
+            <p class="xx">ID Presented: <a href="registration/<?php echo $fileID ?>" target="_blank"
+                    style="color:#0d6efd;"><?php echo $fileID ?></a></p>
+            <p class="xx">Registration Form: <a href="registration/<?php echo $fileFORM ?>" target="_blank"
+                    style="color:#0d6efd;"><?php echo $fileFORM ?></a></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*leave it blank if
+                    none</span></label>
+            <textarea class="form-control" name="remarks" id="remarks" rows="1"></textarea>
+        </div>
+
+        <div class="text-center mb-3">
+            <p style="font-size: 12px;">All accepted application will proceed to next step and
+                review by admin
+            </p>
+            <button class="btn btn-primary" id="<?php echo $id ?>">Accept</button>
+            <input type="button" class="btn btn-danger" id="<?php echo $id ?>" value="Reject">
+
+        </div>

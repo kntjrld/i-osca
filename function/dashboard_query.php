@@ -126,5 +126,4 @@ if($ulevel == 'admin'){
         $chart_data .= "{ y:'$agelabel[$i]', Male:'$Mage1[$i]', Female:'$Fage1[$i]', Alive:'$alive[$i]', Dead:'$dead[$i]'}, ";
     }
 }
-// QUERY DURATION 4x HOURS
-?>
+// QUERY DURATION xxx HOURS

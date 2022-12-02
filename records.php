@@ -1,43 +1,8 @@
 <?php
 session_start();
 include('conn/connection.php');
+include('function/records_query.php');
 
-$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
-
-if($_SESSION['fx_street'] == $brgy[0]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[0]'");
-}elseif($_SESSION['fx_street'] == $brgy[1]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[1]'");
-}elseif($_SESSION['fx_street'] == $brgy[2]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[2]'");
-}elseif($_SESSION['fx_street'] == $brgy[3]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[3]'");
-}elseif($_SESSION['fx_street'] == $brgy[4]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[4]'");
-}elseif($_SESSION['fx_street'] == $brgy[5]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[5]'");
-}elseif($_SESSION['fx_street'] == $brgy[6]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[6]'");
-}elseif($_SESSION['fx_street'] == $brgy[7]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[7]'");
-}elseif($_SESSION['fx_street'] == $brgy[8]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[8]'");
-}elseif($_SESSION['fx_street'] == $brgy[9]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[9]'");
-}elseif($_SESSION['fx_street'] == $brgy[10]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[10]'");
-}elseif($_SESSION['fx_street'] == $brgy[11]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[11]'");
-}elseif($_SESSION['fx_street'] == $brgy[12]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[12]'");
-}elseif($_SESSION['fx_street'] == $brgy[13]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[13]'");
-}elseif($_SESSION['fx_street'] == $brgy[14]){
-    $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$brgy[14]'");
-}else{
-$records = $conn->query("SELECT * FROM tbl_records");
-}
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
@@ -52,25 +17,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <title>Records</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- DATA TABLE CSS -->
-    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
 
+    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
 
-    <!-- DATA TABLE JS -->
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-
-    <!-- HAHAHA -->
-    <script src="lib/jquery.table2excel.js"></script>
+    <!-- Date range CSS -->
+    <link rel="stylesheet" type="text/css" href="css/dataTables.dateTime.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -80,7 +41,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <li>
                 <a href="#" class="logo">
                     <img src="media/header.png" alt="logo">
-                    <span class="nav-item">i-OSCA</span>
+                    <span class="nav-item" id="header-title">i-OSCA</span>
                 </a>
             </li>
             <li><a href="dashboard" id="nav-list">
@@ -99,7 +60,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
+                    id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -140,25 +102,48 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </header>
 
         <!-- table header-->
-        <div class="d-flex">
-            <div class="p-2 me-auto">
-                <button type="submit" name="export" id="export"
-                    class="export btn btn-primary justify-content-end"><span><i
-                            class="fa-solid fa-file-export"></i></span> Export Excel
-                </button>
+        <div class="table_actions" id="table_actions">
+            <div class="d-block">
+                <div class="expand_button p-2">
+                    <button type="submit" name="export" id="export"
+                        class="export btn e-button btn-primary justify-content-end"><span style="font-size:12px;"
+                            class="e-button-text"><i class="fa-solid fa-file-export"></i>Export Excel</span>
+                    </button>
+                </div>
+                <div class="p-2">
+                    <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#myModal"
+                        <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
+                        <span style="font-size:12px;" class="e-button-text"><i class="fa-solid fa-plus"></i> Add
+                            Record</span></button>
+                </div>
             </div>
-            <div class="p-2 ms-auto">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
-                    <span><i class="fa-solid fa-plus"></i></span> Add Record</button>
+
+            <div class="d-block ms-auto">
+                <div class="p-2 d-flex input-group-sm">
+                    <div class="input-group-prepend p-1">
+                        <span class="input-group-text">Minimum date:</span>
+                    </div>
+                    <input type="text" class="form-control" id="min" name="min" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="p-2 d-flex input-group-sm">
+                    <div class="input-group-prepend p-1">
+                        <span class="input-group-text">Maximum date:</span>
+                    </div>
+                    <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy">
+
+                </div>
             </div>
         </div>
 
         <!-- Modal For add record-->
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Record</h5>
+                        <h5 class="modal-title ms-auto">Add Record</h5>
+                        <div class="ms-auto"> <i class="fa fa-close close" style="color:#000;"
+                                data-bs-dismiss="modal"></i> </div>
                     </div>
                     <!-- Form -->
                     <div class="modal-body">
@@ -237,19 +222,30 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                         aria-label="Age">
                                 </div>
                                 <div class="col">
-                                    <!-- <div class="form-group mb-2"> -->
                                     <label for="">Pension Status</label> <br>
                                     <input class="form-check-input" type="radio" name="status" value="Received" />
                                     <label class="form-check-label" for="status">Recieved</label></br>
                                     <input class="form-check-input" type="radio" name="status" value="Pending"
                                         checked />
                                     <label class="form-check-label" for="status">Pending</label>
-                                    <!-- </div> -->
+                                </div>
+                                <div class="col">
+                                    <label for="">PWD</label> <br>
+                                    <input class="form-check-input" type="radio" name="pwd" value="Yes" />
+                                    <label class="form-check-label" for="pwd">Yes</label></br>
+                                    <input class="form-check-input" type="radio" name="pwd" value="No" />
+                                    <label class="form-check-label" for="pwd">No</label>
                                 </div>
                                 <!-- Pension $$$ -->
-                                <div class="mb-2">
-                                    <label class="form-label required">Pension</label>
-                                    <input type="number" name="pension" class="form-control">
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <label class="form-label required">Pension</label>
+                                        <input type="number" name="pension" class="form-control">
+                                    </div>
+                                    <div class="col">
+                                        <label class="form-label required">Date Started</label>
+                                        <input type="Date" name="started" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                             <!-- Modal button -->
@@ -264,17 +260,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
 
         <!-- Modal For Update and delete-->
-        <div class="modal" id="updateModal">
-            <div class="modal-dialog">
+        <div class="modal fade" id="updateModal">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <form action="#" method="post" id="updateForm">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Update Record</h5>
-                            <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <!-- Form -->
                         <div class="modal-body" id="infoUpdate">
+                            <!-- Form -->
                         </div>
                         <!-- Modal footer -->
                         <div class="modal-footer">
@@ -292,7 +283,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col" class="d-none noExl">uid</th>
+                        <th scope="col" class="d-none d-sm-table-cell">ID</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col" class="d-none d-sm-table-cell">Middle</th>
@@ -301,8 +293,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <th scope="col" class="d-none d-sm-table-cell">Sex</th>
                         <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
                         <th scope="col" class="d-none d-sm-table-cell">Age</th>
+                        <th scope="col" class="d-none">Amount</th>
                         <th scope="col" class="d-none d-sm-table-cell">Pension</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Status</th>
+                        <th scope="col" class="d-none">Started date</th>
+                        <th scope="col" class="noExl">Status</th>
                         <th scope="col" class="noExl">Action</th>
                     </tr>
                 </thead>
@@ -310,7 +304,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <!-- Display all records in the table -->
                     <?php foreach($records as $row) :  ?>
                     <tr>
-                        <td id="sid"> <?php echo $row['fx_id']; ?> </td>
+                        <td class="d-none noExl"> <?php echo $row['uid']; ?>
+                        <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['fx_id']; ?> </td>
                         <td> <?php echo $row['fx_firstname']; ?> </td>
                         <td> <?php echo $row['fx_lastname']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
@@ -319,9 +314,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
-                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_pension']; ?> </td>
+                        <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_status']; ?> </td>
-                        <td> <button id='<?php echo $row['fx_id']; ?>' class="view btn btn-secondary noExl"
+                        <td class="d-none"> <?php echo $row['fd_started']; ?> </td>
+                        <td class="noExl"> <button style="font-size:10px; width:100%;" class="btn <?php if($row['account_status'] == 'active'){
+                            echo 'btn-primary';
+                        }else{
+                            echo 'btn-danger';
+                        }?>"><?php echo $row['account_status']; ?></button> </td>
+                        <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
                                 style="width: auto;">View</button></td>
                     </tr>
                     <?php endforeach; ?>
@@ -329,10 +330,46 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </table>
             <!-- </div> -->
         </div>
+
+        <script>
+        // Export to excel
+        $(document).on('click', '#export', function() {
+            var name = "iOSCA"
+            var date = new Date();
+            var current_year = date.getFullYear();
+            var current_month = date.getMonth();
+            var filename = name + current_month + current_year;
+            $("#datatable").table2excel({
+                exclude: ".noExl", // exclude CSS class
+                name: "Worksheet Name",
+                filename: filename, //do not include extension
+                fileext: ".xls" // file extension
+            });
+            $.ajax({
+                type: "POST",
+                url: "function/export.php",
+                data: {
+                    export: 'export'
+                },
+                success: function(data) {
+                    // do the message display code
+                }
+            });
+        });
+        </script>
+        <!-- Data table with date range -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+        <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+
+        <!-- script for table to excel -->
+        <script src="lib/jquery.table2excel.js"></script>
         <!-- Bootstrap / js-->
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/records.js"></script>
         <script src="lib/app.js"></script>
+        
 </body>
 
 </html>
