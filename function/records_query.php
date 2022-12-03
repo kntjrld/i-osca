@@ -36,5 +36,9 @@ if($_SESSION['fx_street'] == $brgy[0]){
 $records = $conn->query("SELECT * FROM tbl_records");
 }
 
+function dt_format($date){
+    $formatter = strtotime($date);
+    return $format_date = date('m/d/Y', $formatter);
+}
 
 ?>

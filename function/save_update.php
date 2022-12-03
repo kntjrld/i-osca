@@ -17,11 +17,13 @@ include("../conn/connection.php");
     $update_status = $_POST['update_status'];
     $life_status = $_POST['life_status'];
     $account_status = $_POST['account_status'];
+    $fx_remarks = $_POST['remarks'];
+    $fd_remarks = date("M d, Y");
 
     $sql = "UPDATE tbl_records SET fx_id='$update_id', fx_firstname=UPPER('$update_firstname'), fx_lastname=UPPER('$update_lastname'),
         fx_middlename=UPPER('$update_middlename'), fx_contact='$update_contact', fd_birthdate='$update_birthdate',
         fx_gender='$update_sex', fx_barangay='$update_barangay', fn_age='$update_age', fn_status='$update_status',
-        life_status = '$life_status', account_status = '$account_status', fx_pwd = '$pwd' WHERE uid = '$uid' ";
+        life_status = '$life_status', account_status = '$account_status', fx_pwd = '$pwd', fx_remarks = '$fx_remarks', fd_remarks = '$fd_remarks' WHERE uid = '$uid' ";
 
     $result = mysqli_query($conn, $sql);
 

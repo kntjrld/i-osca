@@ -91,7 +91,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         </span>
                         Reports
                 </h2>
-                <p style="font-size: 12px;"><?php echo $header ?></p>
             </div>
             <div class="user-wrapper">
                 <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
@@ -102,9 +101,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
         </header>
+        <div class="card m-2 p-2">
+            <p class="mb-auto" style="font-size: 12px;"><?php echo $header ?>   </p>
+        </div>
         <!-- Table start -->
-        <div class="table p-2" id="container">
-            <table id="datatable" class="table table-striped table-bordered">
+        <div class="table-div m-2 p-2 card" id="container">
+            <table id="datatable" class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col" class="d-none d-sm-table-cell">ID Number</th>

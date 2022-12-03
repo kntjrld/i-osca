@@ -14,10 +14,11 @@ if(isset($_POST['s_id'])) {
         $data['fx_firstname'] = $row['fx_firstname'];
         $data['fx_lastname'] = $row['fx_lastname'];
         $data['fx_middlename'] = $row['fx_middlename'];
+        $data['fx_pwd'] = $row['fx_pwd'];
         $data['fn_pension'] = $row['fn_pension'];
         $data['fd_pension'] = $row['fd_pension'];
     }
-
+    
     ob_end_clean();
     echo json_encode($data);
 

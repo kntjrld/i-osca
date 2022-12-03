@@ -22,6 +22,7 @@ if(isset($_POST["s_id"])) {
         $pwd = $row['fx_pwd'];
         $account_status = $row['account_status'];
         $started = $row['fd_started'];
+        $remarks = $row['fx_remarks'];
     }
 }
 ?>
@@ -86,8 +87,7 @@ if(isset($_POST["s_id"])) {
     <div class="col">
         <div class="mb-2">
             <label class="form-label required">Started date</label>
-            <input type="date" name="started" id="started" class="form-control"
-                value="<?php echo $started ?>" disabled>
+            <input type="date" name="started" id="started" class="form-control" value="<?php echo $started ?>" disabled>
         </div>
     </div>
 </div>
@@ -156,12 +156,12 @@ if(isset($_POST["s_id"])) {
     </div>
     <div class="d-block">
         <label for="">PWD</label> <br>
-        <input class="form-check-input" id="pwd" type="radio" name="pwd"
-            <?php if($pwd=="Yes") {echo "checked";}?> value="Yes" />
+        <input class="form-check-input" id="pwd" type="radio" name="pwd" <?php if($pwd=="Yes") {echo "checked";}?>
+            value="Yes" />
         <label class="form-check-label" for="pwd">Yes</label></br>
 
-        <input class="form-check-input" id="pwd" type="radio" name="pwd"
-            <?php if($pwd=="No") {echo "checked";}?> value="No" />
+        <input class="form-check-input" id="pwd" type="radio" name="pwd" <?php if($pwd=="No") {echo "checked";}?>
+            value="No" />
         <label class="form-check-label" for="pwd">No</label>
     </div>
     <div class="d-block">
@@ -174,7 +174,7 @@ if(isset($_POST["s_id"])) {
             <?php if($life_status=="dead") {echo "checked";}?> value="dead" />
         <label class="form-check-label" for="life_status">Death</label>
     </div>
-    
+
     <div class="d-block">
         <label for="">Record Status</label> <br>
         <input class="form-check-input" id="account_status" type="radio" name="account_status"
@@ -185,4 +185,9 @@ if(isset($_POST["s_id"])) {
             <?php if($account_status=="inactive") {echo "checked";}?> value="inactive" />
         <label class="form-check-label" for="account_status">Inactive</label>
     </div>
+</div>
+<div class="mb-3" id="div-remarks" style="<?php if($life_status == 'alive' && $account_status == 'active'){echo 'display:none;';}?>">
+    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*leave it blank if
+            none</span></label>
+    <textarea class="form-control" name="remarks" id="remarks" rows="1"><?php echo $remarks ?></textarea>
 </div>

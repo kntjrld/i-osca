@@ -119,7 +119,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         </header>
         <!-- K -->
         <div class="d-flex">
-            <div class="p-2 ms-auto">
+            <div class="p-2 ms-auto m-2 card">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
                     <span><i class="fa-solid fa-plus"></i></span>Add User</button>
             </div>

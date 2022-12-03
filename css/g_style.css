@@ -40,7 +40,7 @@ body {
     text-align: center;
     /* display: flex; */
     transition: all 0.5s ease;
-    margin: 20px 0 20px -50px;
+    margin: 20px 0 20px -75px;
 }
 
 .logo img {
@@ -51,10 +51,9 @@ body {
 
 .logo span {
     font-weight: 900;
-    font-size: 30px;
+    font-size: 25px;
 }
-
-.side-nav a:hover{
+.side-nav li:not(:first-child) a:hover{
     color:var(--main-color);
 }
 
@@ -146,5 +145,16 @@ header {
 }
 .user-wrapper img {
     margin-top: 10px;
+}
+/* Table */
+table{
+    table-layout:fixed;
+}
+.table td {
+    font-size: 14px;
+}
+.table th{
+    font-size: 14px;
+    word-break: break-all;
 }
 @media only screen and (max-width: 650px) {}

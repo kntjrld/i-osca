@@ -16,9 +16,8 @@
 }
 .wrapper {
     max-width: 100%;
-    padding: 30px;
-    border: 1px solid var(--main-color);
-}
+    padding: 20px;
+ }
 
 .wrapper label {
     display: block;

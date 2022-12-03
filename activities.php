@@ -98,13 +98,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </header>
         <div class="d-flex">
-            <div class="p-2 ms-auto">
+            <div class="p-2 ms-auto p-2 m-2 card">
                 <button type="submit" name="delete" id="delete" value="Truncate Table"
                     class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
                     activities</button>
             </div>
         </div>
-        <div class="container p-2">
+        <div class="table-div m-2 p-2 card">
             <table class="table" id="datatable">
                 <thead>
                     <tr>

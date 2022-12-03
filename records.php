@@ -32,6 +32,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Date range CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.dateTime.min.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+    
+    <!-- Security -->
+    <script src="lib/security.js"></script>
+
 </head>
 
 <body>
@@ -103,7 +107,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <!-- table header-->
         <div class="table_actions" id="table_actions">
-            <div class="d-block">
+            <div class="d-block card m-2">
                 <div class="expand_button p-2">
                     <button type="submit" name="export" id="export"
                         class="export btn e-button btn-primary justify-content-end"><span style="font-size:12px;"
@@ -119,16 +123,30 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
 
-            <div class="d-block ms-auto">
+            <div class="d-block card m-2">
+                <div class="expand_button p-2">
+                    <label class="text-center p-1">Other Records</label>
+                </div>
+                <div class="p-2">
+                    <select class="form-select" name="records" id="customfilter">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Remove">Remove</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text">Minimum date:</span>
+                        <span class="input-group-text">Date from:</span>
                     </div>
                     <input type="text" class="form-control" id="min" name="min" placeholder="mm/dd/yyyy">
                 </div>
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text">Maximum date:</span>
+                        <span class="input-group-text">Date to:</span>
                     </div>
                     <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy">
 
@@ -279,15 +297,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </div>
         <!-- Table start -->
-        <div class="table-div t-1" id="container">
-            <table id="datatable" class="table table-striped table-bordered">
+        <div class="table-div m-2 p-2 card" id="container">
+            <table id="datatable" class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col" class="d-none noExl">uid</th>
-                        <th scope="col" class="d-none d-sm-table-cell">ID</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Middle</th>
+                        <th scope="col" class="d-none d-sm-table-cell">ID Number</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Initial</th>
                         <th scope="col" class="d-none d-sm-table-cell">Contact</th>
                         <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
                         <th scope="col" class="d-none d-sm-table-cell">Sex</th>
@@ -310,13 +328,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td> <?php echo $row['fx_lastname']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
-                        <td class="d-none d-sm-table-cell"> <?php echo $row['fd_birthdate']; ?> </td>
+                        <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
-                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
                         <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_status']; ?> </td>
-                        <td class="d-none"> <?php echo $row['fd_started']; ?> </td>
+                        <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                         <td class="noExl"> <button style="font-size:10px; width:100%;" class="btn <?php if($row['account_status'] == 'active'){
                             echo 'btn-primary';
                         }else{
@@ -369,7 +387,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/records.js"></script>
         <script src="lib/app.js"></script>
-        
+
 </body>
 
 </html>

@@ -20,6 +20,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" type="text/css" href="css/status.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="lib/status.js"></script>
+    <script src="lib/security.js"></script>
+
 </head>
 
 <body>
@@ -88,20 +90,20 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
         </header>
+        <div class="ms-auto card m-2 p-2" style="width: 300px"
+            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
+            <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
+                class="btn btn-primary" id="restatus" value="Reset all status">
+            <p class="text-center" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
+                style="font-size:10px; color: red;">All registered pension status
+                will back to pending</p>
+        </div>
         <div class="container">
-            <div class="wrapper rounded bg-white">
+            <div class="wrapper card rounded bg-white">
                 <div class="d-flex">
-                    <div class="h5 p-3">Pension Form</div>
-                    <div class="ms-auto">
-                        <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
-                            class="btn btn-primary w-100" id="restatus" value="Reset all status">
-                        <p class="ms-auto text-center"
-                            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
-                            style="font-size:10px; color: red;">All registered pension status
-                            will back to pending</p>
-                    </div>
+                    <div class="h5 p-1">Pension Form</div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-2">
                     <hr class="new1">
                 </div>
                 <form method="post" action="function/updatepension.php">
@@ -113,7 +115,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <option value="null">Select ID</option>
                                     <?php
                                     $brgy = $_SESSION['fx_street'];
-                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy' AND fn_status = 'Pending' AND account_status = 'acti'";
+                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy' AND fn_status = 'Pending' AND account_status = 'active'";
                                     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                     while( $rows = mysqli_fetch_assoc($resultset) ) { 
                                     ?>
@@ -150,19 +152,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 mt-md-0">
+                            <div class="col mt-md-2">
                                 <label>Amount Receive</label>
                                 <input type="number" id="id_amount" name="id_amount" class="form-control" required>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mt-md-0">
+                            <div class="col mt-md-2">
+                                <label>Person with disablity(PWD)</label>
+                                <input type="text" id="pwd" name="pwd" class="form-control" disabled>
+                            </div>
+                            <div class="col mt-md-0">
                                 <label class="form-label required">Date Release</label>
                                 <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>"
                                     class="datepicker form-control" placeholder="" aria-label="Control Number" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" <?php $ulevel = $_SESSION['user_level']; 
+                        if($ulevel == 'admin'){
+                            echo 'disabled';
+                        }?>>Submit</button>
                     </div>
                 </Form>
             </div>
