@@ -12,13 +12,13 @@ $ulevel = $_SESSION['user_level'];
 $female = array("10", "34", "41", "50", "10", "34", "41", "50", "31", "42", "40", "32", "31", "42", "40");
 $male = array("12, 32, 32, 23, 53, 12, 25, 42, 34, 23, 34, 23, 23, 33, 55, 40");
 // END TEST ARRAY
-
+// <------------------------------------------------------------------------------------------------------------------------------------------->
 $chart_data = '';
     
 // GENERATE NEW(MALE) ARRAY FOR EACH BARANGAY
 $malearr = array();
 foreach($brgy as $row){
-    $m_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Male'";
+    $m_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Male' AND account_status = 'active'";
     $arr_m = mysqli_query($conn,$m_arr);
     $xx=mysqli_fetch_assoc($arr_m);
     $malearr[] = $xx['xxx'];
@@ -27,7 +27,7 @@ foreach($brgy as $row){
 // GENERATE NEW(FEMALE) ARRAY FOR EACH BARANGAY
 $femalearr = array();
 foreach($brgy as $row){
-    $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Female' ";
+    $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND fx_gender = 'Female' AND account_status = 'active'";
     $arr_f = mysqli_query($conn,$f_arr);
     $xx=mysqli_fetch_assoc($arr_f);
     $femalearr[] = $xx['xxx'];
@@ -35,7 +35,7 @@ foreach($brgy as $row){
 // GENERATE TOTAL OF MALE AND FEMALE FOR EACH BARANGAY INTO AN ARRAY!
 $mftotal = array();
 foreach($brgy as $row){
-    $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row'";
+    $f_arr = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fx_barangay = '$row' AND account_status = 'active'";
     $arr_f = mysqli_query($conn,$f_arr);
     $xx=mysqli_fetch_assoc($arr_f);
     $mftotal[] = $xx['xxx'];
@@ -43,11 +43,11 @@ foreach($brgy as $row){
 //FILTER AGE 
 $whereage = array("60 AND 65", "66 AND 70", "71 AND 1000");
 $labelages = array("60 and 65", "66 and 70", "71 and Above");
-
+// <------------------------------------------------------------------------------------------------------------------------------------------->
 // FILTER AGE FOR MALE
 $Malearray = array();
     for ($i = 0; $i < count($whereage); $i++) {
-    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND fx_gender = 'Male' AND fn_age BETWEEN $whereage[$i]";
+    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND fx_gender = 'Male' AND fn_age BETWEEN $whereage[$i] AND account_status = 'active'";
     $result1 = mysqli_query($conn,$request);
     $result2=mysqli_fetch_assoc($result1);
     $Malearray[] = $result2['cnt'];
@@ -55,7 +55,7 @@ $Malearray = array();
 // FILTER AGE FOR FEMALE
 $Femalearray = array();
     for ($i = 0; $i < count($whereage); $i++) {
-    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND fx_gender = 'Female' AND fn_age BETWEEN $whereage[$i]";
+    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND fx_gender = 'Female' AND fn_age BETWEEN $whereage[$i] AND account_status = 'active'";
     $result1 = mysqli_query($conn,$request);
     $result2=mysqli_fetch_assoc($result1);
     $Femalearray[] = $result2['cnt'];
@@ -67,7 +67,7 @@ $life = array("alive", "dead");
 // COUNT DEAD
 $Deadarray = array();
     for ($i = 0; $i < count($whereage); $i++) {
-    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND life_status = '$life[1]' AND fn_age BETWEEN $whereage[$i]";
+    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND life_status = '$life[1]' AND fn_age BETWEEN $whereage[$i] AND account_status = 'active'";
     $result = mysqli_query($conn,$request);
     $result2=mysqli_fetch_assoc($result);
     $Deadarray[] = $result2['cnt'];
@@ -76,17 +76,21 @@ $Deadarray = array();
 // COUNT ALIVE
 $Alivearray = array();
     for ($i = 0; $i < count($whereage); $i++) {
-    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND life_status = '$life[0]' AND fn_age BETWEEN $whereage[$i]";
+    $request = "SELECT COUNT(*) as cnt FROM tbl_records WHERE fx_barangay = '$clusterbarangay' AND life_status = '$life[0]' AND fn_age BETWEEN $whereage[$i] AND account_status = 'active'";
     $result = mysqli_query($conn,$request);
     $result2=mysqli_fetch_assoc($result);
     $Alivearray[] = $result2['cnt'];
 }
 
+// <------------------------------------------------------------------------------------------------------------------------------------------->
 
 // Highest record as max 
 $m = max($Malearray);
 $f = max($Femalearray);
 $mfmax = $m + $f;
+
+// <------------------------------------------------------------------------------------------------------------------------------------------->
+
 // COUNT STATUS PER BARANGAY
 if($ulevel == 'staff'){
     // EACH DASHBOARD
@@ -116,4 +120,93 @@ if($ulevel == 'staff'){
     $sql="SELECT COUNT(*) as total from tbl_records WHERE fn_status = 'Pending' AND account_status = 'active'";
     $result=mysqli_query($conn,$sql);
     $withoutp=mysqli_fetch_assoc($result);
+}
+// <------------------------------------------------------------------------------------------------------------------------------------------->
+// Get all distinct year
+$ydata = array();
+$yrequest = "SELECT DISTINCT YEAR(fd_started) as year FROM tbl_records ORDER BY fd_started ASC";
+$yresult = mysqli_query($conn, $yrequest) or die("database error:". mysqli_error($conn));	
+while($row = mysqli_fetch_array($yresult)){        
+    $ydata[] = $row['year'];
+}
+
+//Create another array using min and max for label
+$ylabel = array();
+for ($i = min($ydata); $i <= max($ydata); $i++) {
+    $ylabel[] = $i;
+}
+// <------------------------------------------------------------------------------------------------------------------------------------------->
+
+// Array within an array of each year
+if($ulevel == 'admin'){
+    $yval = array();
+    foreach($ylabel as $row){
+        $yvalrequest = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%'";
+        $yvalresult = mysqli_query($conn,$yvalrequest);
+        $xx=mysqli_fetch_assoc($yvalresult);
+        $yval[] = $xx['xxx'];
+    }
+    
+    // Note: AND account_status = 'active' for all dashboard
+    // Count death per year
+    $ydeadval = array();
+    foreach($ylabel as $row){
+        $ydeadrequest = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND life_status = 'dead'";
+        $ydeadresult = mysqli_query($conn,$ydeadrequest);
+        $xx=mysqli_fetch_assoc($ydeadresult);
+        $ydeadval[] = $xx['xxx'];
+    }
+    
+    // Active per year
+    $yactive = array();
+    foreach($ylabel as $row){
+        $ystatus = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND account_status = 'active'";
+        $result = mysqli_query($conn,$ystatus);
+        $xx=mysqli_fetch_assoc($result);
+        $yactive[] = $xx['xxx'];
+    }
+    // Inactive per year
+    $yinactive = array();
+    foreach($ylabel as $row){
+        $ystatus = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND account_status = 'inactive'";
+        $result = mysqli_query($conn,$ystatus);
+        $xx=mysqli_fetch_assoc($result);
+        $yinactive[] = $xx['xxx'];
+    }
+// <------------------------------------------------------------------------------------------------------------------------------------------->    
+}else{
+    // Staff line chart
+$yval = array();
+foreach($ylabel as $row){
+    $yvalrequest = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND fx_barangay = '$clusterbarangay'";
+    $yvalresult = mysqli_query($conn,$yvalrequest);
+    $xx=mysqli_fetch_assoc($yvalresult);
+    $yval[] = $xx['xxx'];
+}
+    
+// Active per year
+$yactive = array();
+foreach($ylabel as $row){
+    $ystatus = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND account_status = 'active' AND fx_barangay = '$clusterbarangay'";
+    $result = mysqli_query($conn,$ystatus);
+    $xx=mysqli_fetch_assoc($result);
+    $yactive[] = $xx['xxx'];
+}
+// Count death per year
+$ydeadval = array();
+foreach($ylabel as $row){
+    $ydeadrequest = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND life_status = 'dead' AND fx_barangay = '$clusterbarangay'";
+    $ydeadresult = mysqli_query($conn,$ydeadrequest);
+    $xx=mysqli_fetch_assoc($ydeadresult);
+    $ydeadval[] = $xx['xxx'];
+}
+
+// Inactive per year
+$yinactive = array();
+foreach($ylabel as $row){
+    $ystatus = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND account_status = 'inactive' AND fx_barangay = '$clusterbarangay'";
+    $result = mysqli_query($conn,$ystatus);
+    $xx=mysqli_fetch_assoc($result);
+    $yinactive[] = $xx['xxx'];
+}
 }

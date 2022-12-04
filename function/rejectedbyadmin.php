@@ -33,11 +33,16 @@ include("../conn/connection.php");
     $result = mysqli_query($conn, $sql);
 
     if($result){
+        // activities
         date_default_timezone_set('Asia/Manila');
         $date = date("M d, Y - h:i a");
         $user_name = $_SESSION['user_name'];					
 		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Rejected a application with uid #$uid')";
 		$result = mysqli_query($conn, $act);
+        
+        
+        // alert
+        $_SESSION['rejected'] = "Rejected successfully";
 
     }
 

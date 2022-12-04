@@ -4,7 +4,7 @@ include('../conn/connection.php');
 
 if(isset($_POST['s_id'])) {
 
-	$sql = "SELECT * FROM tbl_records WHERE fx_id='".$_POST['s_id']."'";
+	$sql = "SELECT * FROM tbl_records WHERE uid='".$_POST['s_id']."'";
 	$result = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
 
 	while($row = mysqli_fetch_array($result)){
@@ -17,6 +17,9 @@ if(isset($_POST['s_id'])) {
         $data['fx_pwd'] = $row['fx_pwd'];
         $data['fn_pension'] = $row['fn_pension'];
         $data['fd_pension'] = $row['fd_pension'];
+        $data['life_status'] = $row['life_status'];
+        $data['fn_age'] = $row['fn_age'];
+
     }
     
     ob_end_clean();

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('conn/connection.php');
+include('function/indicator.php');
 
 $records = $conn->query("SELECT * FROM users");
 
@@ -71,6 +72,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -258,6 +260,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     </div>
     <script src="lib/sweetalert.min.js"></script>
     <script src="lib/admin.js"></script>
+    <?php include('lib/scriptalert.php');?>
 </body>
 
 </html>

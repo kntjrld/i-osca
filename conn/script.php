@@ -11,8 +11,10 @@ swal({
 </script>
 <?php
     unset($_SESSION['success']);
+?>
+<?php
 }else if(isset($_SESSION['updated']) && $_SESSION['updated'] !=''){
-  ?>
+?>
 <script>
 swal({
     title: "Success!",
@@ -23,6 +25,8 @@ swal({
 </script>
 <?php
   unset($_SESSION['updated']);
+  ?>
+<?php
 }else if(isset($_SESSION['profile']) && $_SESSION['profile'] !=''){
   ?>
 <script>
@@ -35,6 +39,8 @@ swal({
 </script>
 <?php
   unset($_SESSION['profile']);
+  ?>
+<?php
 }else if(isset($_SESSION['changed']) && $_SESSION['changed'] !=''){
   ?>
 <script>

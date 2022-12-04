@@ -29,7 +29,7 @@ if(isset($_POST["uid"])) {
     <p class="label" style="letter-spacing: 1px;">Application #<?php echo $id ?></p>
     <p style="font-weight: bold; font-size:20px; text-transform: uppercase; 
     <?php 
-    if($status == 'Released'){
+    if($status == 'Received'){
         echo 'color: green;';
     }
     ?>">

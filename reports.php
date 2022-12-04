@@ -2,6 +2,7 @@
 session_start();
 include('conn/connection.php');
 include('function/reports_query.php');
+include('function/indicator.php');
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -54,6 +55,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="#" class="active" id=" nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -102,19 +104,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         </header>
         <div class="card m-2 p-2">
-            <p class="mb-auto" style="font-size: 12px;"><?php echo $header ?>   </p>
+            <p class="mb-auto" style="font-size: 12px;"><?php echo $header ?> </p>
         </div>
         <!-- Table start -->
-        <div class="table-div m-2 p-2 card" id="container">
+        <div class="table-div m-2 p-2 card d-flex" id="container">
             <table id="datatable" class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col" class="d-none d-sm-table-cell">ID Number</th>
-                        <th scope="col">Date Application</th>
+                        <th scope="col">Date application</th>
                         <th scope="col" class="d-none d-sm-table-cell">Presented ID</th>
                         <th scope="col">Last Name</th>
                         <th scope="col" class="d-none d-sm-table-cell">First Name</th>
-                        <th scope="col" class="d-none d-sm-table-cell">I.N</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Initial</th>
                         <th scope="col" class="d-none d-sm-table-cell">Birthday</th>
                         <th scope="col" class="d-none d-sm-table-cell">Gender</th>
                         <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
@@ -200,9 +202,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 </html>
 <?php 
-
 }else{
      header("Location: index");
      exit();
 }
  ?>
+<?php include('lib/scriptalert.php'); ?>

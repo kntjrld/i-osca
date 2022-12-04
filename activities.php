@@ -1,8 +1,9 @@
 <?php 
 session_start();
 include('conn/connection.php');
+include('function/indicator.php');
 
-$records = $conn->query("SELECT * FROM tbl_activities ORDER BY `tbl_activities`.`id` ASC");
+$records = $conn->query("SELECT * FROM tbl_activities");
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -52,6 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -108,6 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <table class="table" id="datatable">
                 <thead>
                     <tr>
+                        <th class="d-none" scope="col">id</th>
                         <th class="text-center" scope="col">Date</th>
                         <th class="text-center" scope="col">User</th>
                         <th class="text-center" scope="col">Action</th>
@@ -117,6 +120,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <!-- Display all records in the table -->
                     <?php foreach($records as $row) :  ?>
                     <tr>
+                        <td class="d-none"> <?php echo $row['id']; ?> </td>
                         <td class="text-center"> <?php echo $row['fd_date']; ?> </td>
                         <td class="text-center"> <?php echo $row['fx_user']; ?> </td>
                         <td class="text-center"
@@ -137,8 +141,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <script src="lib/sweetalert.min.js"></script>
     <script>
     $(document).ready(function() {
-        $('#datatable').DataTable();
-    });
+        $('#datatable').DataTable({
+            aaSorting: [[0, 'desc']]
+        });
+});
     </script>
     <script>
     $("#delete").click(function() {

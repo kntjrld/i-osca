@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             $username = 'staff13';
         }elseif($street == $brgy[13]){
             $username = 'staff14';
-        }else
+        }else{
             $username = 'administrator';
         }
         // $username = generateRandomString();
@@ -58,13 +58,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         $municipality = 'N/A';
         $password = generateRandomString();
         $hpassword = password_hash($password, PASSWORD_DEFAULT);
-        $sdescription = 'Staff is responsible for monitoring records but some action is prohibited.Staff can add and update record but deleting will shows in activity log which is controlled by admin.';
+        $sdescription = 'Staff is responsible for monitoring records but some action is prohibited. Staff can accept report and update record but deleting will shows in activity log which is controlled by admin.';
         $adescription = 'Admin is responsible for all action including deleting records, adding and removing user from the system.';
         
         $adname = 'iosca-admin-tempcredentials';
         $stname = 'iosca-staff-tempcredentials';
 
-            if($street == '---'){
+        // CHECK IF ADMIN IS == 1
+        $check = "SELECT COUNT(*) as total FROM users WHERE user_name = '$username'";
+        $adminresult=mysqli_query($conn,$check);
+        $total=mysqli_fetch_assoc($adminresult);
+        $count = $total['total'];
+
+        
+        if($count == 0){
+            if($street == ''){
                 $user_level = 'admin';
                 $sql = "INSERT INTO users(fm_img, user_name, full_name, email, contact_num, fx_street, fx_municipality, user_level, password, role_description)
                 VALUES ('$img','$username','$fullname','$email','$num','$street','$municipality','$user_level', '$hpassword','$adescription')";
@@ -88,8 +96,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
                     header("Content-Length: " . filesize($pdf));
                     header("Location: fxasdasjdk");
-                }else{}
-
+                }
             }else{
                 $user_level = 'staff';
                 $sql = "INSERT INTO users(fm_img, user_name, full_name, email, contact_num, fx_street, fx_municipality, user_level, password, role_description)
@@ -114,7 +121,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
                     header("Content-Length: " . filesize($pdf));
                     header("Location: ../fxasdasjdk");
-                }else{}
+                }
+        }
+        }else{
+            $_SESSION['exist'] = "Something went wrong";
+            header("Location: ../fxasdasjdk");
+        }
 }
-
 ?>

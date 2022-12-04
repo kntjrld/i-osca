@@ -33,13 +33,16 @@ include("../conn/connection.php");
     $request = mysqli_query($conn, $accept);
 
     if($request){
+        //delete from register table 
     $remove = "DELETE FROM tbl_register WHERE uid = '$uid'";
     $request = mysqli_query($conn, $remove);
-        
+        // activities
         date_default_timezone_set('Asia/Manila');
         $date = date("M d, Y - h:i a");
         $user_name = $_SESSION['user_name'];					
 		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Accepted a application id #$uid')";
 		$result = mysqli_query($conn, $act);
 
+    // alert
+    $_SESSION['accepted'] = "Added successfully";
     }

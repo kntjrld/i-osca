@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('conn/connection.php');
+include('function/indicator.php');
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     
@@ -48,6 +49,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>

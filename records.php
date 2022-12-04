@@ -2,6 +2,7 @@
 session_start();
 include('conn/connection.php');
 include('function/records_query.php');
+include('function/indicator.php');
 
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
@@ -57,6 +58,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -289,7 +291,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="modal-footer">
                             <button type="submit" name="submit" id="update_record"
                                 class="btn btn-primary">Update</button>
-                            <input type="button" id="delete_row" class="btn btn-danger" id="delete" value="Delete"
+                            <input type="button" id="delete_row" class="btn btn-danger" id="delete" value="Remove"
                                 data-bs-dismiss="modal">
                         </div>
                     </form>

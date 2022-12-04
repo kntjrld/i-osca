@@ -34,13 +34,16 @@ include("../conn/connection.php");
     $result = mysqli_query($conn, $sql);
 
     if($result){
+        // if true add to records
         $fn_pension = 0;
         $check_value = 'Pending';
         $life_status = 'alive';
+        $started = date("Y-m-d");
         $insert = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
-        VALUES('$uid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status', 'active', '$pwd','$fd_acceptedbyadmin')";
+        VALUES('$uid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status', 'active', '$pwd','$started')";
         $request = mysqli_query($conn, $insert);
 
+        // activities
         if($request){
         date_default_timezone_set('Asia/Manila');
         $date = date("M d, Y - h:i a"); 
@@ -48,6 +51,9 @@ include("../conn/connection.php");
 		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Accepted a application id #$uid')";
 		$result = mysqli_query($conn, $act);
         }
+  
+        // alert
+        $_SESSION['accepted'] = "Added successfully";
     }else{
 
     }

@@ -2,6 +2,8 @@
 session_start();
 include('conn/connection.php');
 include('function/dashboard_query.php');
+include('function/indicator.php');
+
 // include('selectgraph/select_barangay1.php');
 // include('selectgraph/select_barangay2.php');
 // include('selectgraph/select_barangay3.php');
@@ -63,7 +65,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
-                    <i class="fas fa-tasks"></i>
+                    <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
+                    <i class="fas fa-tasks"></i>    
                     <span class="nav-item">Reports</span>
                 </a></li>
             <li><a href="status" id="nav-list">
@@ -152,10 +155,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="details">
             <div class="datalist">
                 <div class="d-flex ms-auto">
-                    <div class="p-2">
+                    <div class="p-1">
                         <h3>Analytics</h3>
                     </div>
-                    <div class="me-2 ms-auto">
+                    <div class="me-1 ms-auto">
                         <select class="form-select form-select-sm" id="barangay" name="barangay"
                             <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
                             <option value="All">All</option>
@@ -178,13 +181,71 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </div>
                 </div>
             </div>
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
+            <div class="graph">
+                <div class="chart-container card m-2 p-1">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="chart-container card m-2 p-1">
+                    <canvas id="yearlychart"></canvas>
+                </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="lib/dashboard.js"></script>
+    <script>
+    const yearly = document.getElementById('yearlychart');
+    var yearlychart = new Chart(yearly, {
+        type: 'line',
+        data: {
+            labels: <?php echo json_encode($ylabel);?>,
+            datasets: [{
+                data: <?php echo json_encode($yval);?>,
+                label: "Registered",
+                fill: true,
+                borderColor: "rgb(60,186,159)",
+                backgroundColor: "rgb(62,149,205,0.1)",
+                tension: 0.1,
+                borderWidth: 2
+            }, {
+                data: <?php echo json_encode($ydeadval)?>,
+                label: "Death(s)",
+                fill: true,
+                borderColor: "rgb(196,88,80)",
+                backgroundColor: "rgb(196,88,80,0.1)",
+                tension: 0.1,
+                borderWidth: 2
+            }, {
+                data: <?php echo json_encode($yactive)?>,
+                label: "Active",
+                fill: true,
+                borderColor: "rgb(62,149,205)",
+                backgroundColor: "rgb(62,149,205,0.1)",
+                tension: 0.1,
+                borderWidth: 2
+            }, {
+                data: <?php echo json_encode($yinactive)?>,
+                label: "Inactive",
+                fill: true,
+                borderColor: "rgb(255,165,0)",
+                backgroundColor: "rgb(255,165,0,0.1)",
+                tension: 0.1,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            animations: {
+                tension: {
+                    duration: 2000,
+                    easing: 'linear',
+                    from: 1,
+                    to: 0,
+                    loop: false
+                }
+            }
+        }
+    });
+    </script>
     <?php include('lib/script.php');?>
 </body>
 

@@ -33,8 +33,7 @@ new Chart(ctx, {
                 }?>,
         datasets: [{
                 label: "Male",
-                backgroundColor: "#6D9886",
-                borderRadius: 5,
+                backgroundColor: "#393E46",
                 data: <?php 
                 if($ulevel == 'admin'){
                     echo json_encode($malearr);
@@ -43,8 +42,7 @@ new Chart(ctx, {
                 }?>
             }, {
                 label: "Female",
-                backgroundColor: "#393E46",
-                borderRadius: 5,
+                backgroundColor: "#6D9886",
                 data: <?php
                  if($ulevel == 'admin'){
                     echo json_encode($femalearr);
@@ -54,23 +52,22 @@ new Chart(ctx, {
             },
             {
                 label: <?php if($ulevel == 'staff'){echo '"Alive"';}else{echo '""';}?>,
-                backgroundColor: <?php if($ulevel == 'staff'){echo '"#4b6043"';}else{echo '"#fff"';}?>,
+                backgroundColor: <?php if($ulevel == 'staff'){echo '"rgb(62,149,205)"';}else{echo '"#fff"';}?>,
                 // stack: 'now',
-                borderRadius: 5,
                 data: <?php echo json_encode($Deadarray); ?>
             },
             {
                 label: <?php if($ulevel == 'staff'){echo '"Dead"';}else{echo '""';}?>,
-                backgroundColor: <?php if($ulevel == 'staff'){echo '"#301934"';}else{echo '"#fff"';}?>,
+                backgroundColor: <?php if($ulevel == 'staff'){echo '"rgb(196,88,80)"';}else{echo '"#fff"';}?>,
                 // stack: 'now',
-                borderRadius: 5,
                 data: <?php echo json_encode($Alivearray); ?>
             },
             {
                 type: <?php if($ulevel == 'admin'){echo '"line"';}else{echo '""';}?>,
-                label: <?php if($ulevel == 'admin'){echo '"Total"';}else{echo '""';}?>,
+                label: <?php if($ulevel == 'admin'){echo '"Registered"';}else{echo '""';}?>,
                 data: <?php if($ulevel == 'admin'){echo json_encode($mftotal);}else{echo '0';} ?>,
                 fill: true,
+                borderWidth:2,
                 backgroundColor: <?php if($ulevel == 'staff'){echo '"#fff"';}else{echo '"#FAFAFA"';}?>,
                 borderColor: <?php if($ulevel == 'admin'){echo "'rgb(54, 162, 235)'";}else{ echo '"#ffff"';} ?>
             }

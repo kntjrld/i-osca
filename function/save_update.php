@@ -35,9 +35,7 @@ include("../conn/connection.php");
 				$result = mysqli_query($conn, $act);
 				
         $_SESSION['updated'] = "Added successfully";
-        header("Location: ../records");
 	}else{
         $_SESSION['notupdated'] = "Not Added";
-        header("Location: ../records");
     }
 ?>

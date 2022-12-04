@@ -1,6 +1,8 @@
 <?php 
 session_start();
 include('conn/connection.php');
+include('function/indicator.php');
+
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
 ?>
@@ -43,6 +45,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
+            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -90,8 +93,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
         </header>
-        <div class="ms-auto card m-2 p-2" style="width: 300px"
-            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
+        <div class="ms-auto card m-2 p-2"
+            style="width: 300px;  <?php if($_SESSION['user_level']=="staff") echo 'display:none;'; ?>">
             <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
                 class="btn btn-primary" id="restatus" value="Reset all status">
             <p class="text-center" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
@@ -115,12 +118,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <option value="null">Select ID</option>
                                     <?php
                                     $brgy = $_SESSION['fx_street'];
-                                    $sql = "SELECT fx_id FROM tbl_records WHERE fx_barangay = '$brgy' AND fn_status = 'Pending' AND account_status = 'active'";
+                                    $sql = "SELECT uid FROM tbl_records WHERE fx_barangay = '$brgy' AND fn_status = 'Pending' AND account_status = 'active'";
                                     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                     while( $rows = mysqli_fetch_assoc($resultset) ) { 
                                     ?>
                                     <option value="<?php 
-                                    echo $rows["fx_id"]; ?>"><?php echo $rows["fx_id"]; ?></option>
+                                    echo $rows["uid"]; ?>"><?php echo $rows["uid"]; ?></option>
                                     <?php }	
                                     
                                     ?>
@@ -132,6 +135,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <option value="Pending">Pending</option>
                                     <option value="Received">Received</option>
                                 </select>
+                            </div>
+                            <div class="col">
+                                <label>Age</label>
+                                <input type="text" id="age" name="age" class="form-control" disabled>
                             </div>
                         </div>
                         <div class="row">
@@ -156,14 +163,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <label>Amount Receive</label>
                                 <input type="number" id="id_amount" name="id_amount" class="form-control" required>
                             </div>
-                            <div class="col mt-md-2">
-                                <label>Person with disablity(PWD)</label>
-                                <input type="text" id="pwd" name="pwd" class="form-control" disabled>
-                            </div>
                             <div class="col mt-md-0">
                                 <label class="form-label required">Date Release</label>
                                 <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>"
                                     class="datepicker form-control" placeholder="" aria-label="Control Number" required>
+                            </div>
+                            <div class="col mt-md-2">
+                                <label>Person with disablity(PWD)</label>
+                                <input type="text" id="pwd" name="pwd" class="form-control" disabled>
+                            </div>
+                            <div class="col mt-md-2">
+                                <label>Life Status</label>
+                                <input type="text" id="life_status" name="life_status" class="form-control" disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" <?php $ulevel = $_SESSION['user_level']; 
@@ -220,4 +231,4 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
      exit();
 }
  ?>
-<?php include('function/pension_script.php');?>
+<?php include('lib/scriptalert.php');?>

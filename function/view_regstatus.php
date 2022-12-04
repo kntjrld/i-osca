@@ -30,6 +30,7 @@ if(isset($_POST["uid"])) {
         $date_acceptedbycluster = $row['fd_acceptedbycluster'];
         $date_acceptedbyadmin = $row['fd_acceptedbyadmin'];
         $uid = $row['uid'];
+        $remarks = $row['fx_remarks'];
     }
     }elseif($countreg == 1){
     $sql = "SELECT * FROM tbl_register WHERE uid = '$id' ";  
@@ -45,6 +46,7 @@ if(isset($_POST["uid"])) {
         $date_acceptedbycluster = 'Under review';
         $date_acceptedbyadmin = 'Under review';
         $uid = $row['uid'];
+        $remarks = $row['fx_remarks'];
     }
     }else{
         $firstname = 'No data';
@@ -56,6 +58,7 @@ if(isset($_POST["uid"])) {
         $date_acceptedbycluster = 'No data';
         $date_acceptedbyadmin = 'No data';
         $uid = $id;
+        $remarks = 'No data';
     }
 }
 ?>
@@ -145,5 +148,9 @@ if(isset($_POST["uid"])) {
                 }else if($count == 0 && $countreg == 0){
                     echo 'display:none;'; 
                 } ?>"><?php echo '- ', $statusbyadmin ?></p>
+    </div>
+    <div class="d-flex" style="<?php if($remarks == ''){display:none;} ?>">
+        <p class="label">Remarks:</p>
+        <p style="margin-left:5px; color:red;"><?php echo $remarks?></p>
     </div>
 </div>

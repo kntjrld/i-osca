@@ -28,19 +28,24 @@ include("../conn/connection.php");
         $appdate = $row['fd_application'];
     }
 
+    // transfer
     $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fx_pwd, fl_idpresented, fl_form, fd_application, fx_statusbycluster, fd_acceptedbycluster, fd_acceptedbyadmin, fx_statusbyadmin, fx_remarks)
     VALUES('$uid','$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age', '$pwd' ,'$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$rejectdate', '$adminstatus', '$adminstatus', '$remarks')";
     $request = mysqli_query($conn, $accept);
 
     if($request){
+    //delete 
     $remove = "DELETE FROM tbl_register WHERE uid = '$uid'";
     $request = mysqli_query($conn, $remove);
 
+    // activities
     date_default_timezone_set('Asia/Manila');
     $date = date("M d, Y - h:i a");
     $user_name = $_SESSION['user_name'];					
     $act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Rejected a application with id #$uid')";
     $result = mysqli_query($conn, $act);
 
+    // alert
+    $_SESSION['rejected'] = "Rejected successfully";
     }
 ?>

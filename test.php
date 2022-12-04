@@ -9,4 +9,6 @@
 
 $uid = getGUIDnoHash();
 echo $uid;
+$fd_acceptedbyadmin = date("Y-m-d");
+echo $fd_acceptedbyadmin;
 ?>

@@ -21,3 +21,9 @@ font-weight: bold;
     border-radius: 5px;
     background: #dc3545;
 }
+
+/* Dashboard */
+.chart-container{
+    width: 50%;
+    height:330px
+}

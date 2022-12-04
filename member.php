@@ -129,6 +129,7 @@
                         <p>2. Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
                         <p>3. Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
                         <p>4. After successful registration, copy your application ID. You can use it to check your registration and pension status.</p>
+                        <p>5. If your application is rejected, read the remarks on your application</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>
