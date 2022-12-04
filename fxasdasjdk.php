@@ -159,20 +159,22 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <table class="table" id="datatable">
                         <thead>
                             <tr>
-                                <th scope="col">Profile</th>
-                                <th scope="col">Username</th>
-                                <th class="d-none d-sm-table-cell" scope="col">User type</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Profile</th>
+                                <th scope="col" class="text-center">Username</th>
+                                <th scope="col" class="text-center">Handle</th>
+                                <th class="d-none d-sm-table-cell text-center" scope="col">User type</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- Display all records in the table -->
                             <?php foreach($records as $row) :  ?>
                             <tr>
-                                <td> <img src="image/<?php echo $row['fm_img'] ?>" class="user_img" /> </td>
-                                <td> <?php echo $row['user_name']; ?> </td>
-                                <td class="d-none d-sm-table-cell"> <?php echo $row['user_level']; ?> </td>
-                                <td> <button id='<?php echo $row['user_id']; ?>' class="view btn btn-secondary"
+                                <td class="text-center"> <img src="image/<?php echo $row['fm_img'] ?>" class="user_img" /> </td>
+                                <td class="text-center"> <?php echo $row['user_name']; ?> </td>
+                                <td class="text-center"> <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
+                                <td class="d-none d-sm-table-cell text-center"> <?php echo $row['user_level']; ?> </td>
+                                <td class="text-center"> <button id='<?php echo $row['user_id']; ?>' class="view btn btn-secondary"
                                         style="width: auto;" data-bs-toggle="modal"
                                         data-bs-target="#myModal">View</button>
                                 </td>
