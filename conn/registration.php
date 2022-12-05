@@ -7,9 +7,10 @@ include "connection.php";
             $charid = md5(uniqid(rand(), true));
             $c = unpack("C*",$charid);
             $c = implode("",$c);
-            return substr($c,0,20);
+            return substr($c,0,12);
     }
 
+    $dateid = date("Ymd");
     $uid = getGUIDnoHash();
     $present_idno = $_POST['idpresented'];
     $idtype = $_POST['idtype'];
@@ -19,6 +20,7 @@ include "connection.php";
     $birthday = $_POST['bday'];
     $gender = $_POST['sex'];
     $barangay = $_POST['barangay'];
+    $countrycode = '+63';
     $contact = $_POST['contact'];
     $age = $_POST['age'];
     $pwd = $_POST['pwd'];
@@ -31,7 +33,7 @@ include "connection.php";
     $pdfregistrationform = $_FILES['registrationfile']['name'];
 
     $sql = "INSERT INTO tbl_register(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_pwd)
-    VALUES('$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age','$pdfidpresented','$pdfregistrationform', '$appdate', '$pwd')";
+    VALUES('$dateid$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$countrycode$contact','$age','$pdfidpresented','$pdfregistrationform', '$appdate', '$pwd')";
     $result = mysqli_query($conn, $sql);
 
     if($result){
@@ -48,7 +50,7 @@ include "connection.php";
 ?>
 
 <div class="d-block p-2">
-    <h1 id="targetext" class="w-100"><?php echo $uid; ?></h1>
+    <h1 id="targetext" class="w-100"><?php echo $dateid.$uid; ?></h1>
     <p style="font-size:12px;">Copy and saved your application ID</p>
     <button tyle="button" class="btn btn-primary" id="idbutton" data-clipboard-target="#targetext">Copy text</button>
 </div>

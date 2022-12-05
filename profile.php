@@ -49,7 +49,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
-            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
+                    <span class="indicator"
+                        style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -57,7 +58,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
+                    id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
                     <span class="nav-item">Activities</span>
                 </a></li>
@@ -162,7 +164,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" name="username" id="username"
-                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>" disabled="disabled">
+                                            placeholder="Username" value="<?php echo $_SESSION['user_name'];?>"
+                                            disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -185,7 +188,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     } ?>>
                                         <label for="Street">Street</label>
                                         <input type="name" class="form-control w-100" name="street" id="street"
-                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>" disabled="disabled">
+                                            placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>"
+                                            disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -235,16 +239,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <label class="form-label required">New Password</label>
                                 <input type="password" name="newpass" id="newpass" class="form-control" required>
                             </div>
-                            <!-- RE-TYPE PASSWORD -->
-                            <div class="mb-2">
-                                <label class="form-label required">Re-type Password</label>
-                                <input type="password" name="repass" id="repass" class="form-control" required>
-                            </div>
                             <!-- Modal button -->
-                            <div class="modal-footer">
-                                <button type="submit" id="changepassword" name="changepassword"
-                                    class="btn btn-primary">Submit</button>
-                                <input type="button" class="btn btn-secondary" value="Cancel" data-bs-dismiss="modal">
+                            <div class="d-flex">
+                                <div class="m-1">
+                                    <button type="submit" id="changepassword" name="changepassword"
+                                        class="btn btn-primary">Submit</button>
+                                </div>
+                                <div class="m-1">
+                                    <input type="button" class="btn btn-secondary" value="Cancel"
+                                        data-bs-dismiss="modal">
+                                </div>
                             </div>
                         </form>
                     </div>

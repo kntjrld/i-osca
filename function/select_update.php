@@ -63,8 +63,8 @@ if(isset($_POST["s_id"])) {
 </div>
 <!-- Contacts  -->
 <div class="mb-2">
-    <label class="form-label required">Contact(number or email)</label>
-    <input type="text" name="update_contact" id="update_contact" class="form-control"
+    <label class="form-label required">Contact number</label>
+    <input type="num" name="update_contact" id="update_contact" class="form-control"
         value="<?php echo $update_contact ?>">
 </div>
 <!-- Date of birth -->
@@ -187,7 +187,6 @@ if(isset($_POST["s_id"])) {
     </div>
 </div>
 <div class="mb-3" id="div-remarks" style="<?php if($life_status == 'alive' && $account_status == 'active'){echo 'display:none;';}?>">
-    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*leave it blank if
-            none</span></label>
+    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*Please leave a remarks, Date(being inactive or death) and reason/cause(being inactive/death)</span></label>
     <textarea class="form-control" name="remarks" id="remarks" rows="1"><?php echo $remarks ?></textarea>
 </div>

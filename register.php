@@ -114,8 +114,8 @@ $applicationid = $_SESSION['applicatonid'];
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
-                            <label>Contact(Number or Email)</label>
-                            <input type="text" name="contact" class="form-control" required>
+                            <label>Contact Number</label>
+                            <input type="text" name="contact" maxlength="10" placeholder="10 digit number"class="form-control" required>
                         </div>
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Age</label>

@@ -1,7 +1,7 @@
 <?php
 include('function/dashboard_query.php');
 ?>
-<script>
+<!-- <script>
 /*Function to update the bar chart*/
 $('select').on('change', function() {
     selected = $(this).val();
@@ -18,7 +18,7 @@ $('select').on('change', function() {
         }
     });
 });
-</script>
+</script> -->
 
 <script>
 const ctx = document.getElementById('myChart');

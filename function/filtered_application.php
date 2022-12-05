@@ -102,6 +102,11 @@ if(isset($_POST["s_id"])) {
 
         <div class="row">
             <div class="col">
+                <label class="form-label required">Contact Number</label>
+                <input type="text" name="contact" id="contact" class="form-control" placeholder="" aria-label="Contact"
+                    value="<?php echo $contact ?>" disabled>
+            </div>
+            <div class="col">
                 <label class="form-label required">Age</label>
                 <input type="text" name="age" id="age" class="form-control" placeholder="" aria-label="Age"
                     value="<?php echo $age ?>" disabled>
@@ -113,11 +118,9 @@ if(isset($_POST["s_id"])) {
             </div>
         </div>
         <div class="mb-3">
-            <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*leave it blank if
-                    none</span></label>
-            <textarea class="form-control" name="remarks" id="remarks" rows="1"></textarea>
+            <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*leave a remarks if this application is rejected</span></label>
+            <textarea class="form-control" name="remarks" id="remarks" maxlength="80" rows="1" placeholder="reason"></textarea>
         </div>
-
 
         <div class="text-center mt-5">
             <p style="font-size: 12px;">All accepted application by admin will officially approve and added to all

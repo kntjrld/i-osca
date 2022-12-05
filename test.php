@@ -4,11 +4,17 @@
         $charid = md5(uniqid(rand(), true));
         $c = unpack("C*",$charid);
         $c = implode("",$c);
-        return substr($c,0,20);
+        return substr($c,0,17);
 }
 
 $uid = getGUIDnoHash();
-echo $uid;
-$fd_acceptedbyadmin = date("Y-m-d");
-echo $fd_acceptedbyadmin;
+// echo $uid;
+$fd_acceptedbyadmin = date("Ymd");
+$remarks = 'aisd asdas sdas dasdnas djasnd jadsn jandj';
+// $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
+
+echo $sms;
+// echo $fd_acceptedbyadmin;
+// echo $uid;
+
 ?>

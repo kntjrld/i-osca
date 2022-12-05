@@ -149,7 +149,7 @@ if(isset($_POST["uid"])) {
                     echo 'display:none;'; 
                 } ?>"><?php echo '- ', $statusbyadmin ?></p>
     </div>
-    <div class="d-flex" style="<?php if($remarks == ''){display:none;} ?>">
+    <div class="d-flex" style="<?php if($count == 0 && $countreg == 0){display:none;} ?>">
         <p class="label">Remarks:</p>
         <p style="margin-left:5px; color:red;"><?php echo $remarks?></p>
     </div>

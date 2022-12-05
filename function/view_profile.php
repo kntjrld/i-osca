@@ -30,24 +30,23 @@ if(isset($_POST["s_id"])) {
         <img src="image/<?php echo $select_img ?>" class="view_img" />
     </div>
     <div class="d-flex justify-content-center">
-        <h5><?php echo $select_fullname ?></h1>
+        <h5 style="font-weight:900;"><?php echo $select_fullname ?></h1>
     </div>
-    <div class="d-block">
-        <div class="d-flex">
+    <div class="d-flex">
+
+        <div class="d-block p-2 m-2">
             <p class="label">Username:</p>
-            <p><?php echo $select_username ?></p>
-        </div>
-        <div class="d-flex">
             <p class="label">Email:</p>
-            <p><?php echo $select_email ?></p>
-        </div>
-        <div class="d-flex">
             <p class="label">Contact Number:</p>
-            <p><?php echo $select_contactnum ?></p>
-        </div>
-        <div class="d-flex">
             <p class="label">Address:</p>
-            <p><?php 
+            <p class="label">User level:</p>
+
+        </div>
+        <div class="d-block p-2 m-2">
+            <p class="val"><?php echo $select_username ?></p>
+            <p class="val"><?php echo $select_email ?></p>
+            <p class="val"><?php echo $select_contactnum ?></p>
+            <p class="val"><?php 
             if($select_userlevel == 'admin'){
                 echo $select_municipality;
             }else{
@@ -55,10 +54,9 @@ if(isset($_POST["s_id"])) {
             }           
 
             ?></p>
+            <p class="val"><?php echo $select_userlevel ?></p>
+
         </div>
-        <div class="d-flex">
-            <p class="label">User level:</p>
-            <p><?php echo $select_userlevel ?></p>
-        </div>
+
     </div>
 </div>

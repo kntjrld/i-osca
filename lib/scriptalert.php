@@ -23,7 +23,7 @@ swal("Accepted!", "Application accepted!", "success");
     if(isset($_SESSION['exist']) && $_SESSION['exist'] !=''){
     ?>
 <script>
-swal("Account per barangay is limited!", {
+swal("Account is limited!", {
     icon: "error",
 });
 </script>

@@ -4,22 +4,6 @@ include('conn/connection.php');
 include('function/dashboard_query.php');
 include('function/indicator.php');
 
-// include('selectgraph/select_barangay1.php');
-// include('selectgraph/select_barangay2.php');
-// include('selectgraph/select_barangay3.php');
-// include('selectgraph/select_barangay4.php');
-// include('selectgraph/select_barangay5.php');
-// include('selectgraph/select_barangay6.php');
-// include('selectgraph/select_barangay7.php');
-// include('selectgraph/select_barangay8.php');
-// include('selectgraph/select_balansay.php');
-// include('selectgraph/select_fatima.php');
-// include('selectgraph/select_payompon.php');
-// include('selectgraph/select_ligang.php');
-// include('selectgraph/select_talabaan.php');
-// include('selectgraph/select_tangkalan.php');
-// include('selectgraph/select_tayamaan.php');
-
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
@@ -158,11 +142,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="p-1">
                         <h3>Analytics</h3>
                     </div>
-                    <div class="me-1 ms-auto">
-                        <select class="form-select form-select-sm" id="barangay" name="barangay"
-                            <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>>
+                    <!-- <div class="me-1 ms-auto">
+                        <select class="form-select form-select-sm" id="barangay" name="barangay">
                             <option value="All">All</option>
-                            <option value="Barangay 1">Barangay 1</option>
+                            <option value="Barangay 1">Barangay 1</option>  
                             <option value="Barangay 2">Barangay 2</option>
                             <option value="Barangay 3">Barangay 3</option>
                             <option value="Barangay 4">Barangay 4</option>
@@ -178,7 +161,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <option value="Tangkalan">Tangkalan</option>
                             <option value="Tayamaan">Tayamaan</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="graph">

@@ -35,7 +35,7 @@ include("../conn/connection.php");
 
     if($result){
         // if true add to records
-        $fn_pension = 0;
+        $fn_pension = '1500';
         $check_value = 'Pending';
         $life_status = 'alive';
         $started = date("Y-m-d");
@@ -54,7 +54,5 @@ include("../conn/connection.php");
   
         // alert
         $_SESSION['accepted'] = "Added successfully";
-    }else{
-
-    }
+        }else{}
 ?>

@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <!-- Date range CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.dateTime.min.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
-    
+
     <!-- Security -->
     <script src="lib/security.js"></script>
 
@@ -58,7 +58,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
-            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
+                    <span class="indicator"
+                        style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
@@ -134,7 +135,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                         <option value="Remove">Remove</option>
-                        <option value="All">All</option>
                     </select>
                 </div>
             </div>
@@ -193,10 +193,23 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 </div>
                             </div>
                             <!-- Contacts  -->
-                            <div class="mb-2">
-                                <label class="form-label required">Contact(number or email)</label>
-                                <input type="text" name="contact" class="form-control">
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <div class="mb-2">
+                                        <label class="form-label required">Contact number</label>
+                                        <input type="text" name="contact" maxlength="10" placeholder="10 digit number"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-2">
+                                        <label class="form-label required">Date Started</label>
+                                        <input type="date" name="started" id="started" class="form-control">
+                                    </div>
+
+                                </div>
                             </div>
+
                             <!-- Date of birth -->
 
                             <div class="row">
@@ -257,14 +270,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <label class="form-check-label" for="pwd">No</label>
                                 </div>
                                 <!-- Pension $$$ -->
-                                <div class="row mb-2">
+                                <div class="row mb-2 w-75">
                                     <div class="col">
                                         <label class="form-label required">Pension</label>
                                         <input type="number" name="pension" class="form-control">
-                                    </div>
-                                    <div class="col">
-                                        <label class="form-label required">Date Started</label>
-                                        <input type="Date" name="started" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -305,8 +314,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <tr>
                         <th scope="col" class="d-none noExl">uid</th>
                         <th scope="col" class="d-none d-sm-table-cell">ID Number</th>
-                        <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
+                        <th scope="col">First Name</th>
                         <th scope="col" class="d-none d-sm-table-cell">Initial</th>
                         <th scope="col" class="d-none d-sm-table-cell">Contact</th>
                         <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
@@ -326,8 +335,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <tr>
                         <td class="d-none noExl"> <?php echo $row['uid']; ?>
                         <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['fx_id']; ?> </td>
-                        <td> <?php echo $row['fx_firstname']; ?> </td>
                         <td> <?php echo $row['fx_lastname']; ?> </td>
+                        <td> <?php echo $row['fx_firstname']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
                         <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>

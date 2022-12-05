@@ -67,14 +67,13 @@ if(isset($_POST['update'])){
     $dbpassword = $_SESSION['password'];
     $oldpassword = $_POST['pass'];
     $newpassword = password_hash($_POST['newpass'], PASSWORD_DEFAULT);
-    $repassword = password_hash($_POST['repass'], PASSWORD_DEFAULT);
 
-    if(password_verify($oldpassword, $dbpassword) || password_verify($newpassword, $repassword)){
-        $sql = "UPDATE users SET password = '$repassword' WHERE user_id = '$get_id'";
+    if(password_verify($oldpassword, $dbpassword)){
+        $sql = "UPDATE users SET password = '$newpassword' WHERE user_id = '$get_id'";
         $result = mysqli_query($conn, $sql);
 
         $_SESSION['changed'] = "Password Changed successfully";
-        $_SESSION['password'] = $repassword;
+        $_SESSION['password'] = $newpassword;
         header("Location: ../profile");
     }else{
         $_SESSION['xxx'] = "Something went wrong";

@@ -38,6 +38,28 @@ include("../conn/connection.php");
     $remove = "DELETE FROM tbl_register WHERE uid = '$uid'";
     $request = mysqli_query($conn, $remove);
 
+    // start
+    // Notify user via sms 
+    $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
+    $ch = curl_init();
+    $parameters = array(
+        'apikey' => '7952a861e3d97d4876d8d6cb340980ee', //Your API KEY
+        'number' => $contact,
+        'message' => $remarks,
+        'sendername' => 'SEMAPHORE'
+    );
+    curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+    curl_setopt( $ch, CURLOPT_POST, 1 );
+
+    //Send the parameters set above with the request
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+
+    // Receive response from server
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    $output = curl_exec( $ch );
+    curl_close ($ch);
+    // end 
+
     // activities
     date_default_timezone_set('Asia/Manila');
     $date = date("M d, Y - h:i a");

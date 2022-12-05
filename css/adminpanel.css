@@ -58,7 +58,11 @@
 }
 .label{
     margin-right: 5px;
-    font-weight: bold;
+    font-size: 14px;
+}
+.val{
+    font-size: 14px;
+    font-weight: 500;
 }
 /* Media query */
 

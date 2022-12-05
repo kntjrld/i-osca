@@ -163,7 +163,9 @@ table{
     font-size: 14px;
 }
 .table th{
-    font-size: 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+
 }
 /* Indicator */
 .indicator{

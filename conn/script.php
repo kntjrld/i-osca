@@ -56,7 +56,7 @@ swal({
 }elseif(isset($_SESSION['xxx']) && $_SESSION['xxx'] !=''){
 ?>
 <script>
-swal("Oops", "Something went wrong! Double check old password and new password", "error");
+swal("Something went wrong!", "Your old password is incorrect", "error");
 </script>
 <?php
   unset($_SESSION['xxx']);

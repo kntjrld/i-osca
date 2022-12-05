@@ -84,14 +84,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     $pdf->AddPage();
                     $pdf->SetTextColor(255,0,0); 
                     $pdf->SetFont('Arial', 'B', 9);
-                    $pdf->Text (10, 10,  'Please change your username and password including your personal information after you login using this credentials', 0); 
+                    $pdf->Text (10, 8,  'Please change your password including your personal information after you login using this credentials', 10, 10); 
                     $pdf->SetTextColor(0,0,0); 
                     $pdf->SetFont('Arial', 'B', 12);
-                    $pdf->MultiCell(0,10,utf8_decode('Username:'.$username . chr(10) . 'Password:'.$password));
-                    $fileName = $adname.'_'.date('D-d-m-Y').'.pdf';
+                    $pdf->MultiCell(0,0,utf8_decode(''), 1);
+                    $pdf->MultiCell(0,10,utf8_decode('Username:'.' '.$username . chr(10) . 'Password:'.' '.$password), 1);
+                    $fileName = $adname.'_'.date('D-d-m-Y').'.pdf';           
                     // return the generated output
                     $pdf->Output($fileName,'D');
-                    ob_end_flush(); 
+                    ob_end_flush();     
                     header('Content-Type: application/download');
                     header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
                     header("Content-Length: " . filesize($pdf));
@@ -109,11 +110,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     $pdf->AddPage();
                     $pdf->SetTextColor(255,0,0); 
                     $pdf->SetFont('Arial', 'B', 9);
-                    $pdf->Text (10, 10,  'Please change your password including your personal information after you login using this credentials', 0); 
+                    $pdf->Text (10, 8,  'Please change your password including your personal information after you login using this credentials', 10, 10); 
                     $pdf->SetTextColor(0,0,0); 
                     $pdf->SetFont('Arial', 'B', 12);
-                    $pdf->MultiCell(0,10,utf8_decode('Username:'.$username . chr(10) . 'Password:'.$password));
-                    $fileName = $stname.'_'.date('D-d-m-Y').'.pdf';
+                    $pdf->MultiCell(0,0,utf8_decode(''), 1);
+                    $pdf->MultiCell(0,10,utf8_decode('Username:'.' '.$username . chr(10) . 'Password:'.' '.$password), 1);
+                    $fileName = $adname.'_'.date('D-d-m-Y').'.pdf';   
                     // return the generated output
                     $pdf->Output($fileName,'D');
                     ob_end_flush(); 
