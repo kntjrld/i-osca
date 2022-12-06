@@ -52,7 +52,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             $username = 'administrator';
         }
         // $username = generateRandomString();
-        $fullname = 'N/A';
+        $fullname = 'NO DATA';
         $email = 'N/A';
         $num = 'N/A';
         $municipality = 'N/A';
@@ -91,12 +91,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     $pdf->MultiCell(0,10,utf8_decode('Username:'.' '.$username . chr(10) . 'Password:'.' '.$password), 1);
                     $fileName = $adname.'_'.date('D-d-m-Y').'.pdf';           
                     // return the generated output
-                    $pdf->Output($fileName,'D');
+                    $pdf->Output($fileName,'I');
                     ob_end_flush();     
-                    header('Content-Type: application/download');
                     header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
                     header("Content-Length: " . filesize($pdf));
-                    header("Location: fxasdasjdk");
                 }
             }else{
                 $user_level = 'staff';
@@ -117,12 +115,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     $pdf->MultiCell(0,10,utf8_decode('Username:'.' '.$username . chr(10) . 'Password:'.' '.$password), 1);
                     $fileName = $adname.'_'.date('D-d-m-Y').'.pdf';   
                     // return the generated output
-                    $pdf->Output($fileName,'D');
+                    $pdf->Output($fileName,'I');
                     ob_end_flush(); 
-                    header('Content-Type: application/download');
                     header("Content-Disposition: attachment; filename=\"" . $pdf . "\"");
                     header("Content-Length: " . filesize($pdf));
-                    header("Location: ../fxasdasjdk");
                 }
         }
         }else{

@@ -1,5 +1,6 @@
 <?php
 
+$xx = $_SESSION['user_level'];
 $street = $_SESSION['fx_street'];
 if($_SESSION['user_level'] == 'staff'){
     $records = $conn->query("SELECT * FROM tbl_records WHERE fx_barangay = '$street' AND account_status = 'active'");   

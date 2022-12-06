@@ -9,11 +9,12 @@
 
 $uid = getGUIDnoHash();
 // echo $uid;
-$fd_acceptedbyadmin = date("Ymd");
-$remarks = 'aisd asdas sdas dasdnas djasnd jadsn jandj';
+// $fd_acceptedbyadmin = date("Ymd");
+// $remarks = 'aisd asdas sdas dasdnas djasnd jadsn jandj';
 // $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
+$fd_acceptedbyadmin = date("Y-m-d");
 
-echo $sms;
+echo $fd_acceptedbyadmin;
 // echo $fd_acceptedbyadmin;
 // echo $uid;
 

@@ -3,8 +3,10 @@ session_start();
 include("../conn/connection.php");
 
     $uid = $_POST['uid'];
-    
-    $sql = "SELECT * FROM tbl_records WHERE uid = '$uid' ";  
+    $remarks = $_POST['remarks'];
+    $sql = "SELECT * FROM tbl_records WHERE uid = '$uid' "; 
+    $date_removed = date("M d, Y");
+
     $result = mysqli_query($conn, $sql); 
 
     while($row = mysqli_fetch_array($result)){
@@ -12,7 +14,7 @@ include("../conn/connection.php");
         $idnumber = $row['fx_id'];
         $firstname = $row['fx_firstname'];
         $lastname = $row['fx_lastname'];
-        $initial = $row['fx_middle'];
+        $initial = $row['fx_middlename'];
         $gender = $row['fx_gender'];
         $birthdate = $row['fd_birthdate'];
         $barangay = $row['fx_barangay'];
@@ -22,8 +24,8 @@ include("../conn/connection.php");
         $fd_started = $row['fd_started'];
     }
 
-    $request = "INSERT INTO tbl_remove(uid, fx_id, fx_firstname, fx_lastname, fx_initial, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fx_pwd, fd_started)
-    VALUES('$uid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthdate','$gender','$barangay','$age', '$pwd', '$fd_started')";
+    $request = "INSERT INTO tbl_remove(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fx_pwd, fd_started, fx_remarks, fd_remarks)
+    VALUES('$uid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthdate','$gender','$barangay','$age', '$pwd', '$fd_started', '$remarks', '$date_removed')";
     $result_i = mysqli_query($conn, $request);
 
     if($result_i){

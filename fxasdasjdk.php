@@ -228,7 +228,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </button>
                         </div>
-                        <form action="pdf/generate.php" method="post">
+                        <form action="pdf/generate.php" target="_blank" method="post">
                             <div class="modal-body">
                                 <div class="mb-2">
                                     <label class="form-label">Admin/Cluster president :</label>

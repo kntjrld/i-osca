@@ -40,6 +40,27 @@ include("../conn/connection.php");
 		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Rejected a application with uid #$uid')";
 		$result = mysqli_query($conn, $act);
         
+        // start
+    // Notify user via sms 
+    $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
+    $ch = curl_init();
+    $parameters = array(
+        'apikey' => '', //Your API KEY
+        'number' => $contact,
+        'message' => $remarks,
+        'sendername' => 'SEMAPHORE'
+    );
+    curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+    curl_setopt( $ch, CURLOPT_POST, 1 );
+
+    //Send the parameters set above with the request
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+
+    // Receive response from server
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    $output = curl_exec( $ch );
+    curl_close ($ch);
+    // end 
         
         // alert
         $_SESSION['rejected'] = "Rejected successfully";

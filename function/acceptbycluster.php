@@ -17,7 +17,7 @@ include("../conn/connection.php");
         $firstname = $row['fx_firstname'];
         $lastname = $row['fx_lastname'];
         $initial = $row['fx_initial'];
-        $gender = $row['fx_gender'];
+        $gender = $row['fx_gender'];    
         $birthday = $row['fd_birthdate'];
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];

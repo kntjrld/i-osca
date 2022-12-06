@@ -110,35 +110,87 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
         <!-- table header-->
         <div class="table_actions" id="table_actions">
+            <!-- add and export -->
             <div class="d-block card m-2">
                 <div class="expand_button p-2">
                     <button type="submit" name="export" id="export"
                         class="export btn e-button btn-primary justify-content-end"><span style="font-size:12px;"
-                            class="e-button-text"><i class="fa-solid fa-file-export"></i>Export Excel</span>
+                            class="e-button-text"><i class="fa-solid fa-file-export"></i>Export to excel</span>
                     </button>
                 </div>
                 <div class="p-2">
                     <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
                         data-bs-target="#myModal"
                         <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
-                        <span style="font-size:12px;" class="e-button-text"><i class="fa-solid fa-plus"></i> Add
-                            Record</span></button>
+                        <span style="font-size:12px;" class="e-button-text"><i class="fa-solid fa-plus"></i>
+                            Add record</span></button>
                 </div>
             </div>
 
+            <!-- other records -->
             <div class="d-block card m-2">
                 <div class="expand_button p-2">
-                    <label class="text-center p-1">Other Records</label>
+                    <label class="text-center p-1">Records</label>
                 </div>
                 <div class="p-2">
                     <select class="form-select" name="records" id="customfilter">
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
-                        <option value="Remove">Remove</option>
                     </select>
                 </div>
             </div>
+            <!-- Generate reports -->
+            <div class="d-block card m-2" id="reportdiv" style="width:48%;">
+                <form method="POST" action="pdf/generate_reports.php" target="_blank">
+                    <div class="expand_button p-2">
+                        <label class="text-center p-1">Generate reports</label>
+                    </div>
+                    <div class="d-flex p-1">
+                        <div class="col m-1">
+                            <select class="form-select" name="action1" id="action1">
+                                <?php 
+                                if($xx == 'staff'){
+                                    echo '<option value="'.$street.'">'.$street.'</option>';
+                                }else{
+                            echo'
+                                <option value="All">All Barangay</option>
+                                <option value="Balansay">Balansay</option>
+                                <option value="Barangay 1">Barangay 1</option>
+                                <option value="Barangay 2">Barangay 2</option>
+                                <option value="Barangay 3">Barangay 3</option>
+                                <option value="Barangay 4">Barangay 4</option>
+                                <option value="Barangay 5">Barangay 5</option>
+                                <option value="Barangay 6">Barangay 6</option>
+                                <option value="Barangay 7">Barangay 7</option>
+                                <option value="Barangay 8">Barangay 8</option>
+                                <option value="Fatima">Fatima</option>
+                                <option value="Payompon">Payompon</option>
+                                <option value="San Luis (Ligang)">San Luis (Ligang)</option>
+                                <option value="Talabaan">Talabaan</option>
+                                <option value="Tangkalan">Tangkalan</option>
+                                <option value="Tayamaan">Tayamaan</option>';
+                                }?>
+                            </select>
+                        </div>
+                        <div class="col m-1">
+                            <select class="form-select" name="action2" id="action2">
+                                <option value="active">Active account</option>
+                                <option value="inactive">Inactive account</option>
+                                <option value="removed">Removed account</option>
+                                <option value="pending">Without pension</option>
+                                <option value="received">With pension</option>
+                                <option value="alive">Alive</option>
+                                <option value="dead">Dead</option>
+                            </select>
+                        </div>
+                        <div class="col m-1">
+                            <button type="submit" class="btn btn-primary">Generate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
+            <!-- search by date -->
             <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
@@ -398,7 +450,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/records.js"></script>
         <script src="lib/app.js"></script>
-
 </body>
 
 </html>

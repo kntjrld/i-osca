@@ -187,6 +187,6 @@ if(isset($_POST["s_id"])) {
     </div>
 </div>
 <div class="mb-3" id="div-remarks" style="<?php if($life_status == 'alive' && $account_status == 'active'){echo 'display:none;';}?>">
-    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*Please leave a remarks, Date(being inactive or death) and reason/cause(being inactive/death)</span></label>
-    <textarea class="form-control" name="remarks" id="remarks" rows="1"><?php echo $remarks ?></textarea>
+    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*Leave a short remarks if inactive or dead</span></label>
+    <textarea class="form-control" name="remarks" id="remarks" maxlength="30" rows="1"><?php echo $remarks ?></textarea>
 </div>

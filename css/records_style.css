@@ -36,4 +36,7 @@
 .table_actions{
     display: block;
 }
+#reportdiv{
+    width: 100%;
+}
 }

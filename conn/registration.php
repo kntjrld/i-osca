@@ -1,14 +1,5 @@
 <?php
-session_start();
 include "connection.php";
-
-    function getGUIDnoHash(){
-            mt_srand((double)microtime()*10000);
-            $charid = md5(uniqid(rand(), true));
-            $c = unpack("C*",$charid);
-            $c = implode("",$c);
-            return substr($c,0,12);
-    }
 
     $dateid = date("Ymd");
     $uid = getGUIDnoHash();
@@ -43,6 +34,7 @@ include "connection.php";
         // Move registration file to folder
         $file_tmp = $_FILES['registrationfile']['tmp_name'];
         move_uploaded_file($file_tmp,"../registration/".$pdfregistrationform);
+
     }else{
         // header("Location: ../register");
     }

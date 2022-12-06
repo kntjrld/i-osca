@@ -43,7 +43,7 @@ include("../conn/connection.php");
     $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '7952a861e3d97d4876d8d6cb340980ee', //Your API KEY
+        'apikey' => '', //Your API KEY
         'number' => $contact,
         'message' => $remarks,
         'sendername' => 'SEMAPHORE'
