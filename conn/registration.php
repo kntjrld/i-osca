@@ -1,6 +1,13 @@
 <?php
 include "connection.php";
 
+    function getGUIDnoHash(){
+        mt_srand((double)microtime()*10000);
+        $charid = md5(uniqid(rand(), true));
+        $c = unpack("C*",$charid);
+        $c = implode("",$c);
+        return substr($c,0,12);
+    }
     $dateid = date("Ymd");
     $uid = getGUIDnoHash();
     $present_idno = $_POST['idpresented'];

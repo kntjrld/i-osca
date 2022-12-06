@@ -47,7 +47,7 @@ include("../conn/connection.php");
     $parameters = array(
         'apikey' => '', //Your API KEY
         'number' => $contact,
-        'message' => $remarks,
+        'message' => $sms,
         'sendername' => 'SEMAPHORE'
     );
     curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
