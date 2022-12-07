@@ -73,14 +73,12 @@ $action2 = $_POST['action2'];
         }
     }
 
-//SQL to get 10 records
-// $sql="SELECT * FROM tbl_records ORDER BY fx_gender DESC, fx_lastname ASC";
+class PDF extends FPDF{
+   
+    // $header = 'SENIOR CITIZEN PEDERATION, INC';
 
-class PDF extends FPDF
-{
     // Page header
-    function Header()
-    {
+    function Header(){
         // Logo
         $this->Image('../media/logo.png',10,6,24);
         // Arial bold 12
@@ -88,11 +86,11 @@ class PDF extends FPDF
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(30,10,'SENIOR CITIZEN PEDERATION, INC',0,0,'C');
+        $this->Cell(30,10,'OFFICE OF THE SENIOR CITIZEN AFFAIRS',0,0,'C');
         $this->Ln(5);
         $this->SetFont('times','',12);
         $this->Cell(80);
-        $this->Cell(30,10,'MAMBURAO, OCCIDENTAL MINDORO',0,0,'C');
+        $this->Cell(30,10,'MUNICIPALITY OF MAMBURAO',0,0,'C');
         // Line break
         $this->Ln(15);
     }
@@ -109,7 +107,7 @@ class PDF extends FPDF
     }
 }
 // Instanciation of inherited class
-$pdf = new PDF();
+$pdf = new PDF('P', 'mm', 'A4');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 // Sub header
