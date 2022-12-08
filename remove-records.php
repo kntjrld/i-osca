@@ -120,12 +120,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
                 <div class="btn-group p-2 w-100"
                     style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" class="btn btn-primary dropdown-toggle" style="font-size:13px;" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Active
+                        Removed
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -133,7 +133,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="remove-records">Removed</a></li>
+                        <li><a class="dropdown-item" href="#">Removed</a></li>
                     </ul>
                 </div>
                 <div class="p-2">
@@ -152,12 +152,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <label class="text-center p-1">Records</label>
                 </div>
                 <div class="btn-group p-2 w-100">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" class="btn btn-primary dropdown-toggle" style="font-size:14px;" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Active
+                        Removed
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -165,7 +165,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="remove-records">Removed</a></li>
+                        <li><a class="dropdown-item" href="#">Removed</a></li>
                     </ul>
                 </div>
             </div>

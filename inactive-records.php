@@ -122,14 +122,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Active
+                        Inactive
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li><a class="dropdown-item" href="#">Inactive</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -154,14 +154,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <div class="btn-group p-2 w-100">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Active
+                        Inactive
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li><a class="dropdown-item" href="#">Inactive</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
