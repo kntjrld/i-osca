@@ -118,7 +118,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             class="e-button-text"><i class="fa-solid fa-file-export"></i>Export to excel</span>
                     </button>
                 </div>
-                <div class="btn-group p-2 w-100" style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
+                <div class="btn-group p-2 w-100"
+                    style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Active
@@ -145,7 +146,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
             <!-- other records -->
-            <div class="d-block card m-2" style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
+            <div class="d-block card m-2"
+                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
                 <div class="expand_button p-2 me-auto ms-auto">
                     <label class="text-center p-1">Records</label>
                 </div>
@@ -397,16 +399,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <th scope="col" class="d-none d-sm-table-cell">Sex</th>
                             <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
                             <th scope="col" class="d-none d-sm-table-cell">Age</th>
-                            <th scope="col" class="d-none">Amount</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Pension</th>
                             <th scope="col" class="d-none">Started date</th>
                             <th scope="col" class="noExl">Status</th>
+                            <th scope="col" class="d-none d-sm-table-cell">Inactive date</th>
                             <th scope="col" class="noExl">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Display all active records in the table -->
-                        <?php foreach($records as $row) :  ?>
+                        <?php foreach($inactive as $row) :  ?>
                         <tr>
                             <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['uid']; ?> </td>
                             <td> <?php echo $row['fx_lastname']; ?> </td>
@@ -417,16 +418,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
-                            <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
-                            <td class="d-none d-sm-table-cell" style="<?php if($row['fn_status'] == 'Received'){
-                            echo 'color:green;';
-                            }elseif($row['life_status'] == 'dead'){
-                                echo 'color: #393E46';
-                            }else{
-                                echo 'color:yellow;';}
-                            ?>"> <?php echo $row['fn_status']; ?> </td>
-                            <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
+                            <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
+                            <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
                             <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
                                     style="width: auto;">View</button></td>
                         </tr>
