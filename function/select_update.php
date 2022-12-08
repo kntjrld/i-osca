@@ -135,9 +135,9 @@ if(isset($_POST["s_id"])) {
             value="<?php echo $update_age ?>">
     </div>
     <div class="col">
-        <label class="form-label required">Pension</label>
+        <label class="form-label required">Pension Amount</label>
         <input type="text" id="update_pension" name="update_pension" class="form-control"
-            value="<?php echo $update_pension ?>" disabled>
+            value="<?php echo number_format($update_pension) ?>" disabled>
     </div>
 </div>
 
