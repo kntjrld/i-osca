@@ -440,31 +440,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         var current_year = date.getFullYear();
         var current_month = date.getMonth();
         var filename = name + current_month + current_year;
-        $("#active").table2excel({
-            exclude: ".noExl", // exclude CSS class
-            name: "Worksheet Name",
-            filename: filename, //do not include extension
-            fileext: ".xls" // file extension
-        });
-        $.ajax({
-            type: "POST",
-            url: "function/export.php",
-            data: {
-                export: 'export'
-            },
-            success: function(data) {
-                // do the message display code
-            }
-        });
-    });
-    // Export to inactive excel
-    $(document).on('click', '#export', function() {
-        var name = "iOSCA"
-        var date = new Date();
-        var current_year = date.getFullYear();
-        var current_month = date.getMonth();
-        var filename = name + current_month + current_year;
-        $("#inactive").table2excel({
+        $(".display").table2excel({
             exclude: ".noExl", // exclude CSS class
             name: "Worksheet Name",
             filename: filename, //do not include extension
