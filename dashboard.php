@@ -142,33 +142,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="p-1">
                         <h3>Analytics</h3>
                     </div>
-                    <!-- <div class="me-1 ms-auto">
-                        <select class="form-select form-select-sm" id="barangay" name="barangay">
-                            <option value="All">All</option>
-                            <option value="Barangay 1">Barangay 1</option>  
-                            <option value="Barangay 2">Barangay 2</option>
-                            <option value="Barangay 3">Barangay 3</option>
-                            <option value="Barangay 4">Barangay 4</option>
-                            <option value="Barangay 5">Barangay 5</option>
-                            <option value="Barangay 6">Barangay 6</option>
-                            <option value="Barangay 7">Barangay 7</option>
-                            <option value="Barangay 8">Barangay 8</option>
-                            <option value="Balansay">Balansay</option>
-                            <option value="Fatima">Fatima</option>
-                            <option value="Payompon">Payompon</option>
-                            <option value="San Luis (Ligang)">San Luis (Ligang)</option>
-                            <option value="Talabaan">Talabaan</option>
-                            <option value="Tangkalan">Tangkalan</option>
-                            <option value="Tayamaan">Tayamaan</option>
-                        </select>
-                    </div> -->
                 </div>
             </div>
             <div class="graph">
                 <div class="chart-container card m-2 p-1">
+                    <p class="ms-auto me-auto" style="font-size:12px;">Records per barangay</p>
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="chart-container card m-2 p-1">
+                    <p class="ms-auto me-auto" style="font-size:12px;">Yearly records</p>
                     <canvas id="yearlychart"></canvas>
                 </div>
             </div>
