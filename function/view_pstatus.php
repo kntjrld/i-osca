@@ -78,13 +78,13 @@ if(isset($_POST["uid"])) {
         if($count == 0){
             echo 'display:none;';
         } 
-        ?>">Latest Pension:</p>
+        ?>">Latest Pension Amount:</p>
         <p style="margin-left:5px;
         <?php
         if($count == 0){
             echo 'display:none;';
         } 
-        ?>"><?php echo $pension;?></p>
+        ?>"><?php echo number_format($pension);?></p>
     </div>
     <div class="d-flex">
         <p class="label" style="font-weight:bold;
