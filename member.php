@@ -27,7 +27,7 @@
                         <div class="b-logo swift_left">
                         </div>
                         <div class="b-title text-center">
-                            <a href="index"><img src="media/logo.png" class="img-fluid"></a>
+                            <a href="index"><img src="media/signupimg.png" class="img-fluid"></a>
                             <p class="ins">If you want to register, read first the<br><a href="" data-toggle="modal"
                                     data-target="#modallong">Guide for
                                     registration</a></p>
@@ -129,7 +129,7 @@
                         <p>2. Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
                         <p>3. Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
                         <p>4. After successful registration, copy your application ID. You can use it to check your registration and pension status.</p>
-                        <p>5. If your application is rejected, read the remarks on your application</p>
+                        <p>5. You will receive a text message if your application is rejected</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>

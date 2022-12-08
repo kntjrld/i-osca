@@ -72,11 +72,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
-            <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
+                    <span class="indicator"
+                        style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>><a href="status"
+                    id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -121,9 +123,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         </header>
         <!-- K -->
         <div class="d-flex">
+            <div class="me-auto card m-2 p-2">
+                <button type="button" class="btn btn-primary" id="restatus">
+                <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+            </div>
             <div class="p-2 ms-auto m-2 card">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
-                    <span><i class="fa-solid fa-plus"></i></span>Add User</button>
+                    <span><i class="fa-solid fa-plus"></i></span> Add User</button>
             </div>
         </div>
 
@@ -170,12 +176,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             <!-- Display all records in the table -->
                             <?php foreach($records as $row) :  ?>
                             <tr>
-                                <td class="text-center"> <img src="image/<?php echo $row['fm_img'] ?>" class="user_img" /> </td>
+                                <td class="text-center"> <img src="image/<?php echo $row['fm_img'] ?>"
+                                        class="user_img" /> </td>
                                 <td class="text-center"> <?php echo $row['user_name']; ?> </td>
-                                <td class="text-center"> <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
+                                <td class="text-center">
+                                    <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
                                 <td class="d-none d-sm-table-cell text-center"> <?php echo $row['user_level']; ?> </td>
-                                <td class="text-center"> <button id='<?php echo $row['user_id']; ?>' class="view btn btn-secondary"
-                                        style="width: auto;" data-bs-toggle="modal"
+                                <td class="text-center"> <button id='<?php echo $row['user_id']; ?>'
+                                        class="view btn btn-secondary" style="width: auto;" data-bs-toggle="modal"
                                         data-bs-target="#myModal">View</button>
                                 </td>
                             </tr>
@@ -263,6 +271,39 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <script src="lib/sweetalert.min.js"></script>
     <script src="lib/admin.js"></script>
     <?php include('lib/scriptalert.php');?>
+    <script>
+    $("#restatus").click(function() {
+        swal({
+                title: "Are you sure?",
+                text: "You're trying to reset all pension status back to pending",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("All pension status changed to pending!", {
+                        icon: "success",
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: "function/statusquery.php",
+                        data: {
+                            restatus: 'restatus'
+                        },
+                        success: function(data) {
+                            setInterval(function() {
+                                location.reload();
+                            }, 900);
+                        }
+                    });
+                } else {
+                    //   swal("Your file is safe!");
+                }
+            });
+
+    });
+    </script>
 </body>
 
 </html>

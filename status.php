@@ -3,7 +3,7 @@ session_start();
 include('conn/connection.php');
 include('function/indicator.php');
 
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["user_level"]=='staff')) {
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li><a href="#" class="active" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>><a href="#" class="active" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -93,14 +93,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
 
         </header>
-        <div class="ms-auto card m-2 p-2"
-            style="width: 300px;  <?php if($_SESSION['user_level']=="staff") echo 'display:none;'; ?>">
-            <input type="button" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
-                class="btn btn-primary" id="restatus" value="Reset all status">
-            <p class="text-center" <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>
-                style="font-size:10px; color: red;">All registered pension status
-                will back to pending</p>
-        </div>
         <div class="container">
             <div class="wrapper card rounded bg-white">
                 <div class="d-flex">
@@ -188,46 +180,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </div>
     <!-- Bootstrap / js-->
     <script src="lib/sweetalert.min.js"></script>
-    <script>
-    $("#restatus").click(function() {
-        swal({
-                title: "Are you sure?",
-                text: "This action can't be undo",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("All pension status changed to pending!", {
-                        icon: "success",
-                    });
-                    $.ajax({
-                        type: "POST",
-                        url: "function/statusquery.php",
-                        data: {
-                            restatus: 'restatus'
-                        },
-                        success: function(data) {
-                            setInterval(function() {
-                                location.reload();
-                            }, 900);
-                        }
-                    });
-                } else {
-                    //   swal("Your file is safe!");
-                }
-            });
-
-    });
-    </script>
 </body>
 
 </html>
 <?php 
 
 }else{
-     header("Location: index");
+     header("Location: dashboard");
      exit();
 }
  ?>

@@ -117,10 +117,6 @@ $applicationid = $_SESSION['applicatonid'];
                             <label>Contact Number</label>
                             <input type="text" name="contact" maxlength="10" placeholder="10 digit number"class="form-control" required>
                         </div>
-                        <div class="col-md-6 mt-md-0 mt-3">
-                            <label>Age</label>
-                            <input type="number" name="age" class="form-control" required>
-                        </div>
                     </div>
                     <div class="d-flex">
                         <div class="d-flex m-1">
@@ -132,7 +128,7 @@ $applicationid = $_SESSION['applicatonid'];
 
                         </div>
                         <div class="d-flex m-1">
-                            <input class="form-check-input" type="radio" name="pwd" value="No" />
+                            <input class="form-check-input" type="radio" name="pwd" value="No" checked/>
                             <label class="form-check-label" for="pwd">No</label>
                         </div>
                     </div>
