@@ -20,18 +20,24 @@ include "connection.php";
     $barangay = $_POST['barangay'];
     $countrycode = '+63';
     $contact = $_POST['contact'];
-    $age = $_POST['age'];
+    // $age = $_POST['age']; -> remove
     $pwd = $_POST['pwd'];
 
     date_default_timezone_set('Asia/Manila');
     $appdate = date("M d, Y");
+
+    //age computation
+    $dateOfBirth = $birthday;
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($dateOfBirth), date_create($today));
+    $intAge = $diff->format('%y');
 
     // UPLOAD pdf 
     $pdfidpresented = $_FILES['idpresentedfile']['name'];
     $pdfregistrationform = $_FILES['registrationfile']['name'];
 
     $sql = "INSERT INTO tbl_register(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fl_idpresented, fl_form, fd_application, fx_pwd)
-    VALUES('$dateid$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$countrycode$contact','$age','$pdfidpresented','$pdfregistrationform', '$appdate', '$pwd')";
+    VALUES('$dateid$uid','$present_idno','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$countrycode$contact','$intAge','$pdfidpresented','$pdfregistrationform', '$appdate', '$pwd')";
     $result = mysqli_query($conn, $sql);
 
     if($result){

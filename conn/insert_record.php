@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $fd_birthdate = $_POST['birthdate'];
     $fx_gender = $_POST['sex'];
     $fx_barangay = $_POST['barangay'];
-    $fn_age = $_POST['age'];
+    // $fn_age = $_POST['age']; ->auto computation w/ b-date
     $status = $_POST['status'];
     $pension = $_POST['pension'];
     $pwd = $_POST['pwd'];
@@ -24,11 +24,17 @@ if(isset($_POST['submit'])){
         $c = unpack("C*",$charid);
         $c = implode("",$c);
         return substr($c,0,12);}
+    
+    //age computation
+    $dateOfBirth = $fd_birthdate;
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($dateOfBirth), date_create($today));
+    $intAge = $diff->format('%y');
 
     $dateid = date("Ymd");
     $uid = getGUIDnoHash();
     $sql = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
-    VALUES('$dateid$uid','$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$countrycode$fx_contact','$fd_birthdate','$fx_gender','$fx_barangay','$fn_age','$pension','$status', 'alive', 'active', '$pwd', '$date_started')";
+    VALUES('$dateid$uid','$fx_id',UPPER('$fx_firstname'),UPPER('$fx_lastname'),UPPER('$fx_middlename'),'$countrycode$fx_contact','$fd_birthdate','$fx_gender','$fx_barangay','$intAge','$pension','$status', 'alive', 'active', '$pwd', '$date_started')";
     $result = mysqli_query($conn, $sql);
 
     if($result){
