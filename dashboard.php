@@ -146,7 +146,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
             <div class="graph">
                 <div class="chart-container card m-2 p-1">
-                    <p class="ms-auto me-auto" style="font-size:12px;">Records per barangay</p>
+                    <p class="ms-auto me-auto" style="font-size:12px;"><?php if($ulevel == 'admin'){echo'Total Records per barangay';}else{echo 'Total records between age range';} ?></p>
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="chart-container card m-2 p-1">
