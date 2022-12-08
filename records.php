@@ -1,8 +1,8 @@
 <?php
 session_start();
 include('conn/connection.php');
-include('function/records_query.php');
 include('function/indicator.php');
+include('function/records_query.php');
 
 
 if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
@@ -23,20 +23,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://friconix.com/cdn/friconix.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Date range CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.dateTime.min.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
     <!-- Security -->
-    <script src="lib/security.js"></script>
-
+    <script src="lib/security.js"></script>    
 </head>
 
 <body>
@@ -140,7 +139,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <!-- Generate reports -->
-            <div class="d-block card m-2" id="reportdiv" style="width:48%;">
+            <div class="d-block card m-2" id="reportdiv">
                 <form method="POST" action="pdf/generate_reports.php" target="_blank">
                     <div class="expand_button p-2">
                         <label class="text-center p-1">Generate reports</label>
@@ -283,7 +282,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label">Barangay</label>
-                                    <select class="form-select" name="barangay" style="width: auto;">
+                                    <select class="form-select" name="barangay">
                                         <option value="Balansay">Balansay</option>
                                         <option value="Barangay 1">Barangay 1</option>
                                         <option value="Barangay 2">Barangay 2</option>
@@ -302,11 +301,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label class="form-label required">Age</label>
-                                    <input type="number" name="age" class="form-control" placeholder=""
-                                        aria-label="Age">
-                                </div>
-                                <div class="col">
                                     <label for="">Pension Status</label> <br>
                                     <input class="form-check-input" type="radio" name="status" value="Received" />
                                     <label class="form-check-label" for="status">Recieved</label></br>
@@ -318,7 +312,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <label for="">PWD</label> <br>
                                     <input class="form-check-input" type="radio" name="pwd" value="Yes" />
                                     <label class="form-check-label" for="pwd">Yes</label></br>
-                                    <input class="form-check-input" type="radio" name="pwd" value="No" />
+                                    <input class="form-check-input" type="radio" name="pwd" value="No" checked/>
                                     <label class="form-check-label" for="pwd">No</label>
                                 </div>
                                 <!-- Pension $$$ -->
@@ -381,7 +375,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <th scope="col" class="noExl">Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="active">
                     <!-- Display all records in the table -->
                     <?php foreach($records as $row) :  ?>
                     <tr>
@@ -396,13 +390,38 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
                         <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
+                        <td class="d-none d-sm-table-cell" style="<?php if($row['fn_status'] == 'Received'){
+                            echo 'color:green;';
+                            }elseif($row['life_status'] == 'dead'){
+                                echo 'color: #393E46';
+                            }else{
+                                echo 'color:yellow;';}
+                            ?>"> <?php echo $row['fn_status']; ?> </td>
+                        <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
+                        <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
+                        <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
+                                style="width: auto;">View</button></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tbody id="inactive" style="display:none;">
+                    <!-- Display all records in the table -->
+                    <?php foreach($inactive as $row) :  ?>
+                    <tr>
+                        <td class="d-none noExl"> <?php echo $row['uid']; ?>
+                        <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['fx_id']; ?> </td>
+                        <td> <?php echo $row['fx_lastname']; ?> </td>
+                        <td> <?php echo $row['fx_firstname']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
+                        <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
+                        <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
                         <td class="d-none d-sm-table-cell"> <?php echo $row['fn_status']; ?> </td>
                         <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
-                        <td class="noExl"> <button style="font-size:10px; width:100%;" class="btn <?php if($row['account_status'] == 'active'){
-                            echo 'btn-primary';
-                        }else{
-                            echo 'btn-danger';
-                        }?>"><?php echo $row['account_status']; ?></button> </td>
+                        <td class="noExl"> <?php echo $row['account_status']; ?> </td>
                         <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
                                 style="width: auto;">View</button></td>
                     </tr>
@@ -450,6 +469,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/records.js"></script>
         <script src="lib/app.js"></script>
+
+        <script>
+        // on change
+        $('#customfilter').on('change', function() {
+             selectval = $(this).val();
+            //  alert(selectval);
+             if(selectval == 'Inactive'){
+                $('#inactive').show();
+                $('#active').hide();
+             }else{              
+                $('#active').show();
+                $('#inactive').hide();
+            }
+         });
+        </script>
 </body>
 
 </html>
