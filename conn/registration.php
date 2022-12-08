@@ -56,6 +56,6 @@ include "connection.php";
 
 <div class="d-block p-2">
     <h1 id="targetext" class="w-100"><?php echo $dateid.$uid; ?></h1>
-    <p style="font-size:12px;">Copy and saved your application ID</p>
+    <p style="font-size:12px;">Copy and saved your tracking ID</p>
     <button tyle="button" class="btn btn-primary" id="idbutton" data-clipboard-target="#targetext">Copy text</button>
 </div>

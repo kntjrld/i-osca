@@ -97,10 +97,10 @@
                     </div>
                     <div class="modal-body" id="pensionUpdate">
                         <div class="input-group">
-                            <!-- 53509855529849995454 -->
+                            <!-- iOSCA-22-Num -->
                             <div class="form-outline w-100">
                                 <input id="search" type="text" class="form-control" maxlength="20"
-                                    placeholder="20 digit unique ID" />
+                                    placeholder="Account ID" />
                                 <button type="button" id="search-pension"
                                     class="btn btn-primary w-100 p-2 mt-2">Search</button>
                             </div>
@@ -128,8 +128,8 @@
                         <p>1. Download a copy of registration form <span><a href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank"> here</a></span></p>
                         <p>2. Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
                         <p>3. Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
-                        <p>4. After successful registration, copy your application ID. You can use it to check your registration and pension status.</p>
-                        <p>5. You will receive a text message if your application is rejected</p>
+                        <p>4. After successful registration, copy your tracking ID. You can use it to check your registration status.</p>
+                        <p>5. You will also receive a text message if your application is accepted or rejected</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>

@@ -162,7 +162,7 @@ $applicationid = $_SESSION['applicatonid'];
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header d-flex">
-                    <h5 class="modal-title">Application ID</h5>
+                    <h5 class="modal-title">Tracking ID</h5>
                     <button type="button" class="btn-close" aria-label="Close"></button>
                     </button>
                 </div>
