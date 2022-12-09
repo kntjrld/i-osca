@@ -33,8 +33,8 @@
 #reportdiv{
     width: 47%;
 }
-#table_actions, .e-button-text, button, #action2, #action1, #min, #max, .min, .max, #generate, .btn-group li, #dropdownac, #dtext{
-    font-size: 12px;
+#table_actions, .e-button-text, button, #action2, #action1, #mindate, #maxdate, .min, .max, #generate, .btn-group li, #dropdownac, #dtext{
+    font-size: 14px;
 }
 /* Media query */
 @media only screen and (max-width: 650px) {

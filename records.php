@@ -111,16 +111,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- table header-->
         <div class="table_actions" id="table_actions">
             <!-- add and export -->
-            <div class="d-block card m-2">
-                <div class="expand_button p-2">
+            <div class="d-block m-2">
+                <div class="expand_button p-2 card">
                     <button type="submit" name="export" id="export"
-                        class="export btn e-button btn-primary justify-content-end"><span
-                            class="e-button-text"><i class="fa-solid fa-file-export"></i>Export to excel</span>
+                        class="export btn e-button btn-primary justify-content-end"><span class="e-button-text"><i
+                                class="fa-solid fa-file-export"></i>Export to excel</span>
                     </button>
                 </div>
-                <div class="btn-group p-2 w-100" style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
-                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                <div class="btn-group p-2 w-100 card"
+                    style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
+                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Active
                     </button>
                     <ul class="dropdown-menu">
@@ -135,23 +136,23 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li><a class="dropdown-item" href="remove-records">Removed</a></li>
                     </ul>
                 </div>
-                <div class="p-2">
+                <div class="p-2 card" <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
                     <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#myModal"
-                        <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
+                        data-bs-target="#myModal">
                         <span class="e-button-text"><i class="fa-solid fa-plus"></i>
                             Add record</span></button>
                 </div>
             </div>
 
             <!-- other records -->
-            <div class="d-block card m-2" style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
-                <div class="expand_button p-2 me-auto ms-auto">
-                    <label class="text-center p-1">Records</label>
+            <div class="d-block m-1"
+                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
+                <div class="expand_button p-1 me-auto ms-auto">
+                    <label class="p-1" style="font-size:12px;">Other Records</label>
                 </div>
-                <div class="btn-group p-2 w-100">
-                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                <div class="btn-group p-1 w-100 card">
+                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Active
                     </button>
                     <ul class="dropdown-menu">
@@ -168,13 +169,25 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <!-- Generate reports -->
-            <div class="d-block card m-2" id="reportdiv">
-                <form method="POST" action="pdf/generate_reports.php" target="_blank">
-                    <div class="expand_button p-2">
-                        <label class="text-center p-1">Generate reports</label>
+            <form method="POST" action="pdf/generate_reports.php" id="generate" class="ms-auto" target="_blank">
+                <div class="me-auto card m-1 p-2 d-block">
+                    <p style="font-size:10px;">*Leave date blank if you want to generate current record.</p>
+                    <div class="d-flex input-group-sm">
+                        <div class="d-flex">
+                            <div class="input-group-prepend p-1">
+                                <span class="input-group-text" id="dtext">Date from:</span>
+                            </div>
+                            <input type="date" name="mindate" class="form-control m-1" id="mindate" class="mindate">
+                        </div>
+                        <div class="d-flex">
+                            <div class="input-group-prepend p-1">
+                                <span class="input-group-text" id="dtext">Date to:</span>
+                            </div>
+                            <input type="date" name="maxdate" class="form-control m-1" id="maxdate" class="maxdate">
+                        </div>
                     </div>
                     <div class="d-flex p-1">
-                        <div class="col m-1">
+                        <div class="d-flex m-1 w-auto">
                             <select class="form-select" name="action1" id="action1">
                                 <?php 
                                 if($xx == 'staff'){
@@ -199,8 +212,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <option value="Tayamaan">Tayamaan</option>';
                                 }?>
                             </select>
+
                         </div>
-                        <div class="col m-1">
+                        <div class="d-flex m-1 w-auto">
                             <select class="form-select" name="action2" id="action2">
                                 <option value="active">Active account</option>
                                 <option value="inactive">Inactive account</option>
@@ -211,26 +225,27 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <option value="dead">Dead</option>
                             </select>
                         </div>
-                        <div class="col m-1">
-                            <button type="submit" id="generate" class="btn btn-primary">Generate</button>
+                        <div class="d-flex m-1 ms-auto">
+                            <button type="submit" class="btn btn-primary" id="generate">
+                                <i class="fa-solid fa-arrows-spin"></i></span> Generate</button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
 
             <!-- search by date -->
             <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text" id="dtext">Date from:</span>
+                        <span class="input-group-text" style="font-size:14px;">Date from:</span>
                     </div>
-                    <input type="text" class="form-control" id="min" name="min" placeholder="mm/dd/yyyy">
+                    <input type="text" class="form-control m-1" id="min" name="min" placeholder="mm/dd/yyyy">
                 </div>
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text" id="dtext">Date to:</span>
+                        <span class="input-group-text" style="font-size:14px;">Date to:</span>
                     </div>
-                    <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy"> 
+                    <input type="text" class="form-control m-1" id="max" name="max" placeholder="mm/dd/yyyy">
 
                 </div>
             </div>
