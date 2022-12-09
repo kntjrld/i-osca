@@ -121,13 +121,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             </div>
 
         </header>
-        <!-- K -->
         <div class="d-flex">
-            <div class="me-auto card m-2 p-2">
-                <button type="button" class="btn btn-primary" id="restatus">
-                <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+            <!-- reset status | transfer all records into new table and clear the current table -->
+            <!-- <form action="" id="resetrecords" method="post">
+                <div class="d-flex m-2 p-2 card">
+                    <div class="me-auto d-flex">
+                        
+                        <div class="d-flex m-1">
+                            
+                        </div>
+                    </div>
+                </div>
+            </form> -->
+            <!-- add user -->
+            <div class="p-2 ms-auto m-2 card" id="resetpension" style="width:170px; font-size:12px;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newpension">
+                    <span><i class="fa-solid fa-plus"></i></span> New pension</button>
             </div>
-            <div class="p-2 ms-auto m-2 card">
+            <div class="p-2 me-auto m-2 card" id="addnew" style="width:170px; font-size:12px;">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
                     <span><i class="fa-solid fa-plus"></i></span> Add User</button>
             </div>
@@ -262,48 +273,85 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" id="add" class="btn btn-primary">Generate</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal new user -->
+            <!-- modal for new pension -->
+            <!-- #################################################################################### -->
+            <div class="modal" id="newpension">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">New pension</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </button>
+                        </div>
+                        <form action="" target="_blank" id="resetrecords" method="post">
+                            <div class="modal-body">
+                                <p style="font-size:12px;">Note: Date range of previous pension before creating new one.</p>
+                                <div class="d-block input-group-sm">
+                                    <div class="d-flex">
+                                        <div class="input-group-prepend p-1">
+                                            <span class="input-group-text" id="dtext">Date from:</span>
+                                        </div>
+                                        <input type="date" name="min" class="form-control m-1" id="min" class="min"
+                                            style="font-size:12px;" required>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="input-group-prepend p-1">
+                                            <span class="input-group-text" id="dtext">Date to:</span>
+                                        </div>
+                                        <input type="date" name="max" class="form-control m-1" id="max" class="max"
+                                            style="font-size:12px;margin:1px;" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary ms-auto me-auto w-100" id="restatus">
+                                    <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="lib/sweetalert.min.js"></script>
-    <script src="lib/admin.js"></script>
-    <?php include('lib/scriptalert.php');?>
-    <script>
-    $("#restatus").click(function() {
-        swal({
-                title: "Are you sure?",
-                text: "You're trying to reset all pension status back to pending",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("All pension status changed to pending!", {
-                        icon: "success",
-                    });
-                    $.ajax({
-                        type: "POST",
-                        url: "function/statusquery.php",
-                        data: {
-                            restatus: 'restatus'
-                        },
-                        success: function(data) {
-                            setInterval(function() {
-                                location.reload();
-                            }, 900);
-                        }
-                    });
-                } else {
-                    //   swal("Your file is safe!");
-                }
-            });
+        <script src="lib/sweetalert.min.js"></script>
+        <script src="lib/admin.js"></script>
+        <?php include('lib/scriptalert.php');?>
+        <script>
+        $("#restatus").click(function() {
+            swal({
+                    title: "Continue?",
+                    text: "All status will back to pending!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Records reset successfully!", {
+                            icon: "success",
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "function/resetrecords.php",
+                            data: $("#resetrecords").serialize(),
+                            success: function(data) {
+                                setInterval(function() {
+                                    location.reload();
+                                }, 900);
+                            }
+                        });
+                    } else {
+                        //   swal("Your file is safe!");
+                    }
+                });
 
-    });
-    </script>
+        });
+        </script>
 </body>
 
 </html>
