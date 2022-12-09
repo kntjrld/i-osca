@@ -203,7 +203,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </div>
             </div>
             <!-- #################################################################################### -->
-            <div class="modal" id="myModal">
+            <div class="modal fade" id="myModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -224,7 +224,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </div>
             </div>
             <!-- #################################################################################### -->
-            <div class="modal" id="passwordialog">
+            <div class="modal fade" id="passwordialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -239,7 +239,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             </div>
 
             <!-- #################################################################################### -->
-            <div class="modal" id="new">
+            <div class="modal fade" id="new">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -281,7 +281,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             <!-- end modal new user -->
             <!-- modal for new pension -->
             <!-- #################################################################################### -->
-            <div class="modal" id="newpension">
+            <div class="modal fade" id="newpension">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

@@ -62,7 +62,7 @@
             </div>
         </div>
         <!-- MODAL FOR CHECK REGISTRATION STATUS -->
-        <div class="modal" id="myModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal fade" id="myModal" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <!-- MODAL FOR PENSION STATUS -->
-        <div class="modal" id="pensionModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal fade" id="pensionModal" data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
