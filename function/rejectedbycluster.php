@@ -2,6 +2,8 @@
 session_start();
 include("../conn/connection.php");
 
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+    
     $app_status = 'rejected';
     $rejectdate = date("M d, Y");
     $adminstatus = 'N/A';
@@ -43,7 +45,7 @@ include("../conn/connection.php");
     $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '', //Your API KEY
+        'apikey' => '7952a861e3d97d4876d8d6cb340980ee',
         'number' => $contact,
         'message' => $sms,
         'sendername' => 'SEMAPHORE'
@@ -70,4 +72,10 @@ include("../conn/connection.php");
     // alert
     $_SESSION['rejected'] = "Rejected successfully";
     }
+    
+    
+}else {
+    header("Location: 404");
+    exit();
+}
 ?>

@@ -2,6 +2,8 @@
 session_start();
 include("../conn/connection.php");
 
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+
     $uid = $_POST['uid'];
     $app_status = 'accepted';
     $acceptdate = date("M d, Y");
@@ -17,7 +19,7 @@ include("../conn/connection.php");
         $firstname = $row['fx_firstname'];
         $lastname = $row['fx_lastname'];
         $initial = $row['fx_initial'];
-        $gender = $row['fx_gender'];    
+        $gender = $row['fx_gender'];
         $birthday = $row['fd_birthdate'];
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];
@@ -45,3 +47,8 @@ include("../conn/connection.php");
     // alert
     $_SESSION['accepted'] = "Added successfully";
     }
+
+} else {
+    header("Location: 404");
+    exit();
+}
