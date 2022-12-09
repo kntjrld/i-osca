@@ -114,12 +114,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="d-block card m-2">
                 <div class="expand_button p-2">
                     <button type="submit" name="export" id="export"
-                        class="export btn e-button btn-primary justify-content-end"><span style="font-size:12px;"
+                        class="export btn e-button btn-primary justify-content-end"><span
                             class="e-button-text"><i class="fa-solid fa-file-export"></i>Export to excel</span>
                     </button>
                 </div>
                 <div class="btn-group p-2 w-100" style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Active
                     </button>
@@ -139,7 +139,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
                         data-bs-target="#myModal"
                         <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
-                        <span style="font-size:12px;" class="e-button-text"><i class="fa-solid fa-plus"></i>
+                        <span class="e-button-text"><i class="fa-solid fa-plus"></i>
                             Add record</span></button>
                 </div>
             </div>
@@ -150,7 +150,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <label class="text-center p-1">Records</label>
                 </div>
                 <div class="btn-group p-2 w-100">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Active
                     </button>
@@ -212,7 +212,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             </select>
                         </div>
                         <div class="col m-1">
-                            <button type="submit" class="btn btn-primary">Generate</button>
+                            <button type="submit" id="generate" class="btn btn-primary">Generate</button>
                         </div>
                     </div>
                 </form>
@@ -222,15 +222,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text">Date from:</span>
+                        <span class="input-group-text" id="dtext">Date from:</span>
                     </div>
                     <input type="text" class="form-control" id="min" name="min" placeholder="mm/dd/yyyy">
                 </div>
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text">Date to:</span>
+                        <span class="input-group-text" id="dtext">Date to:</span>
                     </div>
-                    <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy">
+                    <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy"> 
 
                 </div>
             </div>
