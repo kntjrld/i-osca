@@ -5,7 +5,7 @@ include('function/indicator.php');
 
 $records = $conn->query("SELECT * FROM tbl_activities");
 
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["user_level"]=='admin')) {
 
 ?>
 <!DOCTYPE html>
@@ -99,12 +99,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </header>
-        <div class="d-flex">
-            <div class="p-2 ms-auto p-2 m-2 card">
-                <button type="submit" name="delete" id="delete" value="Truncate Table"
-                    class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
-                    activities</button>
-            </div>
+        <div class="card m-2 p-2">
+            <p class="mb-auto" style="font-size: 12px;">Delete all activities in admin panel</p>
         </div>
         <div class="table-div m-2 p-2 card">
             <table class="table" id="datatable">
@@ -145,39 +141,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             aaSorting: [[0, 'desc']]
         });
 });
-    </script>
-    <script>
-    $("#delete").click(function() {
-        swal({
-                title: "Are you sure?",
-                text: "You're trying to delete all activities",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Activities is successfully deleted!", {
-                        icon: "success",
-                    });
-                    $.ajax({
-                        type: "POST",
-                        url: "function/truncate.php",
-                        data: {
-                            delete: 'delete'
-                        },
-                        success: function(data) {
-                            setInterval(function() {
-                                location.reload();
-                            }, 900);
-                        }
-                    });
-                } else {
-                    //   swal("Your file is safe!");
-                }
-            });
-
-    });
     </script>
 </body>
 

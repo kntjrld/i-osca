@@ -121,26 +121,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             </div>
 
         </header>
-        <div class="d-flex">
-            <!-- reset status | transfer all records into new table and clear the current table -->
-            <!-- <form action="" id="resetrecords" method="post">
-                <div class="d-flex m-2 p-2 card">
-                    <div class="me-auto d-flex">
-                        
-                        <div class="d-flex m-1">
-                            
-                        </div>
-                    </div>
-                </div>
-            </form> -->
-            <!-- add user -->
-            <div class="p-2 ms-auto m-2 card" id="resetpension" style="width:170px; font-size:12px;">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newpension">
-                    <span><i class="fa-solid fa-plus"></i></span> New pension</button>
+        <div class="d-flex w-100">
+            <div class="p-2 ms-auto m-2 card" id="resetpension" style="width:170px;">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#newpension">
+                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
             </div>
-            <div class="p-2 me-auto m-2 card" id="addnew" style="width:170px; font-size:12px;">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new">
+            <div class="p-2 me-auto m-2 card" id="addnew" style="width:170px;">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#new">
                     <span><i class="fa-solid fa-plus"></i></span> Add User</button>
+            </div>
+            <div class="p-2 me-auto p-2 m-2 card" style="width:200px;">
+                <button type="submit" name="delete" id="delete" style="font-size:14px;" class="btn btn-danger justify-content-end"><span><i
+                            class="fa-solid fa-trash"></i></span> Delete
+                    activities</button>
             </div>
         </div>
 
@@ -291,7 +284,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         </div>
                         <form action="" target="_blank" id="resetrecords" method="post">
                             <div class="modal-body">
-                                <p style="font-size:12px;">Note: Date range of previous pension before creating new one.</p>
+                                <p style="font-size:12px;">Note: Date range of previous pension before creating new one.
+                                </p>
                                 <div class="d-block input-group-sm">
                                     <div class="d-flex">
                                         <div class="input-group-prepend p-1">
@@ -339,6 +333,39 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             type: "POST",
                             url: "function/resetrecords.php",
                             data: $("#resetrecords").serialize(),
+                            success: function(data) {
+                                setInterval(function() {
+                                    location.reload();
+                                }, 900);
+                            }
+                        });
+                    } else {
+                        //   swal("Your file is safe!");
+                    }
+                });
+
+        });
+        </script>
+        <script>
+        $("#delete").click(function() {
+            swal({
+                    title: "Are you sure?",
+                    text: "You're trying to delete all activities",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Activities is successfully deleted!", {
+                            icon: "success",
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "function/truncate.php",
+                            data: {
+                                delete: 'delete'
+                            },
                             success: function(data) {
                                 setInterval(function() {
                                     location.reload();
