@@ -58,7 +58,12 @@
     display: flex;
 }
 /* Media query */
-
+.numbers{
+    margin-left:20%;
+}
+.card:not(:first-child) .cardName{
+    margin-left: 10%;
+}
 @media only screen and (max-width: 650px) {
 .cardBox {
         position: relative;

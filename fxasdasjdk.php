@@ -125,7 +125,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             <div class="cardBox">
                 <div class="card">
                     <div class="row">
-                        <div class="numbers col" id="total"><?php echo $total['alladm']?></div>
+                        <div class="numbers col" style="margin-left:20%; font-weight:500;" id="total">
+                            <?php echo $total['alladm']?></div>
                         <div class="col" id="iconBox"><i class="fa-solid fa-database"></i></div>
                         <div class="cardName">Total System User</div>
                     </div>
@@ -133,33 +134,39 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
 
                 <div class="card cadmin">
                     <div class="row">
-                        <div class="numbers col"><?php echo $admin['adm']?></div>
+                        <div class="numbers col" style="margin-left:20%; font-weight:500;"><?php echo $admin['adm']?>
+                        </div>
                         <div class="col" id="iconBox"><i class="fa-solid fa-rectangle-ad"></i></i></div>
-                        <div class="cardName">Admin role</div>
+                        <div class="cardName" style="margin-left:10%;">Admin role</div>
                     </div>
                 </div>
                 <div class="card cadmin">
                     <div class="row">
-                        <div class="numbers col"><?php echo $staff['staff']?></div>
+                        <div class="numbers col" style="margin-left:20%; font-weight:500;"><?php echo $staff['staff']?>
+                        </div>
                         <div class="col" id="iconBox"><i class="fa-solid fa-clipboard-user"></i></i></div>
-                        <div class="cardName">Staff role</div>
+                        <div class="cardName" style="margin-left:10%;">Staff role</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="d-flex">
-            <div class="p-2 m-2 card" id="resetpension" style="width:170px;">
-                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#newpension">
-                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
-            </div>
-            
-            <div class="p-2 me-auto p-2 m-2 card" style="width:200px;">
-                <button type="submit" name="delete" id="delete" style="font-size:14px;" class="btn btn-danger justify-content-end"><span><i
-                            class="fa-solid fa-trash"></i></span> Delete
+
+            <div class="p-2 p-2 m-2 card" style="width:200px;">
+                <button type="submit" name="delete" id="delete" style="font-size:14px;"
+                    class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
                     activities</button>
             </div>
+
+            <div class="p-2 me-auto m-2 card" id="resetpension" style="width:170px;">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal"
+                    data-bs-target="#newpension">
+                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+            </div>
+
             <div class="p-2 ms-auto m-2 card" id="addnew" style="width:170px;">
-                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#new">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal"
+                    data-bs-target="#new">
                     <span><i class="fa-solid fa-plus"></i></span> Add User</button>
             </div>
         </div>
@@ -284,7 +291,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         </div>
                         <form action="" target="_blank" id="resetrecords" method="post">
                             <div class="modal-body">
-                                <p style="font-size:12px;">Note: Date range of previous pension before creating new one.
+                                <p style="font-size:12px;">Note: Select date range of previous pension before creating
+                                    new one.
                                 </p>
                                 <div class="d-block input-group-sm">
                                     <div class="d-flex">
