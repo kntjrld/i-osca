@@ -32,7 +32,7 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             if($action2 == 'active'){
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS';
-                $dtxt = 'DATA STARTED';
+                $dtxt = 'DATE STARTED';
             }elseif($action2 == 'pending'){
                 $sql = "SELECT * FROM tbl_records WHERE fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL MEMBERS WITHOUT PENSION';
@@ -42,7 +42,7 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             }elseif($action2 == 'alive'){
                 $sql = "SELECT * FROM tbl_records WHERE life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS ';
-                $dtxt = 'DATA STARTED';
+                $dtxt = 'DATE STARTED';
             }elseif($action2 == 'inactive'){
                 // inactive
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
@@ -74,7 +74,7 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             }elseif($action2 == 'alive'){
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1);
-                $dtxt = 'DATA STARTED';
+                $dtxt = 'DATE STARTED';
             }elseif($action2 == 'inactive'){
                 //inactive
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND account_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
@@ -99,22 +99,22 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             if($action2 == 'inactive'){
                 // inactive
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.$minstr.' To '.$maxstr;
+                $sub = 'ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE INACTIVE';
                 // remove
             }elseif($action2 == 'removed'){
                 $sql = "SELECT * FROM tbl_remove WHERE fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.$minstr.' To '.$maxstr;
+                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE REMOVED';
             }elseif($action2 == 'dead'){
                 // dead
                 $sql = "SELECT * FROM tbl_records WHERE life_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.$minstr.' To '.$maxstr;
+                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE DEATH';
             }else{
                 // active with data range
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'ALL '.' '.strtoupper($action2).' '.'MEMBERS REGISTERED FROM '.$minstr.' To '.$maxstr;
+                $sub = 'ALL '.' '.strtoupper($action2).' '.'MEMBERS REGISTERED FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE STARTED';
             }
         // per barangay
@@ -122,22 +122,22 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             if($action2 == 'inactive'){
                 //inactive
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND account_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE INACTIVE';
                 // remove
             }elseif($action2 == 'removed'){ 
                 $sql = "SELECT * FROM tbl_remove WHERE fx_barangay = '$action1' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE REMOVED';
             }elseif($action2 == 'dead'){
                 // dead
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND life_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE DEATH';
             }else{
                 // active with data range
                 $sql = "SELECT * FROM tbl_records  WHERE fx_barangay = '$action1'  AND account_status = '$action2' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = strtoupper($action2).' '.' IN '.strtoupper($action1).' REGISTERED FROM '.$minstr.' To '.$maxstr;
+                $sub = strtoupper($action2).' '.' IN '.strtoupper($action1).' REGISTERED FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 $dtxt = 'DATE STARTED';
             }
         }
@@ -149,30 +149,30 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             if($action1 == 'All'){
                 if($action2 == 'active'){
                     $sql = "SELECT * FROM $tblname WHERE account_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }elseif($action2 == 'pending'){
                     $sql = "SELECT * FROM $tblname WHERE fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF ALL MEMBERS WITHOUT PENSION FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF ALL MEMBERS WITHOUT PENSION FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }elseif($action2 == 'received'){
                     $sql = "SELECT * FROM $tblname WHERE fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF ALL MEMBERS WITH PENSION FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF ALL MEMBERS WITH PENSION FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }elseif($action2 == 'alive'){
                     $sql = "SELECT * FROM $tblname WHERE life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }else{}
             }else{
                 if($action2 == 'active'){
                     $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND account_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }elseif($action2 == 'pending'){
                     $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF WITHOUT PENSION'.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr; 
+                    $sub = 'LIST OF WITHOUT PENSION'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr); 
                 }elseif($action2 == 'received'){
                     $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                    $sub = 'LIST OF WITH PENSION'.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                    $sub = 'LIST OF WITH PENSION'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }elseif($action2 == 'alive'){
                     $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
-                            $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.$minstr.' To '.$maxstr;
+                            $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
                 }else{}  
                 }
         }else{
