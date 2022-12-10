@@ -58,6 +58,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         // output
 
         if($totalc < 10){
+            $total = '0000'.$totalc;
+        }elseif($totalc < 100){
+            $total = '000'.$totalc;
+        }elseif($totalc < 1000){
+            $total = '00'.$totalc;
+        }elseif($totalc < 10000){
             $total = '0'.$totalc;
         }else{
             $total = $totalc;
