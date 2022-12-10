@@ -82,16 +82,17 @@
                         <h6 class="text-uppercase mb-4 font-weight-bold">
                             i-OSCA
                         </h6>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ullam esse eveniet sunt!
-                            Nemo dolore odit dolores soluta iste magni.
+                        <p style="font-size:14px;">
+                            i-OSCA is a social pension system that provides financial assistance to older individuals.
+                            The program is designed to help ensure that older eligible people can register in their
+                            home.
                         </p>
                     </div>
                     <!-- Grid column -->
                     <hr class="w-100 clearfix d-md-none" />
 
                     <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3" style="font-size:14px;">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
                         <p><i class="fas fa-home mr-3"></i> Mamburao, 5106, Occ. Min.</p>
                         <p><i class="fas fa-envelope mr-3"></i> pgoosca@gmail.com</p>
@@ -135,7 +136,7 @@
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size:14px;">
             © 2022 Copyright:
             <a class="text-white" href="#">i-OSCA</a>
         </div>

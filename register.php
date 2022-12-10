@@ -16,8 +16,9 @@ $applicationid = $_SESSION['applicatonid'];
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-
+        
     <link rel="stylesheet" href="css/register.css">
+
     <title>Be a member</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -174,7 +175,7 @@ $applicationid = $_SESSION['applicatonid'];
     </div>
     </div>
     <!-- Footer -->
-    <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
+     <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Links -->
@@ -183,19 +184,21 @@ $applicationid = $_SESSION['applicatonid'];
                 <div class="row">
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                        <h6 class="text-uppercase mb-4" style="font-weight:900">
                             i-OSCA
                         </h6>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ullam esse eveniet sunt!
-                            Nemo dolore odit dolores soluta iste magni.
+                        <p style="font-size:14px;">
+                            i-OSCA is a social pension system that provides financial assistance to older individuals.
+                            The program is designed to help ensure that older eligible people can register in their
+                            home.
                         </p>
                     </div>
                     <!-- Grid column -->
                     <hr class="w-100 clearfix d-md-none" />
 
                     <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3" style="font-size:14px;">
+                        <h6 class="text-uppercase mb-4" style="font-weight:900">Contact</h6>
                         <p><i class="fas fa-home mr-3"></i> Mamburao, 5106, Occ. Min.</p>
                         <p><i class="fas fa-envelope mr-3"></i> pgoosca@gmail.com</p>
                         <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
@@ -205,7 +208,7 @@ $applicationid = $_SESSION['applicatonid'];
                     <hr class="w-100 clearfix d-md-none" />
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+                        <h6 class="text-uppercase mb-4" style="font-weight:900">Follow us</h6>
 
                         <!-- Facebook -->
                         <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!"
@@ -238,7 +241,7 @@ $applicationid = $_SESSION['applicatonid'];
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size:14px;">
             © 2022 Copyright:
             <a class="text-white" href="#">i-OSCA</a>
         </div>
