@@ -122,14 +122,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
                     <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Active
+                        Inactive
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li><a class="dropdown-item" href="#">Inactive</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -146,7 +146,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <!-- other records -->
             <div class="d-block m-1"
-                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
+                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;position:absolute;';} ?>">
                 <div class="expand_button p-1 me-auto ms-auto">
                     <label class="p-1" style="font-size:12px;">Other Records</label>
                 </div>
@@ -169,7 +169,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <!-- Generate reports -->
-            <form method="POST" action="pdf/generate_reports.php" id="generate" class="ms-auto" target="_blank">
+            <form method="POST" action="pdf/generate_reports.php" id="generate" class="me-auto" target="_blank">
                 <div class="me-auto card m-1 p-2 d-block">
                     <p style="font-size:10px;">*Leave the date blank if you want to generate current record.</p>
                     <div class="d-flex input-group-sm">
@@ -435,7 +435,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
                             <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
-                                    style="width: auto;">View</button></td>
+                                    style="width: auto; font-size:13px;">View</button></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

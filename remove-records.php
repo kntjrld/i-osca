@@ -122,10 +122,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
                     <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Active
+                        Removed
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Active</a></li>
+                        <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -133,7 +133,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="remove-records">Removed</a></li>
+                        <li><a class="dropdown-item" href="#">Removed</a></li>
                     </ul>
                 </div>
                 <div class="p-2 card" <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
@@ -146,7 +146,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <!-- other records -->
             <div class="d-block m-1"
-                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;';} ?>">
+                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;position:absolute;';} ?>">
                 <div class="expand_button p-1 me-auto ms-auto">
                     <label class="p-1" style="font-size:12px;">Other Records</label>
                 </div>
@@ -169,7 +169,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <!-- Generate reports -->
-            <form method="POST" action="pdf/generate_reports.php" id="generate" class="ms-auto" target="_blank">
+            <form method="POST" action="pdf/generate_reports.php" id="generate" class="me-auto" target="_blank">
                 <div class="me-auto card m-1 p-2 d-block">
                     <p style="font-size:10px;">*Leave the date blank if you want to generate current record.</p>
                     <div class="d-flex input-group-sm">
