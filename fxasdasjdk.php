@@ -121,22 +121,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             </div>
 
         </header>
-        <div class="d-flex w-100">
-            <div class="p-2 ms-auto m-2 card" id="resetpension" style="width:170px;">
-                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#newpension">
-                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
-            </div>
-            <div class="p-2 me-auto m-2 card" id="addnew" style="width:170px;">
-                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#new">
-                    <span><i class="fa-solid fa-plus"></i></span> Add User</button>
-            </div>
-            <div class="p-2 me-auto p-2 m-2 card" style="width:200px;">
-                <button type="submit" name="delete" id="delete" style="font-size:14px;" class="btn btn-danger justify-content-end"><span><i
-                            class="fa-solid fa-trash"></i></span> Delete
-                    activities</button>
-            </div>
-        </div>
-
         <div class="container">
             <div class="cardBox">
                 <div class="card">
@@ -163,6 +147,22 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </div>
             </div>
         </div>
+        <div class="d-flex">
+            <div class="p-2 m-2 card" id="resetpension" style="width:170px;">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#newpension">
+                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+            </div>
+            
+            <div class="p-2 me-auto p-2 m-2 card" style="width:200px;">
+                <button type="submit" name="delete" id="delete" style="font-size:14px;" class="btn btn-danger justify-content-end"><span><i
+                            class="fa-solid fa-trash"></i></span> Delete
+                    activities</button>
+            </div>
+            <div class="p-2 ms-auto m-2 card" id="addnew" style="width:170px;">
+                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal" data-bs-target="#new">
+                    <span><i class="fa-solid fa-plus"></i></span> Add User</button>
+            </div>
+        </div>
         <div class="container">
             <div class="d-flex">
                 <div class="w-100" id="container">
@@ -171,7 +171,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             <tr>
                                 <th scope="col" class="text-center">Profile</th>
                                 <th scope="col" class="text-center">Username</th>
-                                <th scope="col" class="text-center">Handle</th>
+                                <th scope="col" class="text-center">access</th>
                                 <th class="d-none d-sm-table-cell text-center" scope="col">User type</th>
                                 <th scope="col" class="text-center">Action</th>
                             </tr>
