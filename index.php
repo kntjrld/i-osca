@@ -57,10 +57,13 @@
                                 </div>
                                 <button type="submit" class="sign_in">Sign In</button>
                             </form>
-                            <div class="d-flex justify-content-center">
+                            <div class="d-block justify-content-center">
                                 <a href="#" class="this" id="forgotpass">
                                     <span class="b-forgot">Forgot your password?</span>
                                 </a>
+                                <div class="reminder" style="display:none;">
+                                    <p style="font-size:12px;color:red;">Contact the administrator</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,7 +152,7 @@
     <script>
     $(document).ready(function() {
         $('.this').click(function() {
-            swal("System message!", "Contact the administrator");
+            $('.reminder').show();
         });
     });
     </script>
