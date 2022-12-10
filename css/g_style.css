@@ -57,7 +57,7 @@ body {
     color:var(--main-color);
 }
 
-.side-nav a{
+ul a{
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 14px;
@@ -110,7 +110,7 @@ a.active i{
 }
 
 .logout {
-    position: absolute;
+    position:absolute;
     bottom: 0;
 }
 
