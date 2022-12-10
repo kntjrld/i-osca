@@ -5,7 +5,8 @@ include('../conn/connection.php');
 
 if(isset($_POST['s_id'])) {
 
-	$sql = "SELECT * FROM tbl_records WHERE uid='".$_POST['s_id']."'";
+    $uid = $_POST['s_id'];
+	$sql = "SELECT * FROM tbl_records WHERE uid ='$uid'";
 	$result = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
 
 	while($row = mysqli_fetch_array($result)){
@@ -25,9 +26,5 @@ if(isset($_POST['s_id'])) {
     
     ob_end_clean();
     echo json_encode($data);
-
-}elseif(isset($_POST['restatus'])) {
-    $sql = "UPDATE tbl_records SET fn_status = 'Pending' WHERE fn_status = 'Received'";
-	$result = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
 }
 ?>
