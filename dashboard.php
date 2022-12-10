@@ -139,8 +139,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="details">
             <div class="datalist">
                 <div class="d-flex ms-auto">
-                    <div class="p-1">
-                        <h3>Analytics</h3>
+                    <div class="p-2">
+                        <h4 style="font-weight:800">Analytics</h4>
                     </div>
                 </div>
             </div>
