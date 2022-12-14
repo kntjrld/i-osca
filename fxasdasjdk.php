@@ -289,7 +289,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </button>
                         </div>
-                        <form action="" target="_blank" id="resetrecords" method="post">
+                        <form action="" id="resetrecords" method="post">
                             <div class="modal-body">
                                 <p style="font-size:12px;">Note: Select date range of previous pension before creating
                                     new one.
@@ -312,7 +312,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary ms-auto me-auto w-100" id="restatus">
+                                <button type="button" class="btn btn-primary ms-auto me-auto w-100" id="restatus">
                                     <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
                             </div>
                         </form>
