@@ -194,7 +194,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                     <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
                                 <td class="d-none d-sm-table-cell text-center"> <?php echo $row['user_level']; ?> </td>
                                 <td class="text-center"> <button id='<?php echo $row['user_id']; ?>'
-                                        class="view btn btn-secondary" style="width: auto;" data-bs-toggle="modal"
+                                        class="view btn btn-primary" style="width: auto; font-size:13px; font-weight:600;" data-bs-toggle="modal"
                                         data-bs-target="#myModal">View</button>
                                 </td>
                             </tr>
@@ -291,7 +291,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         </div>
                         <form action="" id="resetrecords" method="post">
                             <div class="modal-body">
-                                <p style="font-size:12px;">Note: Select date range of previous pension before creating
+                                <p style="font-size:12px;">Note: Select date range of current pension before creating
                                     new one.
                                 </p>
                                 <div class="d-block input-group-sm">

@@ -434,8 +434,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
                             <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
-                            <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-secondary noExl"
-                                    style="width: auto; font-size:13px;">View</button></td>
+                            <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl"
+                                    style="width: auto; font-size:13px; font-weight:600;">View</button></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
