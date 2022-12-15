@@ -231,7 +231,7 @@ $pdf->SetAuthor($creator.' '.$position);
 $pdf->SetSubject("reports");
 $pdf->SetCreator($creator.' '.$position);
 
-if(($action2 == 'pending') || ($action2 == 'received')){
+if($action2 == 'pending'){
 
     if($sub == "NO DATA: INVALID DATE"){
 
@@ -324,6 +324,108 @@ if(($action2 == 'pending') || ($action2 == 'received')){
     $pdf->Cell($width_cell[8],10,$row['fn_pension'],1,0,'C');
     $pdf->Cell($width_cell[9],10,$row['fn_status'],1,0,'C');
     $pdf->Cell($width_cell[10],10,$xx,1,1,'C');   
+}
+
+// end table
+    }
+}elseif($action2 == 'received'){
+    if($sub == "NO DATA: INVALID DATE"){
+
+        // error 
+        $pdf->SetFont('times','B',10);
+        
+        //error bg
+        $pdf->SetFillColor(255,255,255);
+        $pdf->SetTextColor(255,0,0);
+        //Error header column 
+        $pdf->Cell(0,10,'Note: Important to give the correct date range if your are generating pending or received pension of previous records.',0,0,'C',true);
+        $pdf->SetTextColor(255,255,255);
+    }else{
+        
+        // TABLE
+        $width_cell=array(15,35,25,12,25,12,20, 25, 18);
+        // font 0 - 4
+        $pdf->SetFont('times','B',10);
+
+        //Background color of header//
+        $pdf->SetFillColor(255,255,255);
+
+        // Header starts /// 
+        //First header column //
+        $pdf->Cell($width_cell[0],10,'ID',1,0,'C',true);
+        //Second header column//
+        $pdf->Cell($width_cell[1],10,'FULL NAME',1,0,'C',true);
+        //Third header column//
+        // $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
+        $pdf->Cell($width_cell[2],10,'CONTACT',1,0,'C',true); 
+        //Fourth header column//
+        // $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
+        $pdf->SetFont('times','B',7);
+        $pdf->Cell($width_cell[3],10,'GENDER',1,0,'C',true);
+        // 5
+        $pdf->SetFont('times','B',10);
+        $pdf->Cell($width_cell[4],10,'BIRTHDAY',1,0,'C',true); 
+        // 6
+        $pdf->Cell($width_cell[5],10,'AGE',1,0,'C',true); 
+        // 7
+        $pdf->Cell($width_cell[6],10,'AMOUNT',1,0,'C',true); 
+        // 8
+        $pdf->SetFont('times','B',8);
+        $pdf->Cell($width_cell[7],10,'DATE RECEIVED',1,0,'C',true); 
+        // 9
+        $pdf->Cell($width_cell[8],10,'BARANGAY',1,1,'C',true); 
+        //// header ends ///////
+
+
+        $pdf->SetFont('times','',10);
+        //Background color of header//
+        $pdf->SetFillColor(255,255,255); 
+
+    /// each record is one row  ///
+    foreach ($conn->query($sql) as $row) {
+        // cut barangay
+        $brgy = $row['fx_barangay'];
+        if($brgy == 'San Luis (Ligang)'){
+            $xx = 'Ligang';
+        }else{
+            $xx = $row['fx_barangay'];
+        }
+
+        $gender = $row['fx_gender'];
+        if($gender == 'Male'){
+            $xxx = 'M';
+        }else{
+            $xxx = 'F';
+        }
+        // M and F
+        $id = $row['fx_id'];
+        $length = strlen($id);
+        if($length > 9){
+            $pdf->SetFont('times','',6);
+        }else{
+            $pdf->SetFont('times','',10);
+        }
+    
+    
+    // Date format
+    $pdf->Cell($width_cell[0],10,$row['fx_id'],1,0,'C');
+    //Full name
+    $fname = $row['fx_lastname'].', '.$row['fx_firstname'].', '.$row['fx_middlename'].'.';
+    $length = strlen($fname);
+    if($length > 16){
+        $pdf->SetFont('times','',8);
+    }else{
+        $pdf->SetFont('times','',10);
+    }
+    $pdf->Cell($width_cell[1],10,$fname,1,0,'C');
+    $pdf->SetFont('times','',10);
+    $pdf->Cell($width_cell[2],10,$row['fx_contact'],1,0,'C');
+    $pdf->Cell($width_cell[3],10,$xxx,1,0,'C');
+    $pdf->Cell($width_cell[4],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
+    $pdf->Cell($width_cell[5],10,$row['fn_age'],1,0,'C');
+    $pdf->Cell($width_cell[6],10,$row['fn_pension'],1,0,'C');
+    $pdf->Cell($width_cell[7],10,$row['fd_pension'],1,0,'C');
+    $pdf->Cell($width_cell[8],10,$xx,1,1,'C');   
 }
 
 // end table
