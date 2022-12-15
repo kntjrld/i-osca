@@ -74,7 +74,7 @@ $applicationid = $_SESSION['applicatonid'];
                                 placeholder="Dela cruz" aria-label="Last name" required>
                         </div>
                         <div class="col mt-md-0 mt-3 col-lg-2">
-                            <label class="form-label required">I.N</label>
+                            <label class="form-label required">M.I</label>
                             <input type="text" name="middlename" id="middlename" class="form-control" placeholder="T"
                                 aria-label="Middle name" required>
                         </div>

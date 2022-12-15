@@ -262,7 +262,7 @@ if(($action2 == 'pending') || ($action2 == 'received')){
         //Third header column//
         $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
         //Fourth header column//
-        $pdf->Cell($width_cell[3],10,'I.N',1,0,'C',true);
+        $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
         //Third header column//
         $pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
         // 5 
@@ -345,7 +345,7 @@ if(($action2 == 'pending') || ($action2 == 'received')){
     //Third header column//
     $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
     //Fourth header column//
-    $pdf->Cell($width_cell[3],10,'I.N',1,0,'C',true);
+    $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
     //Third header column//
     $pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
     // 5 
@@ -427,7 +427,7 @@ $pdf->Cell($width_cell[1],10,'LAST NAME',1,0,'C',true);
 //Third header column//
 $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
 //Fourth header column//
-$pdf->Cell($width_cell[3],10,'I.N',1,0,'C',true);
+$pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
 //Third header column//
 $pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
 // 5 

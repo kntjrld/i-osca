@@ -282,7 +282,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                         placeholder="Dela cruz" aria-label="Last name">
                                 </div>
                                 <div class="col col-lg-2">
-                                    <label class="form-label required">I.N</label>
+                                    <label class="form-label required">M.I</label>
                                     <input type="text" name="middlename" id="name" class="form-control" placeholder="T"
                                         aria-label="Middle name">
                                 </div>
@@ -438,7 +438,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             }elseif($row['life_status'] == 'dead'){
                                 echo 'color: #393E46';
                             }else{
-                                echo 'color:yellow;';}
+                                echo 'color:red;';}
                             ?>"> <?php echo $row['fn_status']; ?> </td>
                             <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>

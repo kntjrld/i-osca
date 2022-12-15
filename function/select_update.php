@@ -30,15 +30,13 @@ if(isset($_POST["s_id"])) {
 <!-- DISPLAY DATA INTO MODAL -->
 
 <div class="modal-header d-flex">
-    <div class="d-block text-center">
+    <div class="d-block">
         <h5 class="modal-title">Update Record</h5>
-        <p style="font-size:10px;">#<?php echo $uid?></p>
+        <p style="font-size:12px; margin-top:5px;"># <?php echo $uid?></p>
     </div>
     <div class="ms-auto"> <i class="fa fa-close close" style="color:#000;" data-bs-dismiss="modal"></i> </div>
 </div>
-
 <input type="hidden" id="uid" name="uid" class="form-control" value="<?php echo $uid ?>">
-
 <div class="mb-3">
     <label class="form-label required">ID Number</label>
     <input type="text" id="s_id" name="s_id" class="form-control" value="<?php echo $id ?>">
@@ -56,7 +54,7 @@ if(isset($_POST["s_id"])) {
             aria-label="Last name" value="<?php echo $update_lastname ?>">
     </div>
     <div class="col col-lg-2">
-        <label class="form-label required">I.N</label>
+        <label class="form-label required">M.I</label>
         <input type="text" name="update_middlename" id="update_middlename" class="form-control" placeholder="T"
             aria-label="Middle name" value="<?php echo $update_midlle ?>">
     </div>
@@ -186,7 +184,9 @@ if(isset($_POST["s_id"])) {
         <label class="form-check-label" for="account_status">Inactive</label>
     </div>
 </div>
-<div class="mb-3" id="div-remarks" style="<?php if($life_status == 'alive' && $account_status == 'active'){echo 'display:none;';}?>">
-    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*Leave a short remarks if inactive or dead</span></label>
+<div class="mb-3" id="div-remarks"
+    style="<?php if($life_status == 'alive' && $account_status == 'active'){echo 'display:none;';}?>">
+    <label for="remarks" class="form-label">Remarks <span style="font-size:12px;">*Leave a short remarks if inactive or
+            dead</span></label>
     <textarea class="form-control" name="remarks" id="remarks" maxlength="30" rows="1"><?php echo $remarks ?></textarea>
 </div>

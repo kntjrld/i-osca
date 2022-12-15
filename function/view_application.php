@@ -76,7 +76,7 @@ if(isset($_POST["s_id"])) {
                     aria-label="Last name" value="<?php echo $lastname ?>" disabled>
             </div>
             <div class="col col-lg-2">
-                <label class="form-label required">I.N</label>
+                <label class="form-label required">M.I</label>
                 <input type="text" name="initial" id="initial" class="form-control" placeholder=""
                     aria-label="Middle name" value="<?php echo $initial ?>" disabled>
             </div>
