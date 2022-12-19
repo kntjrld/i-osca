@@ -62,8 +62,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>><a href="status"
-                    id="nav-list">
+            <li><a href="status" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>

@@ -77,8 +77,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>><a href="status"
-                    id="nav-list">
+            <li><a href="status" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -194,7 +193,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                     <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
                                 <td class="d-none d-sm-table-cell text-center"> <?php echo $row['user_level']; ?> </td>
                                 <td class="text-center"> <button id='<?php echo $row['user_id']; ?>'
-                                        class="view btn btn-primary" style="width: auto; font-size:13px; font-weight:600;" data-bs-toggle="modal"
+                                        class="view btn btn-primary"
+                                        style="width: auto; font-size:13px; font-weight:600;" data-bs-toggle="modal"
                                         data-bs-target="#myModal">View</button>
                                 </td>
                             </tr>

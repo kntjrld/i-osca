@@ -49,11 +49,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="nav-item">Records</span>
                 </a></li>
             <li><a href="reports" id="nav-list">
-                    <span class="indicator" style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
-                    <i class="fas fa-tasks"></i>    
+                    <span class="indicator"
+                        style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
+                    <i class="fas fa-tasks"></i>
                     <span class="nav-item">Reports</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="admin") echo 'style="display:none;"'; ?>><a href="status" id="nav-list">
+            <li><a href="status" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -146,7 +147,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
             <div class="graph">
                 <div class="chart-container card m-2 p-1">
-                    <p class="ms-auto me-auto" style="font-size:12px;"><?php if($ulevel == 'admin'){echo'Total Records per barangay';}else{echo 'Total records between age range';} ?></p>
+                    <p class="ms-auto me-auto" style="font-size:12px;">
+                        <?php if($ulevel == 'admin'){echo'Total Records per barangay';}else{echo 'Total records between age range';} ?>
+                    </p>
                     <canvas id="myChart"></canvas>
                 </div>
                 <div class="chart-container card m-2 p-1">
