@@ -115,7 +115,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
                 <div>
                     <h5><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h5>
-                    <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
+                    <p><span class="nav-item"><?php echo $user; ?></span></p>
                 </div>
             </div>
 
@@ -191,7 +191,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                 <td class="text-center"> <?php echo $row['user_name']; ?> </td>
                                 <td class="text-center">
                                     <?php if($row['fx_street'] == ''){echo 'All';}else{echo $row['fx_street'];} ?> </td>
-                                <td class="d-none d-sm-table-cell text-center"> <?php echo $row['user_level']; ?> </td>
+                                <td class="d-none d-sm-table-cell text-center"> <?php if($row['user_level'] == 'staff'){
+                                    echo 'Cluster President';
+                                }else{ echo 'Admin';} ?> </td>
                                 <td class="text-center"> <button id='<?php echo $row['user_id']; ?>'
                                         class="view btn btn-primary"
                                         style="width: auto; font-size:13px; font-weight:600;" data-bs-toggle="modal"

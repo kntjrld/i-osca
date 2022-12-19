@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <img src="./image/<?php echo $_SESSION['fm_img']; ?>" class="user_img" alt="user">
                 <div>
                     <h6><span class="nav-item"><?php echo $_SESSION['user_name']; ?></span></h6>
-                    <p><span class="nav-item"><?php echo $_SESSION['user_level']; ?></span></p>
+                    <p><span class="nav-item"><?php echo $user; ?></span></p>
                 </div>
             </div>
         </header>
