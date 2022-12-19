@@ -23,35 +23,35 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
 
         if($street == $brgy[0]){
-            $username = 'staff1';
+            $username = 'cpbrgy1';
         }elseif($street == $brgy[1]){
-            $username = 'staff2';
+            $username = 'cpbrgy2';
         }elseif($street == $brgy[2]){
-            $username = 'staff3';
+            $username = 'cpbrgy3';
         }elseif($street == $brgy[3]){
-            $username = 'staff4';
+            $username = 'cpbrgy4';
         }elseif($street == $brgy[4]){
-            $username = 'staff5';
+            $username = 'cpbrgy5';
         }elseif($street == $brgy[5]){
-            $username = 'staff6';
+            $username = 'cpbrgy6';
         }elseif($street == $brgy[6]){
-            $username = 'staff7';
+            $username = 'cpbrgy7';
         }elseif($street == $brgy[7]){
-            $username = 'staff8';
+            $username = 'cpbrgy8';
         }elseif($street == $brgy[8]){
-            $username = 'staff9';
+            $username = 'cpbalansay';
         }elseif($street == $brgy[9]){
-            $username = 'staff10';
+            $username = 'cpfatima';
         }elseif($street == $brgy[10]){
-            $username = 'staff11';
+            $username = 'cppayompon';
         }elseif($street == $brgy[11]){
-            $username = 'staff12';
+            $username = 'cpligang';
         }elseif($street == $brgy[12]){
-            $username = 'staff13';
+            $username = 'cptalabaan';
         }elseif($street == $brgy[13]){
-            $username = 'staff14';
+            $username = 'cptangkalan';
         }elseif($street == $brgy[14]){
-            $username = 'staff15';
+            $username = 'cptayamaan';
         }else{
             $username = 'administrator';
         }
