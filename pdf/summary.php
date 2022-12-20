@@ -95,8 +95,11 @@ require('fpdf.php');
     foreach ($conn->query($sql) as $row) {
     $pdf->Cell($width_cell[0],10,$row['fd_prange'],1,0,'C');
     $pdf->Cell($width_cell[1],10,$row['fx_pstatus'],1,1,'C');
-    }    
+    }   
     /// end of records ///
+    // end of doc
+    $pdf->SetFont('times','',10);
+    $pdf->Cell(0,10,'--- Nothing Follows ---',0,1,'C');
     ob_end_clean();
     $pdf->Output('PensionSummary.pdf','I');
 

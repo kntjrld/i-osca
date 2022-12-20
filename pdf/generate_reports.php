@@ -34,10 +34,10 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS';
                 $dtxt = 'DATE STARTED';
             }elseif($action2 == 'pending'){
-                $sql = "SELECT * FROM tbl_records WHERE fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sql = "SELECT * FROM tbl_records WHERE fn_status = '$action2' AND account_status = 'active' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL MEMBERS WITHOUT PENSION';
             }elseif($action2 == 'received'){
-                $sql = "SELECT * FROM tbl_records WHERE fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sql = "SELECT * FROM tbl_records WHERE fn_status = '$action2' AND account_status = 'active' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL MEMBERS WITH PENSION';
             }elseif($action2 == 'alive'){
                 $sql = "SELECT * FROM tbl_records WHERE life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
@@ -66,10 +66,10 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1);
                 $dtxt = 'DATE STARTED';
             }elseif($action2 == 'pending'){
-                $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND fn_status = '$action2' AND account_status = 'active' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF WITHOUT PENSION'.' IN '.strtoupper($action1);
             }elseif($action2 == 'received'){
-                $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND fn_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND fn_status = '$action2' AND account_status = 'active' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF WITH PENSION'.' IN '.strtoupper($action1);
             }elseif($action2 == 'alive'){
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
@@ -607,6 +607,9 @@ if($_SESSION['user_level'] == 'staff'){
     $oscaposition = '(OSCA) HEAD';
     $chapter = "OSCA Head, Mamburao";
 }
+// end of doc
+$pdf->SetFont('times','',10);
+$pdf->Cell(0,10,'--- Nothing Follows ---',0,1,'C');
 // 1
 $pdf->Ln(15);
 $pdf->SetFont('times','',12);
