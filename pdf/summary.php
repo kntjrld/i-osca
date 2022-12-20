@@ -17,7 +17,14 @@ require('fpdf.php');
     $result = mysqli_query($conn, $sql);
     
     // Report title
-    $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename FROM tbl_records WHERE uid = '$uid'");
+    $cnt = "SELECT COUNT(*) FROM tbl_records WHERE uid = '$uid'";
+    $result = mysqli_query($conn, $cnt);
+    $count = mysqli_fetch_assoc($result)['COUNT(*)'];
+    if($count == 1){
+        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename FROM tbl_records WHERE uid = '$uid'");
+    }else{
+        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename FROM tbl_remove WHERE uid = '$uid'");
+    }
     
     class PDF extends FPDF{
 

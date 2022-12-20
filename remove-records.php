@@ -414,6 +414,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <th scope="col" class="noExl">Pwd</th>
                             <th scope="col" class="d-none d-sm-table-cell">Started date</th>
                             <th scope="col" class="d-none d-sm-table-cell">Removed date</th>
+                            <th scope="col" class="noExl">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -432,6 +433,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="noExl"> <?php echo $row['fx_pwd']; ?></button> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
+                            <td class="text-center">
+                                <form action="pdf/summary.php" method="post" target="_blank">
+                                    <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
+                                    <button type="submit" id='summary' class="summary btn btn-primary noExl"
+                                        style="width: auto; font-size:13px;"><i
+                                            class="fa-solid fa-receipt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
