@@ -40,11 +40,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     $sms = 'Your i-OSCA application #'.$uid. ' is rejected for the following reason:'. ' '. $remarks;   
     $ch = curl_init();
     $parameters = array(
-        'apikey' => '7952a861e3d97d4876d8d6cb340980ee', 
+        'apikey' => 'YOUR API HERE',  
         'number' => $contact,
         'message' => $sms,
-        'sendername' => 'SEMAPHORE'
-    );
+        'sendername' => 'YOUR SENDER NAME HERE'
+        );
     curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
     curl_setopt( $ch, CURLOPT_POST, 1 );
 
