@@ -389,67 +389,74 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="modal-footer">
                             <button type="submit" name="submit" id="update_record"
                                 class="btn btn-primary">Update</button>
-                            <input type="button" id="delete_row" class="btn btn-danger" id="delete" value="Remove"
+                            <input type="button" id="delete_row" class="btn btn-danger" value="Remove"
                                 data-bs-dismiss="modal">
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="wrapper">
-            <!-- Table start -->
-            <div class="table-div m-2 p-2 card">
-                <table id="" class="display table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="d-none d-sm-table-cell">ID</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Initial</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Contact</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Sex</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Age</th>
-                            <th scope="col" class="d-none">Amount</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Pension</th>
-                            <th scope="col" class="d-none">Started date</th>
-                            <th scope="col" class="noExl">Status</th>
-                            <th scope="col" class="noExl">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Display all active records in the table -->
-                        <?php foreach($records as $row) :  ?>
-                        <tr>
-                            <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['uid']; ?> </td>
-                            <td> <?php echo $row['fx_lastname']; ?> </td>
-                            <td> <?php echo $row['fx_firstname']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
-                            <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
-                            <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
-                            <td class="d-none d-sm-table-cell" style="<?php if($row['fn_status'] == 'Received'){
+    </div>
+    <div class="wrapper">
+        <!-- Table start -->
+        <div class="table-div m-2 p-2 card">
+            <table id="" class="display table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="d-none d-sm-table-cell">ID</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Initial</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Contact</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Sex</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Age</th>
+                        <th scope="col" class="d-none">Amount</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Pension</th>
+                        <th scope="col" class="d-none">Started date</th>
+                        <th scope="col" class="noExl">Status</th>
+                        <th scope="col" class="noExl">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display all active records in the table -->
+                    <?php foreach($records as $row) :  ?>
+                    <tr>
+                        <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['uid']; ?> </td>
+                        <td> <?php echo $row['fx_lastname']; ?> </td>
+                        <td> <?php echo $row['fx_firstname']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
+                        <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
+                        <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
+                        <td class="d-none d-sm-table-cell" style="<?php if($row['fn_status'] == 'Received'){
                             echo 'color:green;';
                             }elseif($row['life_status'] == 'dead'){
                                 echo 'color: #393E46';
                             }else{
                                 echo 'color:red;';}
                             ?>"> <?php echo $row['fn_status']; ?> </td>
-                            <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
-                            <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
-                            <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl"
-                                    style="width: auto; font-size:13px;font-weight:600;">View</button></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- end table 1 -->
+                        <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
+                        <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
+                        <td class="d-flex">
+                            <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl m-1"
+                                style="width: auto; font-size:13px;"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <form action="pdf/summary.php" method="post" target="_blank" class="mt-1">
+                                <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
+                                <button type="submit" id='summary' class="summary btn btn-primary noExl"
+                                    style="width: auto; font-size:13px;"><i class="fa-solid fa-receipt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
+        <!-- end table 1 -->
+    </div>
     </div>
 
     <script>

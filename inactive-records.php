@@ -433,8 +433,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
                             <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
-                            <td> <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl"
-                                    style="width: auto; font-size:13px; font-weight:600;">View</button></td>
+                            <td class="d-flex">
+                                <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl m-1"
+                                    style="width: auto; font-size:13px;"><i
+                                        class="fa-solid fa-pen-to-square"></i></button>
+                                <form action="pdf/summary.php" method="post" target="_blank" class="mt-1">
+                                    <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
+                                    <button type="submit" id='summary' class="summary btn btn-primary noExl"
+                                        style="width: auto; font-size:13px;"><i
+                                            class="fa-solid fa-receipt"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
