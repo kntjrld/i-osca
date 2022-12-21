@@ -172,7 +172,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <input type="text" id="life_status" name="life_status" class="form-control" disabled>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" disabled>Submit</button>
                     </div>
                 </Form>
             </div>
@@ -180,6 +180,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     </div>
     <!-- Bootstrap / js-->
     <script src="lib/sweetalert.min.js"></script>
+    <script>
+        $('#id_status').on('change', function() {
+        if($('#id_status option:selected').val() == 'Received'){
+            $(".btn-primary").removeAttr('disabled');
+        }else{
+            $(".btn-primary").attr('disabled', 'disabled');
+        }
+        });
+    </script>
 </body>
 
 </html>
