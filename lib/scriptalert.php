@@ -70,3 +70,31 @@ swal({
     unset($_SESSION['penstionupdate']);
 }
 ?>
+<!-- Update Status error -->
+<?php
+    if(isset($_SESSION['unsuccessp']) && $_SESSION['unsuccessp'] !=''){
+    ?>
+<script>
+swal("Something went wrong!", {
+    icon: "error",
+});
+</script>
+<?php
+    unset($_SESSION['unsuccessp']);
+}?>
+<!-- Success Update status -->
+<?php
+    if(isset($_SESSION['successp']) && $_SESSION['successp'] !=''){
+    ?>
+<script>
+swal({
+    title: "Success!",
+    text: "Updated Successfully!",
+    icon: "success",
+    button: "Ok",
+});
+</script>
+<?php
+    unset($_SESSION['successp']);
+}
+?>
