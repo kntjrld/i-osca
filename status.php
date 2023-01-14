@@ -24,6 +24,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <script src="lib/status.js"></script>
     <script src="lib/security.js"></script>
 
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -97,7 +101,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <div class="container">
             <div class="wrapper card rounded bg-white">
                 <div class="d-flex">
-                    <div class="h5 p-1">Pension Form</div>
+                    <div class="h5 p-1" id="pension_text">Pension Form</div>
+                    <div class="p-1 ms-auto m-2 card w-auto">
+                        <button type="button" class="btn btn-primary" style="font-size:12px;" data-bs-toggle="modal"
+                            data-bs-target="#ustatus">
+                            <span><i class="fa-solid fa-pen-to-square"></i></span> Update previous pension</button>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <hr class="new1">
@@ -175,19 +184,92 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <button type="submit" class="btn btn-primary" disabled>Submit</button>
                     </div>
                 </Form>
+
+                <!-- change pension status modal -->
+                <!-- modal start -->
+                <div class="modal fade" id="ustatus">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title">Update pension status</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </button>
+                            </div>
+                            <form action="function/updatepstatus.php" id="updatepstatus" method="post">
+                                <div class="modal-body">
+                                    <div class="d-flex">
+                                        <div class="input-group-prepend p-1">
+                                            <span class="input-group-text" id="dtext">Registered ID:</span>
+                                        </div>
+                                        <select class="form-select" id="rid" name="rid">
+                                            <option value="null">Select ID</option>
+                                            <?php
+                                                $brgy = $_SESSION['fx_street'];
+                                                if($ulevel == 'staff'){
+                                                    $sql = "SELECT uid FROM tbl_records WHERE fx_barangay = '$brgy'";
+                                                }else{
+                                                    $sql = "SELECT uid FROM tbl_records";
+                                                }
+                                                $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+                                                while( $rows = mysqli_fetch_assoc($resultset) ) { 
+                                                ?>
+                                            <option value="<?php 
+                                                echo $rows["uid"]; ?>"><?php echo $rows["uid"]; ?></option>
+                                            <?php }?>
+                                        </select>
+                                    </div>
+                                    <div class="d-block input-group-sm">
+                                        <div class="d-flex">
+                                            <div class="input-group-prepend p-1">
+                                                <span class="input-group-text" id="dtext">Date from:</span>
+                                            </div>
+                                            <input type="date" name="min" class="form-control m-1" id="min" class="min"
+                                                required>
+                                        </div>
+
+                                        <div class="d-flex">
+                                            <div class="input-group-prepend p-1">
+                                                <span class="input-group-text" id="dtext">Date to:</span>
+                                            </div>
+                                            <input type="date" name="max" class="form-control m-1" id="max" class="max"
+                                                required>
+                                        </div>
+
+                                        <div class="d-flex">
+                                            <div class="input-group-prepend p-1">
+                                                <span class="input-group-text" id="dtext">Pension status:</span>
+                                            </div>
+                                            <select class="form-select m-1" id="pstatus" name="pstatus">
+                                                <option value="Pending">Pending</option>
+                                                <option value="Received">Received</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary ms-auto me-auto w-100"
+                                        id="updatestatus">
+                                        <i class="fa-solid fa-arrows-spin"></i></span> Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
             </div>
         </div>
     </div>
     <!-- Bootstrap / js-->
     <script src="lib/sweetalert.min.js"></script>
     <script>
-        $('#id_status').on('change', function() {
-        if($('#id_status option:selected').val() == 'Received'){
+    $('#id_status').on('change', function() {
+        if ($('#id_status option:selected').val() == 'Received') {
             $(".btn-primary").removeAttr('disabled');
-        }else{
+        } else {
             $(".btn-primary").attr('disabled', 'disabled');
         }
-        });
+    });
     </script>
 </body>
 
