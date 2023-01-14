@@ -21,9 +21,9 @@ require('fpdf.php');
     $result = mysqli_query($conn, $cnt);
     $count = mysqli_fetch_assoc($result)['COUNT(*)'];
     if($count == 1){
-        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename FROM tbl_records WHERE uid = '$uid'");
+        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename, uid FROM tbl_records WHERE uid = '$uid'");
     }else{
-        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename FROM tbl_remove WHERE uid = '$uid'");
+        $request = mysqli_query($conn, "SELECT fx_barangay, fx_firstname, fx_lastname, fx_middlename, uid FROM tbl_remove WHERE uid = '$uid'");
     }
     
     class PDF extends FPDF{
@@ -63,7 +63,7 @@ require('fpdf.php');
     $pdf->AddPage();
     // Sub header
     while($row = mysqli_fetch_array($request)){
-        $pdf->MultiCell(0,10,utf8_decode('Name:'.' '.$row['fx_firstname'].', '.$row['fx_lastname'].' , '.$row['fx_middlename'].'.'. chr(10) . 'Barangay:'.' '.$row['fx_barangay']), 0);
+        $pdf->MultiCell(0,10,utf8_decode('Name:'.' '.$row['fx_firstname'].', '.$row['fx_lastname'].' , '.$row['fx_middlename'].'.'. chr(10) . 'ID:'.' '.$row['uid']. chr(10). 'Barangay:'.' '.$row['fx_barangay']), 0);
     }
     $pdf->Ln(5);
     
