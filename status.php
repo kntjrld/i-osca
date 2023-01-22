@@ -3,7 +3,7 @@ session_start();
 include('conn/connection.php');
 include('function/indicator.php');
 
-if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["user_level"]=='admin')) {
 
 ?>
 <!DOCTYPE html>
@@ -52,9 +52,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="indicator"
                         style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Reports</span>
+                    <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li><a href="#" class="active" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="#" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -207,9 +207,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                             <?php
                                                 $brgy = $_SESSION['fx_street'];
                                                 if($ulevel == 'staff'){
-                                                    $sql = "SELECT uid FROM tbl_records WHERE fx_barangay = '$brgy'";
+                                                    $sql = "SELECT uid FROM tbl_records WHERE fx_barangay = '$brgy' WHERE account_status = 'active'";
                                                 }else{
-                                                    $sql = "SELECT uid FROM tbl_records";
+                                                    $sql = "SELECT uid FROM tbl_records WHERE account_status = 'active'";
                                                 }
                                                 $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
                                                 while( $rows = mysqli_fetch_assoc($resultset) ) { 
