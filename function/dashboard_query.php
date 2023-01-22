@@ -42,7 +42,7 @@ foreach($brgy as $row){
 }
 //FILTER AGE 
 $whereage = array("60 AND 65", "66 AND 70", "71 AND 1000");
-$labelages = array("60 and 65", "66 and 70", "71 and Above");
+$labelages = array("60 to 65", "66 to 70", "71 to Above");
 // <------------------------------------------------------------------------------------------------------------------------------------------->
 // FILTER AGE FOR MALE
 $Malearray = array();
@@ -129,13 +129,20 @@ $yresult = mysqli_query($conn, $yrequest) or die("database error:". mysqli_error
 while($row = mysqli_fetch_array($yresult)){        
     $ydata[] = $row['year'];
 }
-
-//Create another array using min and max for label
-$ylabel = array();
-for ($i = min($ydata); $i <= max($ydata); $i++) {
-    $ylabel[] = $i;
-}
 // <------------------------------------------------------------------------------------------------------------------------------------------->
+$csql="SELECT COUNT(*) as total from tbl_records";
+$result=mysqli_query($conn,$sql);
+$cresult=mysqli_fetch_assoc($result);
+$dcount = $cresult['total'];
+if($dcount > 1 ){
+    //Create another array using min and max for label
+    $ylabel = array();
+    for ($i = min($ydata); $i <= max($ydata); $i++) {
+        $ylabel[] = $i;
+    }
+}else{
+    $ylabel = array("2018", "2019", "2020", "2021", "2022");
+}
 
 // Array within an array of each year
 if($ulevel == 'admin'){
