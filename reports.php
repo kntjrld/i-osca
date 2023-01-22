@@ -58,9 +58,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="indicator"
                         style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Reports</span>
+                    <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
