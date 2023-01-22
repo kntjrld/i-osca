@@ -127,7 +127,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                             <?php if(preg_match('/Changed/',$row['fx_action'])) echo 'style="color:green;"'; ?>
 
                             <?php if(preg_match('/Deleted/',$row['fx_action'])) echo 'style="color:red;"'; ?>
-                            <?php if(preg_match('/Removed/',$row['fx_action'])) echo 'style="color:red;"'; ?>
+                            <?php if(preg_match('/Removed/',$row['fx_action'])) echo 'style="color:red;"';?>
                             <?php if(preg_match('/Rejected/',$row['fx_action'])) echo 'style="color:red;"'; ?>
                             <?php if(preg_match('/Attempted/',$row['fx_action'])) echo 'style="color:red;"'; ?>>
                             <?php echo $row['fx_action']; ?> </td>
