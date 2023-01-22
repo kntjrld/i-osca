@@ -60,9 +60,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="indicator"
                         style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Reports</span>
+                    <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status"
+                    id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -128,7 +129,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="dead">Dead</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -159,7 +168,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="dead">Dead</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -218,8 +235,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <option value="active">Active account</option>
                                 <option value="inactive">Inactive account</option>
                                 <option value="removed">Removed account</option>
-                                <option value="pending">Without pension</option>
-                                <option value="received">With pension</option>
+                                <option value="PWD">PWD</option>
+                                <option value="pending">Not receive pension</option>
+                                <option value="received">Received pension</option>
                                 <option value="alive">Alive</option>
                                 <option value="dead">Dead</option>
                             </select>
@@ -412,7 +430,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
                             <th scope="col" class="d-none d-sm-table-cell">Age</th>
                             <th scope="col" class="noExl">Pwd</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Started date</th>
                             <th scope="col" class="d-none d-sm-table-cell">Removed date</th>
                             <th scope="col" class="noExl">Action</th>
                         </tr>
@@ -431,15 +448,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
                             <td class="noExl"> <?php echo $row['fx_pwd']; ?></button> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_started']); ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
-                            <td class="text-center">
-                                <form action="pdf/summary.php" method="post" target="_blank">
+                            <td class="d-flex">
+                                <form action="pdf/summary.php" method="post" class="p-1" target="_blank">
                                     <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
                                     <button type="submit" id='summary' class="summary btn btn-primary noExl"
                                         style="width: auto; font-size:13px;"><i
                                             class="fa-solid fa-receipt"></i></button>
                                 </form>
+                                <form action="#" method="post" class="p-1">
+                                    <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
+                                    <button type="submit" id='restore' class="restore btn btn-primary noExl"
+                                        style="width: auto; font-size:13px;"><i
+                                            class="fa-solid fa-recycle"></i></button>
+                                </form>
+
                             </td>
                         </tr>
                         </tr>

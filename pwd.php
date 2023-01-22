@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Records</title>
+    <title>PWD's</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -122,18 +122,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
                     <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Inactive
+                        PWD
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li><a class="dropdown-item" href="#">PWD</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Inactive</a></li>
+                        <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -161,18 +161,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 <div class="btn-group p-1 w-100 card">
                     <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Inactive
+                        PWD
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="records">Active</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li><a class="dropdown-item" href="#">PWD</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Inactive</a></li>
+                        <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -187,13 +187,13 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <!-- Generate reports -->
             <form method="POST" action="pdf/generate_reports.php" id="generate" class="me-auto" target="_blank">
                 <div class="me-auto card m-1 p-2 d-block">
-                    <p style="font-size:10px;">*Leave the date blank if you want to generate current record.</p>
+                    <p style="font-size:10px;">*Leave date blank if you want to generate current record.</p>
                     <div class="d-flex input-group-sm">
                         <div class="d-flex">
                             <div class="input-group-prepend p-1">
                                 <span class="input-group-text" id="dtext">Date from:</span>
                             </div>
-                            <input type="date" name="mindate" class="form-control" id="mindate" class="mindate">
+                            <input type="date" name="mindate" class="form-control m-1" id="mindate" class="mindate">
                         </div>
                         <div class="d-flex">
                             <div class="input-group-prepend p-1">
@@ -254,15 +254,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text" id="dtext">Date from:</span>
+                        <span class="input-group-text" style="font-size:14px;">Date from:</span>
                     </div>
-                    <input type="text" class="form-control" id="min" name="min" placeholder="mm/dd/yyyy">
+                    <input type="text" class="form-control m-1" id="min" name="min" placeholder="mm/dd/yyyy">
                 </div>
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
-                        <span class="input-group-text" id="dtext">Date to:</span>
+                        <span class="input-group-text" style="font-size:14px;">Date to:</span>
                     </div>
-                    <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy">
+                    <input type="text" class="form-control m-1" id="max" name="max" placeholder="mm/dd/yyyy">
 
                 </div>
             </div>
@@ -299,7 +299,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                         placeholder="Dela cruz" aria-label="Last name">
                                 </div>
                                 <div class="col col-lg-2">
-                                    <label class="form-label required">I.N</label>
+                                    <label class="form-label required">M.I</label>
                                     <input type="text" name="middlename" id="name" class="form-control" placeholder="T"
                                         aria-label="Middle name">
                                 </div>
@@ -407,68 +407,74 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <div class="modal-footer">
                             <button type="submit" name="submit" id="update_record"
                                 class="btn btn-primary">Update</button>
-                            <input type="button" id="delete_row" class="btn btn-danger" id="delete" value="Remove"
+                            <input type="button" id="delete_row" class="btn btn-danger" value="Remove"
                                 data-bs-dismiss="modal">
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="wrapper">
-            <!-- Table start -->
-            <div class="table-div m-2 p-2 card">
-                <table id="" class="display table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="d-none d-sm-table-cell">ID</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">First Name</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Initial</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Contact</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Sex</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Age</th>
-                            <th scope="col" class="d-none">Started date</th>
-                            <th scope="col" class="noExl">Status</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Inactive date</th>
-                            <th scope="col" class="noExl">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Display all active records in the table -->
-                        <?php foreach($inactive as $row) :  ?>
-                        <tr>
-                            <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['uid']; ?> </td>
-                            <td> <?php echo $row['fx_lastname']; ?> </td>
-                            <td> <?php echo $row['fx_firstname']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
-                            <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
-                            <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
-                            <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
-                            <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
-                            <td class="d-none d-sm-table-cell"> <?php echo dt_format($row['fd_remarks']); ?> </td>
-                            <td class="d-flex">
-                                <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl m-1"
-                                    style="width: auto; font-size:13px;"><i
-                                        class="fa-solid fa-pen-to-square"></i></button>
-                                <form action="pdf/summary.php" method="post" target="_blank" class="mt-1">
-                                    <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
-                                    <button type="submit" id='summary' class="summary btn btn-primary noExl"
-                                        style="width: auto; font-size:13px;"><i
-                                            class="fa-solid fa-receipt"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- end table 1 -->
+    </div>
+    <div class="wrapper">
+        <!-- Table start -->
+        <div class="table-div m-2 p-2 card">
+            <table id="" class="display table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="d-none d-sm-table-cell">ID</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Initial</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Contact</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Sex</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Barangay</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Age</th>
+                        <th scope="col" class="d-none">Amount</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Pension</th>
+                        <th scope="col" class="d-none">Started date</th>
+                        <th scope="col" class="noExl">Status</th>
+                        <th scope="col" class="noExl">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display all active records in the table -->
+                    <?php foreach($pwd as $row) :  ?>
+                    <tr>
+                        <td id="sid" class="d-none d-sm-table-cell"> <?php echo $row['uid']; ?> </td>
+                        <td> <?php echo $row['fx_lastname']; ?> </td>
+                        <td> <?php echo $row['fx_firstname']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
+                        <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fx_barangay'];?></td>
+                        <td class="d-none d-sm-table-cell"> <?php echo $row['fn_age']; ?> </td>
+                        <td class="d-none"> <?php echo $row['fn_pension']; ?> </td>
+                        <td class="d-none d-sm-table-cell" style="<?php if($row['fn_status'] == 'Received'){
+                            echo 'color:green;';
+                            }elseif($row['life_status'] == 'dead'){
+                                echo 'color: #393E46';
+                            }else{
+                                echo 'color:red;';}
+                            ?>"> <?php echo $row['fn_status']; ?> </td>
+                        <td class="d-none"> <?php echo dt_format($row['fd_started']); ?> </td>
+                        <td class="noExl"> <?php echo $row['account_status']; ?></button> </td>
+                        <td class="d-flex">
+                            <button id='<?php echo $row['uid']; ?>' class="view btn btn-primary noExl m-1"
+                                style="width: auto; font-size:13px;"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <form action="pdf/summary.php" method="post" target="_blank" class="mt-1">
+                                <input type="hidden" name="uid" id="uid" value="<?php echo $row['uid']?>">
+                                <button type="submit" id='summary' class="summary btn btn-primary noExl"
+                                    style="width: auto; font-size:13px;"><i class="fa-solid fa-receipt"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
+        <!-- end table 1 -->
+    </div>
     </div>
 
     <script>

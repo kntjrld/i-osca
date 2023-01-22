@@ -60,9 +60,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <span class="indicator"
                         style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Reports</span>
+                    <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status"
+                    id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -128,7 +129,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="dead">dead</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -159,7 +168,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="inactive-records">Inactive</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="dead">Dead</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -218,8 +235,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <option value="active">Active account</option>
                                 <option value="inactive">Inactive account</option>
                                 <option value="removed">Removed account</option>
-                                <option value="pending">Without pension</option>
-                                <option value="received">With pension</option>
+                                <option value="PWD">PWD</option>
+                                <option value="pending">Not receive pension</option>
+                                <option value="received">Received pension</option>
                                 <option value="alive">Alive</option>
                                 <option value="dead">Dead</option>
                             </select>
