@@ -34,33 +34,42 @@ if(isset($_POST['update'])){
         $filename = $_POST['hiddenImage'];
     }
 
-    $sql = "UPDATE users SET fm_img = '$filename', full_name ='$update_firstname', email = '$update_email', contact_num = '$update_phone',
-    fx_municipality = '$update_city' WHERE user_id = '$get_id' ";
-    $run = mysqli_query($conn, $sql);
-    
-    if($run){
-        // echo "success";
-        $_SESSION['profile'] = "Added successfully";
-        $_SESSION['full_name'] = $update_firstname;
-        $_SESSION['email'] = $update_email;
-        $_SESSION['contact_num'] = $update_phone;
-        $_SESSION['fx_municipality'] = $update_city;
-    
-        if (isset($_FILES["simg"]["tmp_name"]) && $_FILES["simg"]["tmp_name"] != "") {
-            // upload file and save image name in variable like $imagename 
-            move_uploaded_file($tempname,$filePathWithFileName);
-            $_SESSION['fm_img'] = $filename;
-    
-            }else{
-            // if image not upload this code will execute
-            $imagename = $_POST['hiddenImage'];
-            }
-        header("Location: ../profile");
-	}else{
-        $_SESSION['xprofile'] = "Not Added";
-        header("Location: ../profile");
 
-    }    
+    if($_SESSION['fm_img'] == $filename && $_SESSION['full_name'] == $update_firstname && $_SESSION['email'] == $update_email 
+        && $_SESSION['contact_num'] == $update_phone && $_SESSION['fx_municipality'] ==  $update_city){
+          
+        $_SESSION['xprofile'] = "Not Added";
+        header("Location: ../profile"); 
+        
+    }else{
+        // New data
+        $sql = "UPDATE users SET fm_img = '$filename', full_name ='$update_firstname', email = '$update_email', contact_num = '$update_phone',
+        fx_municipality = '$update_city' WHERE user_id = '$get_id' ";
+        $run = mysqli_query($conn, $sql);
+
+        if($run){
+            // echo "success";
+            $_SESSION['profile'] = "Added successfully";
+            $_SESSION['full_name'] = $update_firstname;
+            $_SESSION['email'] = $update_email;
+            $_SESSION['contact_num'] = $update_phone;
+            $_SESSION['fx_municipality'] = $update_city;
+        
+            if (isset($_FILES["simg"]["tmp_name"]) && $_FILES["simg"]["tmp_name"] != "") {
+                // upload file and save image name in variable like $imagename 
+                move_uploaded_file($tempname,$filePathWithFileName);
+                $_SESSION['fm_img'] = $filename;
+            
+                }else{
+                // if image not upload this code will execute
+                $imagename = $_POST['hiddenImage'];
+                }
+            header("Location: ../profile");
+        }else{
+            $_SESSION['xprofile'] = "Not Added";
+            header("Location: ../profile");
+        }
+    }
 }elseif(isset($_POST['changepassword'])){
         
     $get_id = $_SESSION['user_id'];

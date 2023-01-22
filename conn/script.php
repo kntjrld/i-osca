@@ -26,6 +26,7 @@ swal({
 <?php
   unset($_SESSION['updated']);
   ?>
+<!-- Profile alert if updated -->
 <?php
 }else if(isset($_SESSION['profile']) && $_SESSION['profile'] !=''){
   ?>
@@ -40,8 +41,25 @@ swal({
 <?php
   unset($_SESSION['profile']);
   ?>
+<!-- Profile alert if no data change -->
 <?php
-}else if(isset($_SESSION['changed']) && $_SESSION['changed'] !=''){
+}else if(isset($_SESSION['xprofile']) && $_SESSION['xprofile'] !=''){
+  ?>
+<script>
+swal({
+    title: "Failed!",
+    text: "No Update",
+    icon: "error",
+    button: "Ok",
+});
+</script>
+<?php
+  unset($_SESSION['xprofile']);
+  ?>
+<!-- Password changed alert  -->
+<?php
+}//changed password
+else if(isset($_SESSION['changed']) && $_SESSION['changed'] !=''){
   ?>
 <script>
 swal({
