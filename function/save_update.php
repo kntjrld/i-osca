@@ -26,10 +26,22 @@ include("../conn/connection.php");
         $dtr = $fd_remarks;
     }
 
+    // if($account_status == 'inactive'){
+    //     $acc_status = 'inactive';
+    // }else{
+    //     $acc_status = $account_status;
+    // }
+
+    if($life_status == 'dead'){
+        $acc_status = 'inactive';
+    }else{
+        $acc_status = $account_status;
+    }
+
     $sql = "UPDATE tbl_records SET fx_id='$update_id', fx_firstname=UPPER('$update_firstname'), fx_lastname=UPPER('$update_lastname'),
         fx_middlename=UPPER('$update_middlename'), fx_contact='$update_contact', fd_birthdate='$update_birthdate',
-        fx_gender='$update_sex', fx_barangay='$update_barangay', fn_age='$update_age', fn_status='$update_status',
-        life_status = '$life_status', account_status = '$account_status', fx_pwd = '$pwd', fx_remarks = '$fx_remarks', fd_remarks = '$dtr' WHERE uid = '$uid' ";
+        fx_gender='$update_sex', fx_barangay='$update_barangay', fn_age='$update_age', life_status = '$life_status',
+        account_status = '$acc_status', fx_pwd = '$pwd', fx_remarks = '$fx_remarks', fd_remarks = '$dtr' WHERE uid = '$uid' ";
 
     $result = mysqli_query($conn, $sql);
 

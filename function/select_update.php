@@ -134,23 +134,17 @@ if(isset($_POST["s_id"])) {
     </div>
     <div class="col">
         <label class="form-label required">Pension Amount</label>
-        <input type="text" id="update_pension" name="update_pension" class="form-control"
+        <input type="text" id="view_pension" name="view_pension" class="form-control"
             value="<?php echo number_format($update_pension) ?>" disabled>
     </div>
 </div>
 
 <!-- Pension $$$ -->
-
 <div class="d-flex justify-content-between p-2">
-    <div class="d-block">
-        <label for="">Pension Status</label> <br>
-        <input class="form-check-input" id="update_status" type="radio" name="update_status"
-            <?php if($update_status=="Received") {echo "checked";}?> value="Received" />
-        <label class="form-check-label" for="status">Received</label></br>
-
-        <input class="form-check-input" id="update_status" type="radio" name="update_status"
-            <?php if($update_status=="Pending") {echo "checked";}?> value="Pending" />
-        <label class="form-check-label" for="status">Pending</label>
+    <div class="d-block" style="width:30%" ;>
+        <label class="form-label">Pension Status</label>
+        <input type="text" name="view_status" id="view_status" class="form-control" value="<?php echo $update_status ?>"
+            disabled>
     </div>
     <div class="d-block">
         <label for="">PWD</label> <br>
@@ -170,7 +164,7 @@ if(isset($_POST["s_id"])) {
 
         <input class="form-check-input" id="life_status" type="radio" name="life_status"
             <?php if($life_status=="dead") {echo "checked";}?> value="dead" />
-        <label class="form-check-label" for="life_status">Death</label>
+        <label class="form-check-label" for="life_status">Dead</label>
     </div>
 
     <div class="d-block">

@@ -13,8 +13,8 @@ include('../conn/connection.php');
     $colname = $mindtf.$maxdtf;
 
     // Fields Data
-    $mindt = date('M. y', strtotime($mindate));
-    $maxdt = date('M. y', strtotime($maxdate));
+    $mindt = date('M. d, Y', strtotime($mindate));
+    $maxdt = date('M. d, y', strtotime($maxdate));
     $coldata = $mindt.' to '.$maxdt;
 
     // Create table like table records
