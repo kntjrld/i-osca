@@ -37,7 +37,8 @@
                         <div class="b-form">
                             <div class="b-title text-center">
                                 <p class="user_subTitle">
-                                    Register to mamburao senior pension program<span style="color:#6D9886;"> anytime and anywhere</span>
+                                    Register to mamburao senior pension program<span style="color:#6D9886;"> anytime and
+                                        anywhere</span>
                                 </p>
                             </div>
                             <div class="b-form-title">
@@ -51,9 +52,14 @@
                                         Registration Status</a>
                                 </div>
                                 <div class="form-group">
-                                    <a href="#" id="this" data-toggle="modal" data-target="#pensionModal" class="btn"><i class="fas fa-money-check"></i></i>Check
+                                    <a href="#" id="this" data-toggle="modal" data-target="#pensionModal" class="btn"><i
+                                            class="fas fa-money-check"></i>Check
                                         Pension
                                         Status</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <a href="index" id="this" class="btn"><i class="fas fa-arrow-left"></i>Back</a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +80,7 @@
                             <!-- 53509855529849995454 -->
                             <div class="form-outline w-100">
                                 <input id="search-input" type="text" class="form-control" maxlength="20"
-                                    placeholder="20 digit unique ID" />
+                                    placeholder="Registration ID" />
                                 <button type="button" id="btn-search"
                                     class="btn btn-primary w-100 p-2 mt-2">Search</button>
                             </div>
@@ -125,11 +131,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p class="steps"><span class="num">1.</span> Download a copy of registration form <span><a href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank"> here</a></span></p>
-                        <p class="steps"><span class="num">2.</span> Change registration form file name before uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
-                        <p class="steps"><span class="num">3.</span> Check also ID Present file name before uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
-                        <p class="steps"><span class="num">4.</span> After successful registration, copy your tracking ID. You can use it to check your registration status.</p>
-                        <p class="steps"><span class="num">5.</span> You will also receive a text message if your application is accepted or rejected</p>
+                        <p class="steps"><span class="num">1.</span> Download a copy of registration form <span><a
+                                    href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank">
+                                    here</a></span></p>
+                        <p class="steps"><span class="num">2.</span> Change registration form file name before
+                            uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
+                        <p class="steps"><span class="num">3.</span> Check also ID Present file name before
+                            uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
+                        <p class="steps"><span class="num">4.</span> After successful registration, copy your tracking
+                            ID. You can use it to check your registration status.</p>
+                        <p class="steps"><span class="num">5.</span> You will also receive a text message if your
+                            application is accepted or rejected</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <p>i-osca 2022</p>
