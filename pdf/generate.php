@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         $municipality = 'N/A';
         $password = generateRandomString();
         $hpassword = password_hash($password, PASSWORD_DEFAULT);
-        $sdescription = 'Staff is responsible for monitoring records but some action is prohibited. Staff can accept report and update record but deleting will shows in activity log which is controlled by admin.';
+        $sdescription = 'Cluster President is responsible for monitoring records but some action is prohibited. You can accept report and update record but deleting will shows in activity log which is controlled by admin.';
         $adescription = 'Admin is responsible for all action including deleting records, adding and removing user from the system.';
         
         $adname = 'iosca-admin-tempcredentials';

@@ -58,6 +58,10 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 $sql = "SELECT * FROM tbl_records WHERE life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS ';
                 $dtxt = 'DATE DEATH';
+            }elseif($action2 == 'PWD'){
+                $sql = "SELECT * FROM tbl_records WHERE fx_pwd = 'Yes' AND account_status = 'active' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sub = 'LIST OF PERSON WITH DISABILITY (PWD)';
+                $dtxt = 'DATE STARTED';
             }else{}
             // retrieve current records for each barangay
         }else{  
@@ -90,31 +94,39 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                 $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1);
                 $dtxt = 'DATE DEATH';
+            }elseif($action2 == 'PWD'){
+                $sql = "SELECT * FROM tbl_records WHERE fx_pwd = 'Yes' AND account_status = 'active' AND fx_barangay = '$action1' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sub = 'LIST OF PERSON WITH DISABILITY MEMBERS IN'.' '.strtoupper($action1);
+                $dtxt = 'DATE STARTED';
             }else{}
         }
 // If min and max has a value 
-    }elseif($action2 == 'removed' || $action2 == 'dead' || $action2 == 'inactive' || $action2 == 'active' && $min != '' && $max != '' ){
+    }elseif($action2 == 'removed' || $action2 == 'dead' || $action2 == 'inactive' || $action2 == 'active' || $action2 == 'PWD' && $min != '' && $max != '' ){
         //All records
         if($action1 == 'All'){
             if($action2 == 'inactive'){
                 // inactive
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE INACTIVE';
                 // remove
             }elseif($action2 == 'removed'){
                 $sql = "SELECT * FROM tbl_remove WHERE fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.'MEMBERS FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE REMOVED';
             }elseif($action2 == 'dead'){
                 // dead
                 $sql = "SELECT * FROM tbl_records WHERE life_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE DEATH';
+            }elseif($action2 == 'PWD'){
+                $sql = "SELECT * FROM tbl_records WHERE fx_pwd = 'Yes' AND account_status = 'active' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sub = 'LIST OF PERSON WITH DISABILITY REGISTERED FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
+                $dtxt = 'DATE STARTED';
             }else{
                 // active with data range
                 $sql = "SELECT * FROM tbl_records WHERE account_status = '$action2' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'ALL '.' '.strtoupper($action2).' '.'MEMBERS REGISTERED FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'ALL '.' '.strtoupper($action2).' '.'MEMBERS REGISTERED FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE STARTED';
             }
         // per barangay
@@ -122,22 +134,26 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
             if($action2 == 'inactive'){
                 //inactive
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND account_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE INACTIVE';
                 // remove
             }elseif($action2 == 'removed'){ 
                 $sql = "SELECT * FROM tbl_remove WHERE fx_barangay = '$action1' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.'MEMBERS'.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE REMOVED';
             }elseif($action2 == 'dead'){
                 // dead
                 $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND life_status = '$action2' AND fd_remarks BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE DEATH';
+            }elseif($action2 == 'PWD'){
+                $sql = "SELECT * FROM tbl_records WHERE fx_barangay = '$action1' AND fx_pwd = 'Yes' AND account_status = 'active' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
+                $sub = 'LIST OF PERSON WITH DISABILITY REGISTERED FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
+                $dtxt = 'DATE STARTED';
             }else{
                 // active with data range
                 $sql = "SELECT * FROM tbl_records  WHERE fx_barangay = '$action1'  AND account_status = '$action2' AND fd_started BETWEEN '$min' AND '$max' ORDER BY fx_gender DESC, fx_lastname ASC";
-                $sub = strtoupper($action2).' '.' IN '.strtoupper($action1).' REGISTERED FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                $sub = strtoupper($action2).' '.' IN '.strtoupper($action1).' REGISTERED FROM '.strtoupper($minstr).' TO '.strtoupper($maxstr);
                 $dtxt = 'DATE STARTED';
             }
         }
@@ -159,6 +175,9 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 }elseif($action2 == 'alive'){
                     $sql = "SELECT * FROM $tblname WHERE life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                     $sub = 'LIST OF ALL'.' '.strtoupper($action2).' '.' MEMBERS FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                }elseif($action2 == 'PWD'){
+                    $sql = "SELECT * FROM $tblname WHERE fx_pwd = 'Yes' ORDER BY fx_gender DESC, fx_lastname ASC";
+                    $sub = 'LIST OF PERSON WITH DISABILITY (PWD)';
                 }else{}
             }else{
                 if($action2 == 'active'){
@@ -173,6 +192,9 @@ $tblname = 'tbl_'.$mindtf.$maxdtf;
                 }elseif($action2 == 'alive'){
                     $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND life_status = '$action2' ORDER BY fx_gender DESC, fx_lastname ASC";
                             $sub = 'LIST OF'.' '.strtoupper($action2).' '.' IN '.strtoupper($action1).' FROM '.strtoupper($minstr).' To '.strtoupper($maxstr);
+                }elseif($action2 == 'PWD'){
+                    $sql = "SELECT * FROM $tblname WHERE fx_barangay = '$action1' AND fx_pwd = 'Yes' ORDER BY fx_gender DESC, fx_lastname ASC";
+                    $sub = 'LIST OF PERSON WITH DISABILITY (PWD)';
                 }else{}  
                 }
         }else{
@@ -247,7 +269,7 @@ if($action2 == 'pending'){
     }else{
         
         // TABLE
-        $width_cell=array(15,25,25,8,25,12,20, 10, 16, 16, 18);
+        $width_cell=array(10, 25,40,25,12,20, 10, 16, 16, 18);
         // font 0 - 4
         $pdf->SetFont('times','B',10);
 
@@ -255,31 +277,29 @@ if($action2 == 'pending'){
         $pdf->SetFillColor(255,255,255);
 
         // Header starts /// 
-        //First header column //
-        $pdf->Cell($width_cell[0],10,'ID',1,0,'C',true);
-        //Second header column//
-        $pdf->Cell($width_cell[1],10,'LAST NAME',1,0,'C',true);
-        //Third header column//
-        $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
-        //Fourth header column//
-        $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
-        //Third header column//
-        $pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
-        // 5 
+        // 0
+        $pdf->Cell($width_cell[0],10,'#',1,0,'C',true);
+        // 1
+        $pdf->Cell($width_cell[1],10,'ID',1,0,'C',true);
+        // 2
+        $pdf->Cell($width_cell[2],10,'FULL NAME',1,0,'C',true);
+        // 4
+        $pdf->Cell($width_cell[3],10,'CONTACT',1,0,'C',true); 
+        // 5
         $pdf->SetFont('times','B',7);
-        $pdf->Cell($width_cell[5],10,'GENDER',1,0,'C',true);
+        $pdf->Cell($width_cell[4],10,'GENDER',1,0,'C',true);
         // 6
         $pdf->SetFont('times','B',10);
-        $pdf->Cell($width_cell[6],10,'BIRTHDAY',1,0,'C',true); 
+        $pdf->Cell($width_cell[5],10,'BIRTHDAY',1,0,'C',true); 
         // 7
-        $pdf->Cell($width_cell[7],10,'AGE',1,0,'C',true); 
+        $pdf->Cell($width_cell[6],10,'AGE',1,0,'C',true); 
         // 8
-        $pdf->Cell($width_cell[8],10,'AMOUNT',1,0,'C',true); 
+        $pdf->Cell($width_cell[7],10,'AMOUNT',1,0,'C',true); 
         // 9
-        $pdf->Cell($width_cell[9],10,'STATUS',1,0,'C',true); 
+        $pdf->Cell($width_cell[8],10,'STATUS',1,0,'C',true); 
         // 10
         $pdf->SetFont('times','B',8);
-        $pdf->Cell($width_cell[10],10,'BARANGAY',1,1,'C',true); 
+        $pdf->Cell($width_cell[9],10,'BARANGAY',1,1,'C',true); 
         //// header ends ///////
 
 
@@ -288,6 +308,7 @@ if($action2 == 'pending'){
         $pdf->SetFillColor(255,255,255); 
 
     /// each record is one row  ///
+    $num = 0;
     foreach ($conn->query($sql) as $row) {
         // cut barangay
         $brgy = $row['fx_barangay'];
@@ -303,27 +324,28 @@ if($action2 == 'pending'){
         }else{
             $xxx = 'F';
     }
-    // M and F
-        $id = $row['fx_id'];
-        $length = strlen($id);
-        if($length > 9){
-            $pdf->SetFont('times','',6);
-        }else{
-            $pdf->SetFont('times','',10);
-        }
-    // Date format
-    $pdf->Cell($width_cell[0],10,$row['fx_id'],1,0,'C');
+    $num++;
+    $pdf->Cell($width_cell[0],10,$num,1,0,'C');
+    // id length
+    $id = $row['uid'];
+    $length = strlen($id);
+    if($length > 18){
+        $pdf->SetFont('times','',7);
+    }else{
+        $pdf->SetFont('times','',9);
+    }
+    $pdf->Cell($width_cell[1],10,$row['uid'],1,0,'C');
     $pdf->SetFont('times','',10);
-    $pdf->Cell($width_cell[1],10,$row['fx_lastname'],1,0,'C');
-    $pdf->Cell($width_cell[2],10,$row['fx_firstname'],1,0,'C');
-    $pdf->Cell($width_cell[3],10,$row['fx_middlename'],1,0,'C');
-    $pdf->Cell($width_cell[4],10,$row['fx_contact'],1,0,'C');
-    $pdf->Cell($width_cell[5],10,$xxx,1,0,'C');
-    $pdf->Cell($width_cell[6],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
-    $pdf->Cell($width_cell[7],10,$row['fn_age'],1,0,'C');
-    $pdf->Cell($width_cell[8],10,$row['fn_pension'],1,0,'C');
-    $pdf->Cell($width_cell[9],10,$row['fn_status'],1,0,'C');
-    $pdf->Cell($width_cell[10],10,$xx,1,1,'C');   
+    $pdf->Cell($width_cell[2],10,$row['fx_lastname'].', '.$row['fx_firstname'].' '.$row['fx_middlename'].'.',1,0,'C');
+    // $pdf->Cell($width_cell[2],10,$row['fx_firstname'],1,0,'C');
+    // $pdf->Cell($width_cell[3],10,$row['fx_middlename'],1,0,'C');
+    $pdf->Cell($width_cell[3],10,$row['fx_contact'],1,0,'C');
+    $pdf->Cell($width_cell[4],10,$xxx,1,0,'C');
+    $pdf->Cell($width_cell[5],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
+    $pdf->Cell($width_cell[6],10,$row['fn_age'],1,0,'C');
+    $pdf->Cell($width_cell[7],10,$row['fn_pension'],1,0,'C');
+    $pdf->Cell($width_cell[8],10,$row['fn_status'],1,0,'C');
+    $pdf->Cell($width_cell[9],10,$xx,1,1,'C');   
 }
 
 // end table
@@ -341,9 +363,8 @@ if($action2 == 'pending'){
         $pdf->Cell(0,10,'Note: Important to give the correct date range if your are generating pending or received pension of previous records.',0,0,'C',true);
         $pdf->SetTextColor(255,255,255);
     }else{
-        
         // TABLE
-        $width_cell=array(15,35,25,12,25,12,20, 25, 18);
+        $width_cell=array(10, 25, 35,12,25,12,20, 25, 18);
         // font 0 - 4
         $pdf->SetFont('times','B',10);
 
@@ -351,15 +372,12 @@ if($action2 == 'pending'){
         $pdf->SetFillColor(255,255,255);
 
         // Header starts /// 
+        $pdf->Cell($width_cell[0],10,'#',1,0,'C',true);
         //First header column //
-        $pdf->Cell($width_cell[0],10,'ID',1,0,'C',true);
+        $pdf->Cell($width_cell[1],10,'ID',1,0,'C',true);
         //Second header column//
-        $pdf->Cell($width_cell[1],10,'FULL NAME',1,0,'C',true);
+        $pdf->Cell($width_cell[2],10,'FULL NAME',1,0,'C',true);
         //Third header column//
-        // $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
-        $pdf->Cell($width_cell[2],10,'CONTACT',1,0,'C',true); 
-        //Fourth header column//
-        // $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
         $pdf->SetFont('times','B',7);
         $pdf->Cell($width_cell[3],10,'GENDER',1,0,'C',true);
         // 5
@@ -381,6 +399,7 @@ if($action2 == 'pending'){
         //Background color of header//
         $pdf->SetFillColor(255,255,255); 
 
+    $num = 0;
     /// each record is one row  ///
     foreach ($conn->query($sql) as $row) {
         // cut barangay
@@ -397,29 +416,28 @@ if($action2 == 'pending'){
         }else{
             $xxx = 'F';
         }
-        // M and F
-        $id = $row['fx_id'];
-        $length = strlen($id);
-        if($length > 9){
-            $pdf->SetFont('times','',6);
-        }else{
-            $pdf->SetFont('times','',10);
-        }
-    
-    
-    // Date format
-    $pdf->Cell($width_cell[0],10,$row['fx_id'],1,0,'C');
+    $num++;
+    $pdf->Cell($width_cell[0],10,$num,1,0,'C');
+    // id length
+    $id = $row['uid'];
+    $length = strlen($id);
+    if($length > 18){
+        $pdf->SetFont('times','',7);
+    }else{
+        $pdf->SetFont('times','',9);
+    }
+
+    $pdf->Cell($width_cell[1],10,$row['uid'],1,0,'C');
     //Full name
     $fname = $row['fx_lastname'].', '.$row['fx_firstname'].', '.$row['fx_middlename'].'.';
     $length = strlen($fname);
-    if($length > 16){
+    if($length > 18){
         $pdf->SetFont('times','',8);
     }else{
         $pdf->SetFont('times','',10);
     }
-    $pdf->Cell($width_cell[1],10,$fname,1,0,'C');
+    $pdf->Cell($width_cell[2],10,$fname,1,0,'C');
     $pdf->SetFont('times','',10);
-    $pdf->Cell($width_cell[2],10,$row['fx_contact'],1,0,'C');
     $pdf->Cell($width_cell[3],10,$xxx,1,0,'C');
     $pdf->Cell($width_cell[4],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
     $pdf->Cell($width_cell[5],10,$row['fn_age'],1,0,'C');
@@ -430,9 +448,9 @@ if($action2 == 'pending'){
 
 // end table
     }
-}elseif(($action2 == 'active') || ($action2 == 'alive')){
+}elseif(($action2 == 'active') || ($action2 == 'alive') || ($action2 == 'PWD')){
     // TABLE
-    $width_cell=array(20,25,25,8,25,12,20, 10, 20, 20);
+    $width_cell=array(10,27,40,25,12,20, 10, 25, 20);
     // font 0 - 4
     $pdf->SetFont('times','B',10);
     
@@ -440,31 +458,29 @@ if($action2 == 'pending'){
     $pdf->SetFillColor(255,255,255);
     
     // Header starts /// 
-    //First header column //
-    $pdf->Cell($width_cell[0],10,'ID',1,0,'C',true);
-    //Second header column//
-    $pdf->Cell($width_cell[1],10,'LAST NAME',1,0,'C',true);
-    //Third header column//
-    $pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
-    //Fourth header column//
-    $pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
-    //Third header column//
-    $pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
+    // 0
+    $pdf->Cell($width_cell[0],10,'#',1,0,'C',true);
+    // 1
+    $pdf->Cell($width_cell[1],10,'ID',1,0,'C',true);
+    // 2
+    $pdf->Cell($width_cell[2],10,'FULL NAME',1,0,'C',true);
+    // 3//
+    $pdf->Cell($width_cell[3],10,'CONTACT',1,0,'C',true); 
     // 5 
     $pdf->SetFont('times','B',7);
-    $pdf->Cell($width_cell[5],10,'GENDER',1,0,'C',true);
+    $pdf->Cell($width_cell[4],10,'GENDER',1,0,'C',true);
     // 6
     $pdf->SetFont('times','B',10);
-    $pdf->Cell($width_cell[6],10,'BIRTHDAY',1,0,'C',true); 
+    $pdf->Cell($width_cell[5],10,'BIRTHDAY',1,0,'C',true); 
     // 7
-    $pdf->Cell($width_cell[7],10,'AGE',1,0,'C',true); 
+    $pdf->Cell($width_cell[6],10,'AGE',1,0,'C',true); 
     // 8
     $pdf->SetFont('times','B',7);
-    $pdf->Cell($width_cell[8],10,$dtxt,1,0,'C',true); 
+    $pdf->Cell($width_cell[7],10,$dtxt,1,0,'C',true); 
     // 9
     $pdf->SetFont('times','B',10);
     $pdf->SetFont('times','B',8);
-    $pdf->Cell($width_cell[9],10,'BARANGAY',1,1,'C',true); 
+    $pdf->Cell($width_cell[8],10,'BARANGAY',1,1,'C',true); 
     //// header ends ///////
     
     
@@ -472,6 +488,7 @@ if($action2 == 'pending'){
     //Background color of header//
     $pdf->SetFillColor(255,255,255); 
     
+    $num = 0;
     // each record is one row  ///
     foreach ($conn->query($sql) as $row) {
         // cut barangay
@@ -488,33 +505,33 @@ if($action2 == 'pending'){
         }else{
             $xxx = 'F';
         }
+        $num++;
+        $pdf->Cell($width_cell[0],10,$num,1,0,'C');
         // M and F
-        $id = $row['fx_id'];
+        $id = $row['uid'];
         $length = strlen($id);
-        if($length > 9){
-            $pdf->SetFont('times','',6);
+        if($length > 18){
+            $pdf->SetFont('times','',7);
         }else{
-            $pdf->SetFont('times','',10);
+            $pdf->SetFont('times','',9);
         }
         // Date format
-        $pdf->Cell($width_cell[0],10,$row['fx_id'],1,0,'C');
+        $pdf->Cell($width_cell[1],10,$row['uid'],1,0,'C');
         $pdf->SetFont('times','',10);
-        $pdf->Cell($width_cell[1],10,$row['fx_lastname'],1,0,'C');
-        $pdf->Cell($width_cell[2],10,$row['fx_firstname'],1,0,'C');
-        $pdf->Cell($width_cell[3],10,$row['fx_middlename'],1,0,'C');
-        $pdf->Cell($width_cell[4],10,$row['fx_contact'],1,0,'C');
-        $pdf->Cell($width_cell[5],10,$xxx,1,0,'C');
-        $pdf->Cell($width_cell[6],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
-        $pdf->Cell($width_cell[7],10,$row['fn_age'],1,0,'C');
-        $pdf->Cell($width_cell[8],10,$row['fd_started'],1,0,'C');
-        $pdf->Cell($width_cell[9],10,$xx,1,1,'C');   
+        $pdf->Cell($width_cell[2],10,$row['fx_lastname'].', '.$row['fx_firstname'].' '.$row['fx_middlename'].'.',1,0,'C');
+        $pdf->Cell($width_cell[3],10,$row['fx_contact'],1,0,'C');
+        $pdf->Cell($width_cell[4],10,$xxx,1,0,'C');
+        $pdf->Cell($width_cell[5],10,date('m-d-Y',strtotime($row['fd_birthdate'])),1,0,'C');
+        $pdf->Cell($width_cell[6],10,$row['fn_age'],1,0,'C');
+        $pdf->Cell($width_cell[7],10,$row['fd_started'],1,0,'C');
+        $pdf->Cell($width_cell[8],10,$xx,1,1,'C');   
     }    // end table
 
     
 }else{
     
 // TABLE
-$width_cell=array(15,25,25,8,25,12, 10, 18, 18, 35);
+$width_cell=array(10,25,40,12, 25, 18, 20, 35);
 // font 0 - 4
 $pdf->SetFont('times','B',10);
 
@@ -522,39 +539,34 @@ $pdf->SetFont('times','B',10);
 $pdf->SetFillColor(255,255,255);
 
 // Header starts /// 
-//First header column //
-$pdf->Cell($width_cell[0],10,'ID',1,0,'C',true);
-//Second header column//
-$pdf->Cell($width_cell[1],10,'LAST NAME',1,0,'C',true);
-//Third header column//
-$pdf->Cell($width_cell[2],10,'FIRST NAME',1,0,'C',true); 
-//Fourth header column//
-$pdf->Cell($width_cell[3],10,'M.I',1,0,'C',true);
-//Third header column//
-$pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
+$pdf->Cell($width_cell[0],10,'#',1,0,'C',true);
+// 2 
+$pdf->Cell($width_cell[1],10,'ID',1,0,'C',true);
+// 3
+$pdf->Cell($width_cell[2],10,'FULL NAME',1,0,'C',true);
+// 4
 // 5 
 $pdf->SetFont('times','B',7);
-$pdf->Cell($width_cell[5],10,'GENDER',1,0,'C',true);
+$pdf->Cell($width_cell[3],10,'GENDER',1,0,'C',true);
 // 7
 $pdf->SetFont('times','B',10);
-$pdf->Cell($width_cell[6],10,'AGE',1,0,'C',true); 
+$pdf->Cell($width_cell[4],10,'CONTACT',1,0,'C',true); 
 // 8
 $pdf->SetFont('times','B',8);
-$pdf->Cell($width_cell[7],10,'BARANGAY',1,0,'C',true);
+$pdf->Cell($width_cell[5],10,'BARANGAY',1,0,'C',true);
 // 9
 $pdf->SetFont('times','B',6);
-$pdf->Cell($width_cell[8],10,$dtxt,1,0,'C',true);
+$pdf->Cell($width_cell[6],10,$dtxt,1,0,'C',true);
 // 10 
 $pdf->SetFont('times','B',10);
-$pdf->Cell($width_cell[9],10,'REMARKS',1,1,'C',true);
+$pdf->Cell($width_cell[7],10,'REMARKS',1,1,'C',true);
 
 //// header ends ///////
-
 
 $pdf->SetFont('times','',10);
 //Background color of header//
 $pdf->SetFillColor(255,255,255); 
-
+$num = 0;
 /// each record is one row  ///
 foreach ($conn->query($sql) as $row) {
     // cut barangay
@@ -571,27 +583,23 @@ foreach ($conn->query($sql) as $row) {
     }else{
         $xxx = 'F';
     }
-    // M and F
-    $id = $row['fx_id'];
+$num++; 
+$pdf->Cell($width_cell[0],10,$num,1,0,'C');
+$id = $row['uid'];
     $length = strlen($id);
-    if($length > 9){
-        $pdf->SetFont('times','',6);
+    if($length > 18){
+        $pdf->SetFont('times','',7);
     }else{
-        $pdf->SetFont('times','',10);
+        $pdf->SetFont('times','',9);
     }
-    // Date format
-    
-$pdf->Cell($width_cell[0],10,$row['fx_id'],1,0,'C');
+$pdf->Cell($width_cell[1],10,$row['uid'],1,0,'C');
 $pdf->SetFont('times','',10);
-$pdf->Cell($width_cell[1],10,$row['fx_lastname'],1,0,'C');
-$pdf->Cell($width_cell[2],10,$row['fx_firstname'],1,0,'C');
-$pdf->Cell($width_cell[3],10,$row['fx_middlename'],1,0,'C');
+$pdf->Cell($width_cell[2],10,$row['fx_lastname'].', '.$row['fx_firstname'].' '.$row['fx_middlename'].'.',1,0,'C');
+$pdf->Cell($width_cell[3],10,$xxx,1,0,'C');
 $pdf->Cell($width_cell[4],10,$row['fx_contact'],1,0,'C');
-$pdf->Cell($width_cell[5],10,$xxx,1,0,'C');
-$pdf->Cell($width_cell[6],10,$row['fn_age'],1,0,'C');
-$pdf->Cell($width_cell[7],10,$xx,1,0,'C');
-$pdf->Cell($width_cell[8],10,date('m-d-Y',strtotime($row['fd_remarks'])),1,0,'C');
-$pdf->Cell($width_cell[9],10,$row['fx_remarks'],1,1);
+$pdf->Cell($width_cell[5],10,$xx,1,0,'C');
+$pdf->Cell($width_cell[6],10,date('m-d-Y',strtotime($row['fd_remarks'])),1,0,'C');
+$pdf->Cell($width_cell[7],10,$row['fx_remarks'],1,1);
 }
 // end  table   
 }
