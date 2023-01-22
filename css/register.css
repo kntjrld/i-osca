@@ -59,6 +59,9 @@ body {
 .wrapper .form .option input {
     opacity: 0;
 }
+#fname, #idpresented, #lastname, #middlename{
+    text-transform:uppercase;
+}
 @media only screen and (max-width: 650px) {
     
 }

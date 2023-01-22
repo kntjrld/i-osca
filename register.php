@@ -16,7 +16,7 @@ $applicationid = $_SESSION['applicatonid'];
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-        
+
     <link rel="stylesheet" href="css/register.css">
 
     <title>Be a member</title>
@@ -35,14 +35,9 @@ $applicationid = $_SESSION['applicatonid'];
                 <div class="form">
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
-                            <label>Presented ID no.</label>
-                            <input type="text" name="idpresented" id="idpresented" class="form-control" required>
-                        </div>
-                        <div class="col-md-6 mt-md-0 mt-3">
                             <label>ID Type</label>
                             <select class="form-select" id="idtype" name="idtype">
                                 <option value="Null">Select</option>
-                                <option value="Senior ID">Senior ID</option>
                                 <option value="Baptismal Certificate">Baptismal Certificate</option>
                                 <option value="Barangay Clearance">Barangay Clearance</option>
                                 <option value="Birth Certificate">Birth Certificate</option>
@@ -61,17 +56,21 @@ $applicationid = $_SESSION['applicatonid'];
                                 <option value="Government-issued ID">Government-issued ID</option>
                             </select>
                         </div>
+                        <div class="col-md-6 mt-md-0 mt-3">
+                            <label>Presented ID no.</label>
+                            <input type="text" name="idpresented" id="idpresented" class="form-control" required>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col mt-md-0 mt-3">
                             <label class="form-label required">First Name</label>
-                            <input type="text" name="fname" id="fname" class="form-control" placeholder="Juan"
+                            <input type="text" name="fname" id="fname" class="form-control" placeholder="JUAN"
                                 aria-label="First name" required>
                         </div>
                         <div class="col mt-md-0 mt-3">
                             <label class="form-label required">Last Name</label>
                             <input type="text" name="lastname" id="lastname" class="form-control"
-                                placeholder="Dela cruz" aria-label="Last name" required>
+                                placeholder="DELA CRUZ" aria-label="Last name" required>
                         </div>
                         <div class="col mt-md-0 mt-3 col-lg-2">
                             <label class="form-label required">M.I</label>
@@ -116,7 +115,8 @@ $applicationid = $_SESSION['applicatonid'];
                     <div class="row">
                         <div class="col-md-6 mt-md-0 mt-3">
                             <label>Contact Number</label>
-                            <input type="text" name="contact" maxlength="10" placeholder="10 digit number"class="form-control" required>
+                            <input type="text" name="contact" maxlength="10" placeholder="10 digit number"
+                                class="form-control" required>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -129,7 +129,7 @@ $applicationid = $_SESSION['applicatonid'];
 
                         </div>
                         <div class="d-flex m-1">
-                            <input class="form-check-input" type="radio" name="pwd" value="No" checked/>
+                            <input class="form-check-input" type="radio" name="pwd" value="No" checked />
                             <label class="form-check-label" for="pwd">No</label>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ $applicationid = $_SESSION['applicatonid'];
     </div>
     </div>
     <!-- Footer -->
-     <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
+    <footer class="text-center text-lg-start text-white" style="background-color: #393E46">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Links -->
@@ -256,7 +256,7 @@ $applicationid = $_SESSION['applicatonid'];
     let copy = new ClipboardJS('#idbutton');
     copy.on('success', function(e) {
         // alert("Copied the text");
-        swal("Good job!", "Application ID copied!", "success");
+        swal("Success!", "Your Registration is Successful!", "success");
         setInterval(function() {
             window.location = "member";
         }, 1000);
@@ -264,5 +264,4 @@ $applicationid = $_SESSION['applicatonid'];
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>
