@@ -54,7 +54,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status"
+                    id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -140,9 +141,21 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         <!-- Data analytics -->
         <div class="details">
             <div class="datalist">
-                <div class="d-flex ms-auto">
+                <div class="d-flex">
                     <div class="p-2">
                         <h4 style="font-weight:800">Analytics</h4>
+                    </div>
+                    <div class="p-2 ms-auto">
+                        <form action="#" method="post">
+                            <select class="form-select" name="dashboard_select" id="dashboard_select">
+                            <option value="all_year">All</option>
+                            <?php
+                                rsort($ydata);
+                                foreach ($ydata as $year) {
+                                echo "<option value='$year'>$year</option>";}
+                                ?>
+                         </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -153,9 +166,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     </p>
                     <canvas id="myChart"></canvas>
                 </div>
-                <div class="chart-container card m-2 p-1">
-                    <p class="ms-auto me-auto" style="font-size:12px;">Yearly records</p>
+                <div class="chart-container card m-2 p-1" id="yearly_chart">
+                    <p class="ms-auto me-auto" id="yeartitle" style="font-size:12px;">Yearly records</p>
+                    <p class="ms-auto me-auto" id="monthtitle" style="font-size:12px;">Monthly records</p>
                     <canvas id="yearlychart"></canvas>
+                    <canvas id="monthlychart"></canvas>
                 </div>
             </div>
         </div>
@@ -178,7 +193,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 borderWidth: 2
             }, {
                 data: <?php echo json_encode($ydeadval)?>,
-                label: "Death(s)",
+                label: "Deceased",
                 fill: true,
                 borderColor: "rgb(196,88,80)",
                 backgroundColor: "rgb(196,88,80,0.1)",
@@ -200,6 +215,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                 backgroundColor: "rgb(255,165,0,0.1)",
                 tension: 0.1,
                 borderWidth: 2
+            }, {
+                data: <?php echo json_encode($ypwd)?>,
+                label: "PWD",
+                fill: true,
+                borderColor: "rgb(251, 192, 147)",
+                backgroundColor: "rgb(255,165,0,0.4)",
+                tension: 0.1,
+                borderWidth: 2
             }]
         },
         options: {
@@ -216,6 +239,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     });
     </script>
     <?php include('lib/script.php');?>
+    <?php include('lib/dashboard.php');?>
 </body>
 
 </html>

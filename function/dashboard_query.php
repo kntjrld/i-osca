@@ -7,7 +7,18 @@ $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 
 $clusterbarangay = $_SESSION['fx_street'];
 $ulevel = $_SESSION['user_level'];
 
+// max y in yealy records per barangay
+$sql="SELECT (SELECT COUNT(*) from tbl_records WHERE fx_barangay = '$clusterbarangay') - 
+              (SELECT COUNT(*) from tbl_records WHERE fx_barangay = '$clusterbarangay' and life_status = 'dead')
+ as total";
+$result=mysqli_query($conn,$sql);
+$countcluster=mysqli_fetch_assoc($result);
 
+// max y in yealy records for all
+$sql="SELECT (SELECT COUNT(*) from tbl_records) - 
+              (SELECT COUNT(*) from tbl_records WHERE account_status = 'inactive') as total";
+$result=mysqli_query($conn,$sql);
+$countadmin=mysqli_fetch_assoc($result);
 // START TEST ARRAY
 $female = array("10", "34", "41", "50", "10", "34", "41", "50", "31", "42", "40", "32", "31", "42", "40");
 $male = array("12, 32, 32, 23, 53, 12, 25, 42, 34, 23, 34, 23, 23, 33, 55, 40");
@@ -141,7 +152,7 @@ if($dcount > 1 ){
         $ylabel[] = $i;
     }
 }else{
-    $ylabel = array("2018", "2019", "2020", "2021", "2022");
+    $ylabel = array("2018", "2019", "2020", "2021", "2022","2023");
 }
 
 // Array within an array of each year
@@ -180,6 +191,14 @@ if($ulevel == 'admin'){
         $xx=mysqli_fetch_assoc($result);
         $yinactive[] = $xx['xxx'];
     }
+    // Person w/ disability per year
+    $ypwd = array();
+    foreach($ylabel as $row){
+    $sql = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND fx_pwd = 'Yes'";
+    $result = mysqli_query($conn,$sql);
+    $xx=mysqli_fetch_assoc($result);
+    $ypwd[] = $xx['xxx'];
+}
 // <------------------------------------------------------------------------------------------------------------------------------------------->    
 }else{
     // Staff line chart
@@ -207,7 +226,6 @@ foreach($ylabel as $row){
     $xx=mysqli_fetch_assoc($ydeadresult);
     $ydeadval[] = $xx['xxx'];
 }
-
 // Inactive per year
 $yinactive = array();
 foreach($ylabel as $row){
@@ -215,5 +233,13 @@ foreach($ylabel as $row){
     $result = mysqli_query($conn,$ystatus);
     $xx=mysqli_fetch_assoc($result);
     $yinactive[] = $xx['xxx'];
+}
+// Person w/ disability per year and filter with barangay
+$ypwd = array();
+foreach($ylabel as $row){
+    $sql = "SELECT COUNT(*) as xxx FROM tbl_records WHERE fd_started LIKE '%$row%' AND fx_pwd = 'Yes' AND fx_barangay = '$clusterbarangay'";
+    $result = mysqli_query($conn,$sql);
+    $xx=mysqli_fetch_assoc($result);
+    $ypwd[] = $xx['xxx'];
 }
 }
