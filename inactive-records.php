@@ -20,20 +20,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="https://friconix.com/cdn/friconix.js"></script>
+    <script src="lib/jquery-3.5.1.js"></script>
+    <!-- <script defer src="https://friconix.com/cdn/friconix.js"></script> -->
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Date range CSS -->
-    <link rel="stylesheet" type="text/css" href="css/dataTables.dateTime.min.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
-
+    
     <!-- Security -->
     <script src="lib/security.js"></script>
 </head>
@@ -108,104 +105,81 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div>
         </header>
 
-        <!-- table header-->
-        <div class="table_actions" id="table_actions">
-            <!-- add and export -->
-            <div class="d-block m-2">
-                <div class="expand_button p-2 card">
-                    <button type="submit" name="export" id="export"
-                        class="export btn e-button btn-primary justify-content-end"><span class="e-button-text"><i
-                                class="fa-solid fa-file-export"></i>Export to excel</span>
-                    </button>
-                </div>
-                <div class="btn-group p-2 w-100 card"
-                    style="<?php if($_SESSION['user_level'] != 'staff'){echo 'display:none;';} ?>">
-                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Inactive
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="records">Active</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Inactive</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="dead">Dead</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="remove-records">Removed</a></li>
-                    </ul>
-                </div>
-                <div class="p-2 card" <?php if($_SESSION['user_level'] != 'admin') echo 'style="display:none;"'?>>
-                    <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#myModal">
-                        <span class="e-button-text"><i class="fa-solid fa-plus"></i>
-                            Add record</span></button>
-                </div>
-            </div>
-
-            <!-- other records -->
-            <div class="d-block m-1"
-                style="width:130px; <?php if($_SESSION['user_level'] == 'staff'){echo 'opacity:0;position:absolute;';} ?>">
-                <div class="expand_button p-1 me-auto ms-auto">
-                    <label class="p-1" style="font-size:12px;">Other Records</label>
-                </div>
-                <div class="btn-group p-1 w-100 card">
-                    <button type="button" id="dropdownac" class="btn btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Inactive
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="records">Active</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="pwd">PWD</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Inactive</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="dead">Dead</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="remove-records">Removed</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Generate reports -->
-            <form method="POST" action="pdf/generate_reports.php" id="generate" class="me-auto" target="_blank">
-                <div class="me-auto card m-1 p-2 d-block">
-                    <p style="font-size:10px;">*Leave the date blank if you want to generate current record.</p>
-                    <div class="d-flex input-group-sm">
-                        <div class="d-flex">
-                            <div class="input-group-prepend p-1">
-                                <span class="input-group-text" id="dtext">Date from:</span>
-                            </div>
-                            <input type="date" name="mindate" class="form-control" id="mindate" class="mindate">
-                        </div>
-                        <div class="d-flex">
-                            <div class="input-group-prepend p-1">
-                                <span class="input-group-text" id="dtext">Date to:</span>
-                            </div>
-                            <input type="date" name="maxdate" class="form-control m-1" id="maxdate" class="maxdate">
-                        </div>
+        <div id="Header_Option">
+            <!-- table header-->
+            <div class="table_actions" id="table_actions">
+                <!-- add and export -->
+                <div class="d-block m-2">
+                    <div class="expand_button p-2 card">
+                        <button type="submit" name="export" id="export"
+                            class="export btn e-button btn-primary justify-content-end"><span class="e-button-text"><i
+                                    style="font-size:12px;" class="fa-solid fa-file-export"></i>Import to excel</span>
+                        </button>
                     </div>
-                    <div class="d-flex p-1">
-                        <div class="d-flex m-1 w-auto">
-                            <select class="form-select" name="action1" id="action1">
-                                <?php 
+
+                    <div class="p-2 card">
+                        <!-- <button type="button" class="btn e-button btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#myModal">
+                            <span class="e-button-text"><i class="fa-solid fa-plus"></i>
+                                Add record</span></button> -->
+                        <a href="access/new-registration" style="font-size:12px;" class="btn e-button btn-primary"><i
+                                class="fa-solid fa-plus"></i>
+                            Add record</span></a>
+                    </div>
+                </div>
+
+                <!-- other records -->
+                <div class="d-block m-1" style="width:130px;">
+                    <div class="expand_button p-1 me-auto">
+                        <label class="p-1" style="font-size:12px;">Other Records</label>
+                    </div>
+                    <div class="btn-group p-1 w-100 card">
+                        <button type="button" id="dropdownac" style="background: rgb(255,165,0);color:#fff;"class="btn dropdown-toggle"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Inactive
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="records">Active</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="pwd">PWD</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Inactive</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="deceased">Deceased</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="remove-records">Archived</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Generate reports -->
+                <form method="POST" action="pdf/generate_reports.php" id="generate" class="ms-auto" target="_blank">
+                    <div class="me-auto card m-1 p-2 d-block">
+                        <div class="d-flex input-group-sm">
+                            <div class="d-flex">
+                                <div class="input-group-prepend p-1">
+                                    <span class="input-group-text" id="dtext">Date from:</span>
+                                </div>
+                                <input type="date" name="mindate" class="form-control" id="mindate" class="mindate">
+                            </div>
+                            <div class="d-flex">
+                                <div class="input-group-prepend p-1">
+                                    <span class="input-group-text" id="dtext">Date to:</span>
+                                </div>
+                                <input type="date" name="maxdate" class="form-control m-1" id="maxdate" class="maxdate">
+                            </div>
+                        </div>
+                        <div class="d-flex p-1">
+                            <div class="d-flex m-1 w-auto">
+                                <select class="form-select" name="action1" id="action1">
+                                    <?php 
                                 if($xx == 'staff'){
                                     echo '<option value="'.$street.'">'.$street.'</option>';
                                 }else{
@@ -227,31 +201,30 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                 <option value="Tangkalan">Tangkalan</option>
                                 <option value="Tayamaan">Tayamaan</option>';
                                 }?>
-                            </select>
+                                </select>
 
-                        </div>
-                        <div class="d-flex m-1 w-auto">
-                            <select class="form-select" name="action2" id="action2">
-                                <option value="active">Active account</option>
-                                <option value="inactive">Inactive account</option>
-                                <option value="removed">Removed account</option>
-                                <option value="PWD">PWD</option>
-                                <option value="pending">Not receive pension</option>
-                                <option value="received">Received pension</option>
-                                <option value="alive">Alive</option>
-                                <option value="dead">Dead</option>
-                            </select>
-                        </div>
-                        <div class="d-flex m-1 ms-auto">
-                            <button type="submit" class="btn btn-primary" id="generate">
-                                <i class="fa-solid fa-arrows-spin"></i></span> Generate</button>
+                            </div>
+                            <div class="d-flex m-1 w-auto">
+                                <select class="form-select" name="action2" id="action2">
+                                    <option value="active">Active account</option>
+                                    <option value="inactive">Inactive account</option>
+                                    <option value="removed">Removed account</option>
+                                    <option value="PWD">PWD</option>
+                                    <option value="pending">Not receive pension</option>
+                                    <option value="received">Received pension</option>
+                                    <option value="dead">Deceased</option>
+                                </select>
+                            </div>
+                            <div class="d-flex m-1 ms-auto">
+                                <button type="submit" class="btn btn-primary" id="generate">
+                                    <i class="fa-solid fa-arrows-spin"></i></span> Generate</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
-            <!-- search by date -->
-            <div class="d-block ms-auto card m-2">
+                <!-- === Seacrh records between two dates -->
+                <!-- <div class="d-block ms-auto card m-2">
                 <div class="p-2 d-flex input-group-sm">
                     <div class="input-group-prepend p-1">
                         <span class="input-group-text" id="dtext">Date from:</span>
@@ -265,6 +238,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <input type="text" class="form-control" id="max" name="max" placeholder="mm/dd/yyyy">
 
                 </div>
+            </div> -->
             </div>
         </div>
 
@@ -416,14 +390,15 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
         <div class="wrapper">
             <!-- Table start -->
-            <div class="table-div m-2 p-2 card">
-                <table id="" class="display table table-striped">
+            <div class="table-div m-2 p-2 card display">
+                <table id="" class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" class="d-none d-sm-table-cell">ID</th>
+                            <th scope="col" class="d-none d-sm-table-cell">i-OSCA ID</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">First Name</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Initial</th>
+                            <th scope="col" class="d-none d-sm-table-cell">Middle</th>
+                            <th scope="col" class="d-none">Extension</th>
                             <th scope="col" class="d-none d-sm-table-cell">Contact</th>
                             <th scope="col" class="d-none d-sm-table-cell">Birthdate</th>
                             <th scope="col" class="d-none d-sm-table-cell">Sex</th>
@@ -443,6 +418,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             <td> <?php echo $row['fx_lastname']; ?> </td>
                             <td> <?php echo $row['fx_firstname']; ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_middlename']; ?> </td>
+                            <td class="d-none"> <?php echo $row['fx_extension']; ?> </td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_contact']; ?> </td>
                             <td class="d-none d-sm-table-cell"><?php  echo dt_format($row['fd_birthdate']);?></td>
                             <td class="d-none d-sm-table-cell"> <?php echo $row['fx_gender']; ?> </td>
@@ -471,41 +447,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         </div>
     </div>
 
-    <script>
-    // Export to active excel
-    $(document).on('click', '#export', function() {
-        var name = "iOSCA"
-        var date = new Date();
-        var current_year = date.getFullYear();
-        var current_month = date.getMonth();
-        var filename = name + current_month + current_year;
-        $(".display").table2excel({
-            exclude: ".noExl", // exclude CSS class
-            name: "Worksheet Name",
-            filename: filename, //do not include extension
-            fileext: ".xls" // file extension
-        });
-        $.ajax({
-            type: "POST",
-            url: "function/export.php",
-            data: {
-                export: 'export'
-            },
-            success: function(data) {
-                // do the message display code
-            }
-        });
-    });
-    </script>
-    <!-- Data table with date range -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+    <script src="lib/records.js"></script>
+    <script src="lib/jquery.dataTables.min.js"></script>
+
 
     <!-- Bootstrap / js-->
     <script src="lib/sweetalert.min.js"></script>
-    <script src="lib/records.js"></script>
     <script src="lib/app.js"></script>
 
     <!-- script for table to excel -->

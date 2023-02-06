@@ -36,6 +36,20 @@
 #table_actions, .e-button-text, button, #action2, #action1, #mindate, #maxdate, .min, .max, #generate, .btn-group li, #dropdownac, #dtext{
     font-size: 14px;
 }
+.dataTables_length select, .dataTables_length label, .dataTables_info { 
+    font-size: 11px;
+}
+div.dataTables_filter input, .dataTables_filter label{
+    font-size: 11px;
+}
+.display-record input,label, #update_sex, select, #update_barangay{
+    font-size: 14px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+.paginate_button{
+    font-size: 12px;
+}
 /* Media query */
 @media only screen and (max-width: 650px) {
 .table_actions{
