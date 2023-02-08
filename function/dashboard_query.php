@@ -1,7 +1,7 @@
 <?php
 // ALL BARANGAY TO ARRAY
-$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-            ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
+$brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay","Casoy"
+            ,"Fatima", "Payompon", "San Luis (Ligang)", "Somel","Talabaan", "Tangkalan", "Tayamaan");
 
 // SESSIONS
 $clusterbarangay = $_SESSION['fx_street'];

@@ -113,7 +113,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
             <div class="card">
                 <div class="row">
-                    <div class="numbers col"><?php if($ulevel == 'admin'){echo '15';}else{echo '1';}?></div>
+                    <div class="numbers col"><?php if($ulevel == 'admin'){echo '17';}else{echo '1';}?></div>
                     <div class="col" id="iconBox"><i class="fa-solid fa-house-laptop"></i></div>
                     <div class="cardName">
                         <?php if($ulevel == 'staff'){echo $_SESSION['fx_street'];}else{echo 'Barangays';} ?></div>

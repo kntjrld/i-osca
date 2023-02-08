@@ -77,7 +77,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="status"
+                    id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
@@ -136,7 +137,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         <div class="numbers col" style="margin-left:20%; font-weight:500;"><?php echo $admin['adm']?>
                         </div>
                         <div class="col" id="iconBox"><i class="fa-solid fa-rectangle-ad"></i></i></div>
-                        <div class="cardName" style="margin-left:10%;">Admin role</div>
+                        <div class="cardName" style="margin-left:10%;">Admin</div>
                     </div>
                 </div>
                 <div class="card cadmin">
@@ -144,24 +145,20 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         <div class="numbers col" style="margin-left:20%; font-weight:500;"><?php echo $staff['staff']?>
                         </div>
                         <div class="col" id="iconBox"><i class="fa-solid fa-clipboard-user"></i></i></div>
-                        <div class="cardName" style="margin-left:10%;">Staff role</div>
+                        <div class="cardName" style="margin-left:10%;">Cluster president</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="d-flex">
-
+            <!-- ====== DELETE ALL ACTIVITIES LOGS ====== -->
+            <!-- ====== NICE DIG 555555 INCASE YOU NEED IT UNCOMMENT THIS AND LINE 362 FOR JS ====== -->
+            <!-- 
             <div class="p-2 p-2 m-2 card" style="width:200px;">
                 <button type="submit" name="delete" id="delete" style="font-size:14px;"
                     class="btn btn-danger justify-content-end"><span><i class="fa-solid fa-trash"></i></span> Delete
                     activities</button>
-            </div>
-
-            <div class="p-2 me-auto m-2 card" id="resetpension" style="width:170px;">
-                <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal"
-                    data-bs-target="#newpension">
-                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
-            </div>
+            </div> -->
 
             <div class="p-2 ms-auto m-2 card" id="addnew" style="width:170px;">
                 <button type="button" class="btn btn-primary" style="font-size:14px;" data-bs-toggle="modal"
@@ -264,9 +261,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                         <option value="Barangay 6">Barangay 6</option>
                                         <option value="Barangay 7">Barangay 7</option>
                                         <option value="Barangay 8">Barangay 8</option>
+                                        <option value="Casoy">Casoy</option>
                                         <option value="Fatima">Fatima</option>
                                         <option value="Payompon">Payompon</option>
                                         <option value="San Luis (Ligang)">San Luis (Ligang)</option>
+                                        <option value="Somel">Somel</option>
                                         <option value="Talabaan">Talabaan</option>
                                         <option value="Tangkalan">Tangkalan</option>
                                         <option value="Tayamaan">Tayamaan</option>
@@ -280,47 +279,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     </div>
                 </div>
             </div>
-            <!-- end modal new user -->
-            <!-- modal for new pension -->
-            <!-- #################################################################################### -->
-            <div class="modal fade" id="newpension">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">New pension</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </button>
-                        </div>
-                        <form action="" id="resetrecords" method="post">
-                            <div class="modal-body">
-                                <p style="font-size:12px;">Note: Select date range of current pension before creating
-                                    new one.
-                                </p>
-                                <div class="d-block input-group-sm">
-                                    <div class="d-flex">
-                                        <div class="input-group-prepend p-1">
-                                            <span class="input-group-text" id="dtext">Date from:</span>
-                                        </div>
-                                        <input type="date" name="min" class="form-control m-1" id="min" class="min"
-                                            style="font-size:12px;" required>
-                                    </div>
-                                    <div class="d-flex">
-                                        <div class="input-group-prepend p-1">
-                                            <span class="input-group-text" id="dtext">Date to:</span>
-                                        </div>
-                                        <input type="date" name="max" class="form-control m-1" id="max" class="max"
-                                            style="font-size:12px;margin:1px;" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary ms-auto me-auto w-100" id="restatus">
-                                    <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <!-- ========== end modal new user =========== -->
+            
         </div>
         <script src="lib/sweetalert.min.js"></script>
         <script src="lib/admin.js"></script>
@@ -356,7 +316,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
 
         });
         </script>
-        <script>
+        <!-- <script>
         $("#delete").click(function() {
             swal({
                     title: "Are you sure?",
@@ -388,7 +348,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 });
 
         });
-        </script>
+        </script> -->
 </body>
 
 </html>

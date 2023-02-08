@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         $street = $_POST['barangay'];
         $img = 'user.png';
         $brgy = array("Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5", "Barangay 6", "Barangay 7", "Barangay 8", "Balansay"
-    ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan");
+    ,"Fatima", "Payompon", "San Luis (Ligang)", "Talabaan", "Tangkalan", "Tayamaan","Casoy","Somel");
 
         if($street == $brgy[0]){
             $username = 'cpbrgy1';
@@ -52,6 +52,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             $username = 'cptangkalan';
         }elseif($street == $brgy[14]){
             $username = 'cptayamaan';
+        }elseif($street == $brgy[15]){
+            $username = 'cpcasoy';
+        }elseif($street == $brgy[16]){
+            $username = 'cpsomel';
         }else{
             $username = 'administrator';
         }

@@ -160,9 +160,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                                         <option value="Barangay 6">Barangay 6</option>
                                                         <option value="Barangay 7">Barangay 7</option>
                                                         <option value="Barangay 8">Barangay 8</option>
+                                                        <option value="Casoy">Casoy</option>
                                                         <option value="Fatima">Fatima</option>
                                                         <option value="Payompon">Payompon</option>
                                                         <option value="San Luis (Ligang)">San Luis (Ligang)</option>
+                                                        <option value="Somel">Somel</option>
                                                         <option value="Talabaan">Talabaan</option>
                                                         <option value="Tangkalan">Tangkalan</option>
                                                         <option value="Tayamaan">Tayamaan</option>
