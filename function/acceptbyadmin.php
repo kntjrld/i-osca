@@ -14,14 +14,17 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 
     while($row = mysqli_fetch_array($result)){
         $idnumber = $row['fx_idnumber'];
-        $uidtype = $row['fx_uidpresented'];
+        // $idtype = $row['fx_idpresented'];
+        $applicationid = $row['uid'];
         $firstname = $row['fx_firstname'];
         $lastname = $row['fx_lastname'];
         $initial = $row['fx_initial'];
+        $extension = $row['fx_extension'];
         $gender = $row['fx_gender'];
         $birthday = $row['fd_birthdate'];
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];
+        $email = $row['fx_email'];
         $age = $row['fn_age'];
         $pwd = $row['fx_pwd'];
         $pdfuidpresented = $row['fl_uidpresented'];
@@ -71,10 +74,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $newuid = 'iOSCA-'.$myear.'-'.$total;
         #############################################
 
-        $insert = "INSERT INTO tbl_records(uid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_contact, fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
-        VALUES('$newuid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$contact','$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status', 'active', '$pwd','$started')";
+        // insert to records table
+        $insert = "INSERT INTO tbl_records(uid, fx_aid, fx_id, fx_firstname, fx_lastname, fx_middlename, fx_extension, fx_contact, fx_email,fd_birthdate,  fx_gender, fx_barangay, fn_age, fn_pension, fn_status, life_status, account_status, fx_pwd, fd_started)
+        VALUES('$newuid', '$applicationid','$idnumber',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'), UPPER('$extension'), '$contact', '$email' ,'$birthday','$gender','$barangay','$age','$fn_pension','$check_value', '$life_status', 'active', '$pwd','$started')";
         $request = mysqli_query($conn, $insert);
-
         // activities
         if($request){
         // start
@@ -82,10 +85,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $sms = 'Hi '.$firstname. ', Your iOSCA application is accepted and your account ID is #'.$newuid;   
         $ch = curl_init();
         $parameters = array(
-            'apikey' => 'YOUR API HERE',  
+            'apikey' => '', 
             'number' => $contact,
             'message' => $sms,
-            'sendername' => 'YOUR SENDER NAME HERE'
+            'sendername' => 'OSCA'
         );
         curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
@@ -99,14 +102,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         curl_close ($ch);
         // end
         
-
+        // Add to activity log
         date_default_timezone_set('Asia/Manila');
         $date = date("M d, Y - h:i a"); 
         $user_name = $_SESSION['user_name'];					
 		$act = "INSERT INTO tbl_activities(fd_date, fx_user, fx_action) VALUES('$date', '$user_name','Accepted a application id #$uid')";
 		$result = mysqli_query($conn, $act);
         }
-  
+
         // alert
         $_SESSION['accepted'] = "Added successfully";
         }else{}

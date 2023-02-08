@@ -23,15 +23,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
         $birthday = $row['fd_birthdate'];
         $barangay = $row['fx_barangay'];
         $contact = $row['fx_contact'];
+        $email = $row['fx_email'];
         $age = $row['fn_age'];
         $pwd = $row['fx_pwd'];
-        $pdfidpresented = $row['fl_idpresented'];
-        $fileFORM = $row['fl_form'];
         $appdate = $row['fd_application'];
     }
 
-    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fn_age, fx_pwd, fl_idpresented, fl_form, fd_application, fx_statusbycluster, fd_acceptedbycluster, fd_acceptedbyadmin, fx_statusbyadmin, fx_remarks)
-    VALUES('$uid', '$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact','$age', '$pwd', '$pdfidpresented','$fileFORM', '$appdate', '$app_status', '$acceptdate', '$adminstatus', '$adminstatus', '$remarks')";
+    $accept = "INSERT INTO tbl_regstatus(uid, fx_idnumber, fx_idpresented, fx_firstname, fx_lastname, fx_initial, fx_gender, fd_birthdate, fx_barangay, fx_contact, fx_email, fn_age, fx_pwd, fd_application, fx_statusbycluster, fd_acceptedbycluster, fd_acceptedbyadmin, fx_statusbyadmin, fx_remarks)
+    VALUES('$uid', '$idnumber','$idtype',UPPER('$firstname'),UPPER('$lastname'),UPPER('$initial'),'$gender','$birthday','$barangay','$contact', '$email','$age', '$pwd', '$appdate', '$app_status', '$acceptdate', '$adminstatus', '$adminstatus', '$remarks')";
     $request = mysqli_query($conn, $accept);
 
     if($request){
