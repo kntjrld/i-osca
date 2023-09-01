@@ -12,11 +12,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <html lang="end">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Profile</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/user_style.css">
@@ -61,7 +60,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
                     id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="#" id="nav-list" class="active">
                     <i class="fas fa-user"></i>
@@ -186,7 +185,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <div class="form-group" <?php if($_SESSION['user_level'] == 'admin'){
                                         echo 'style="display:none;"';
                                     } ?>>
-                                        <label for="Street">Street</label>
+                                        <label for="Street">Barangay</label>
                                         <input type="name" class="form-control w-100" name="street" id="street"
                                             placeholder="Enter Street" value="<?php echo $_SESSION['fx_street'];?>"
                                             disabled="disabled">
