@@ -15,20 +15,16 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pending Application</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <!-- DATA TABLE CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
-
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/reports.css">
-
     <!-- DATA TABLE JS -->
     <script src="lib/jquery.dataTables.min.js"></script>
     <script src="lib/dataTables.bootstrap5.min.js"></script>
@@ -66,7 +62,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
                     id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
