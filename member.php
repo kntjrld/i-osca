@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Be a member</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <!-- Boostrap css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -27,7 +31,7 @@
                         <div class="b-logo swift_left">
                         </div>
                         <div class="b-title text-center">
-                            <a href="index"><img src="media/signupimg.png" class="img-fluid"></a>
+                            <a href="#"><img src="media/signupimg.png" class="img-fluid"></a>
                             <p class="ins">If you want to register, read first the<br><a href="" data-toggle="modal"
                                     data-target="#modallong">Guide for
                                     registration</a></p>
@@ -43,7 +47,8 @@
                             </div>
                             <div class="b-form-title">
                                 <div class="form-group">
-                                    <a href="register" id="this" class="btn"><i class="fas fa-id-card fa-lg"></i>New
+                                    <a href="new-registration" id="this" class="btn"><i
+                                            class="fas fa-id-card fa-lg"></i>New
                                         Register</a>
                                 </div>
                                 <div class="form-group">
@@ -88,7 +93,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <p>i-osca 2022</p>
+                        <p>i-osca</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +119,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <p>i-osca 2022</p>
+                        <p>i-osca</p>
                     </div>
                 </div>
             </div>
@@ -131,20 +136,21 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p class="steps"><span class="num">1.</span> Download a copy of registration form <span><a
-                                    href="registration/SOCIAL-PENSION-INTAKE-FORM-FILLABLE.pdf" target="_blank">
-                                    here</a></span></p>
-                        <p class="steps"><span class="num">2.</span> Change registration form file name before
-                            uploading<span> (e.g DELACRUZ-JUAN-REGISTRATION-FORM-11/27/2022.pdf)</span></p>
-                        <p class="steps"><span class="num">3.</span> Check also ID Present file name before
-                            uploading<span> (e.g DELACRUZ-JUAN-ID-PRESENTED-11/27/2022.pdf)</span></p>
-                        <p class="steps"><span class="num">4.</span> After successful registration, copy your tracking
-                            ID. You can use it to check your registration status.</p>
-                        <p class="steps"><span class="num">5.</span> You will also receive a text message if your
-                            application is accepted or rejected</p>
+                        <p class="steps"><span class="num">1.</span> Click New Register if you want to register</span>
+                        </p>
+                        <p class="steps"><span class="num">2.</span> Fill up all forms, leave N/A if not applicable and
+                            at step 4 click checkbox to show your temporary tracking id</span></p>
+                        <p class="steps"><span class="num">3.</span> Copy your tracking
+                            ID. You can use it to check your registration status.</span></p>
+                        <p class="steps"><span class="num">4.</span> You will also receive a text message if your
+                            application is accepted or rejected.</p>
+                        <p class="steps"><span class="num">5.</span> If rejected, you will receive a message the reason why your application is recjected.</p>
+                        <p class="steps"><span class="num">6.</span>   If accepted, you will be recieve a message along as your i-OSCA ID.</p>
+                        <p class="steps"><span class="num">7.</span> Keep your i-OSCA
+                            ID number, you can use it to track your pension status. </p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <p>i-osca 2022</p>
+                        <p>i-osca</p>
                     </div>
                 </div>
             </div>
@@ -225,7 +231,7 @@
         <!-- Copyright -->
     </footer>
     <!-- Footer -->
-
+    <script src="lib/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="lib/member.js"></script>
     <script>
@@ -239,3 +245,9 @@
 </body>
 
 </html>
+<?php
+if (isset($_SESSION['newregvalid'])) {
+    echo '<script>swal("We received your application! Thanks", {icon: "success"});</script>';
+    unset($_SESSION['newregvalid']);
+}
+?>
