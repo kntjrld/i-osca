@@ -12,6 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Welcome to i-OSCA</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
 </head>
 
 <body>
