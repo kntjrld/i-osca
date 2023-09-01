@@ -15,11 +15,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Activities</title>
+    <title>History</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- DATA TABLE CSS -->
@@ -29,8 +29,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
 
     <!-- DATA TABLE JS -->
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="lib/jquery.dataTables.min.js"></script>
+    <script src="lib/dataTables.bootstrap5.min.js"></script>
 
 </head>
 
@@ -56,7 +56,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <span class="indicator"
                         style="<?php if($count == '0'){echo 'display:none;';}?>"><?php echo $count;?></span>
                     <i class="fas fa-tasks"></i>
-                    <span class="nav-item">Reports</span>
+                    <span class="nav-item">Pending Application</span>
                 </a></li>
             <li><a href="status" id="nav-list">
                     <i class="fas fa-check-to-slot"></i>
@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </a></li>
             <li><a href="#" class="active" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
@@ -100,9 +100,9 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </div>
             </div>
         </header>
-        <div class="card m-2 p-2">
+        <!-- <div class="card m-2 p-2">
             <p class="mb-auto" style="font-size: 12px;">Delete all activities in admin panel</p>
-        </div>
+        </div> -->
         <div class="table-div m-2 p-2 card">
             <table class="table" id="datatable">
                 <thead>
@@ -143,7 +143,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
         $('#datatable').DataTable({
             aaSorting: [
                 [0, 'desc']
-            ]
+            ],
+            aLengthMenu: [
+        [20, 35, 50, 100],
+        [20, 35, 50, 100, "20"]
+    ]
         });
     });
     </script>
