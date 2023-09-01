@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>i-OSCA Registration</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
     <link rel="stylesheet" href="css/regstyle.css">
