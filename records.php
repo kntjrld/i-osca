@@ -14,15 +14,12 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Records</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/records_style.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -62,7 +59,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
                     id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
@@ -117,7 +114,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                             data-bs-target="#myModal">
                             <span class="e-button-text"><i class="fa-solid fa-plus"></i>
                                 Add record</span></button> -->
-                        <a href="access/new-registration" style="font-size:12px;" class="btn e-button btn-primary"><i
+                        <a <?php if($xx == 'staff'){ echo 'href="access/new-registration"';}else{ echo 'data-bs-toggle="modal" data-bs-target="#myModal"';} ?> style="font-size:12px;" class="btn e-button btn-primary"><i
                                 class="fa-solid fa-plus"></i>
                             Add record</span></a>
                     </div>
@@ -239,8 +236,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             </div> -->
             </div>
         </div>
-
-
         <!-- Modal For add record-->
         <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-lg">
@@ -254,49 +249,61 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="modal-body">
                         <form action="conn/insert_record.php" method="post" id="form">
                             <!-- Senior id -->
-                            <div class="mb-3">
+                            <div class="row">
+                            <div class="col">
                                 <label class="form-label required">ID Number</label>
-                                <input type="text" name="sID" id="sID" class="form-control">
+                                <input type="text" name="sID" id="sID" class="form-control" placeholder="Valid ID number" required>  
                                 <div id="id_result"></div>
+                            </div>
+                            <div class="col">
+                                    <div class="mb-2">
+                                        <label class="form-label required">Contact number</label>
+                                        <input type="text" name="contact" maxlength="10" placeholder="10 digit number"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Fist , last and middle name -->
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label required">Fist Name</label>
-                                    <input type="text" name="fistname" id="name" class="form-control" placeholder="Juan"
-                                        aria-label="First name">
+                                    <input type="text" name="fistname" id="fistname" class="form-control" placeholder="Juan"
+                                        aria-label="First name" required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label required">Last Name</label>
-                                    <input type="text" name="lastname" id="name" class="form-control"
-                                        placeholder="Dela cruz" aria-label="Last name">
+                                    <input type="text" name="lastname" id="lastname" class="form-control"
+                                        placeholder="Dela cruz" aria-label="Last name" required>
                                 </div>
-                                <div class="col col-lg-2">
-                                    <label class="form-label required">M.I</label>
-                                    <input type="text" name="middlename" id="name" class="form-control" placeholder="T"
-                                        aria-label="Middle name">
+                                <div class="col">
+                                    <label class="form-label required">Middle Name</label>
+                                    <input type="text" name="middlename" id="middlename" class="form-control" placeholder="T"
+                                        aria-label="Middle name" required>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label required">Extension Name</label>
+                                    <input type="text" name="extension" id="extension" class="form-control" placeholder="leave blank if none"
+                                        aria-label="Extension name">
                                 </div>
                             </div>
-                            <!-- Contacts  -->
+                            <!-- email address  -->
                             <div class="row mt-2">
                                 <div class="col">
                                     <div class="mb-2">
-                                        <label class="form-label required">Contact number</label>
-                                        <input type="text" name="contact" maxlength="10" placeholder="10 digit number"
-                                            class="form-control">
+                                        <label class="form-label required">Email address</label>
+                                        <input type="email" name="email" placeholder="Enter email address"
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="mb-2">
                                         <label class="form-label required">Date Started</label>
-                                        <input type="date" name="started" id="started" class="form-control">
+                                        <input type="date" name="started" id="started" class="form-control" required>
                                     </div>
 
                                 </div>
                             </div>
-
                             <!-- Date of birth -->
-
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-2">
@@ -326,9 +333,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                         <option value="Barangay 6">Barangay 6</option>
                                         <option value="Barangay 7">Barangay 7</option>
                                         <option value="Barangay 8">Barangay 8</option>
+                                        <option value="Casoy">Casoy</option>
                                         <option value="Fatima">Fatima</option>
                                         <option value="Payompon">Payompon</option>
                                         <option value="San Luis (Ligang)">San Luis (Ligang)</option>
+                                        <option value="Somel">Somel</option>
                                         <option value="Talabaan">Talabaan</option>
                                         <option value="Tangkalan">Tangkalan</option>
                                         <option value="Tayamaan">Tayamaan</option>
@@ -349,18 +358,11 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                                     <input class="form-check-input" type="radio" name="pwd" value="No" checked />
                                     <label class="form-check-label" for="pwd">No</label>
                                 </div>
-                                <!-- Pension $$$ -->
-                                <div class="row mb-2 w-75">
-                                    <div class="col">
-                                        <label class="form-label required">Pension</label>
-                                        <input type="number" name="pension" class="form-control">
-                                    </div>
-                                </div>
                             </div>
                             <!-- Modal button -->
                             <div class="modal-footer">
                                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                                <input type="button" class="btn btn-secondary" value="Cancel" data-bs-dismiss="modal">
+                                <input type="button" class="btn btn-secondary" style="color:#fff;" value="Cancel" data-bs-dismiss="modal">
                             </div>
                         </form>
                     </div>
