@@ -29,26 +29,20 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Admin Panel</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
     <!-- ICONS AND JQUERY -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
     <!-- DATA TABLE CSS -->
     <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap5.min.css">
-
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/adminpanel.css">
-
     <!-- DATA TABLE JS -->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -84,7 +78,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                 </a></li>
             <li><a href="activities" id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
