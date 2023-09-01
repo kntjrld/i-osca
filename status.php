@@ -13,23 +13,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Pension Status</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="css/g_style.css">
     <link rel="stylesheet" type="text/css" href="css/status.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="lib/status.js"></script>
     <script src="lib/security.js"></script>
-
-
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </head>
-
 <body>
     <!-- Navigation start -->
     <nav class="side-nav">
@@ -54,14 +49,14 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                     <i class="fas fa-tasks"></i>
                     <span class="nav-item">Pending Application</span>
                 </a></li>
-            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="#" id="nav-list">
+            <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="#" id="nav-list" class="active">
                     <i class="fas fa-check-to-slot"></i>
                     <span class="nav-item">Pension Status</span>
                 </a></li>
             <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
                     id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
@@ -102,12 +97,24 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
             <div class="wrapper card rounded bg-white">
                 <div class="d-flex">
                     <div class="h5 p-1" id="pension_text">Pension Form</div>
-                    <div class="p-1 ms-auto m-2 card w-auto">
-                        <button type="button" class="btn btn-primary" style="font-size:12px;" data-bs-toggle="modal"
-                            data-bs-target="#ustatus">
-                            <span><i class="fa-solid fa-pen-to-square"></i></span> Update previous pension</button>
+                    <div class="d-flex ms-auto">
+                        <div class="d-block">
+                            <div class="p-1 m-2 card w-auto">
+                                <button type="button" class="btn btn-primary" style="font-size:12px;"
+                                    data-bs-toggle="modal" data-bs-target="#ustatus">
+                                    <span><i class="fa-solid fa-pen-to-square"></i></span> Update previous
+                                    pension</button>
+                            </div>
+                            <div class="p-1 m-2 card" id="resetpension">
+                                <button type="button" class="btn btn-primary" style="font-size:12px;"
+                                    data-bs-toggle="modal" data-bs-target="#newpension">
+                                    <span><i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
                 <div class="mb-2">
                     <hr class="new1">
                 </div>
@@ -167,26 +174,19 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                                 <label>Amount Receive</label>
                                 <input type="number" id="id_amount" name="id_amount" class="form-control" required>
                             </div>
-                            <div class="col mt-md-0">
-                                <label class="form-label required">Date Release</label>
-                                <input type="date" name="id_date" id="id_date" value="<?php echo date('Y-m-d'); ?>"
-                                    class="datepicker form-control" placeholder="" aria-label="Control Number" required>
-                            </div>
+                            <!-- remove date release here (instead get current date and insert to db) -->
                             <div class="col mt-md-2">
                                 <label>Person with disablity(PWD)</label>
                                 <input type="text" id="pwd" name="pwd" class="form-control" disabled>
                             </div>
-                            <div class="col mt-md-2">
-                                <label>Life Status</label>
-                                <input type="text" id="life_status" name="life_status" class="form-control" disabled>
-                            </div>
+                            <!-- remove life status here (Dead member is automatically inactive) -->
                         </div>
                         <button type="submit" class="btn btn-primary" disabled>Submit</button>
                     </div>
                 </Form>
 
                 <!-- change pension status modal -->
-                <!-- modal start -->
+                <!-- === modal start=== -->
                 <div class="modal fade" id="ustatus">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -256,12 +256,85 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name']) && ($_SESSION["
                         </div>
                     </div>
                 </div>
-                <!-- end modal -->
+                <!-- === end modal ==== -->
+
+                <!-- ==== start of modal for new pension ==== -->
+                <div class="modal fade" id="newpension">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">New pension</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </button>
+                            </div>
+                            <form action="#" id="resetrecords" method="post">
+                                <div class="modal-body">
+                                    <p style="font-size:12px;">Note: Select date range of current pension before
+                                        creating
+                                        new one.
+                                    </p>
+                                    <div class="d-block input-group-sm">
+                                        <div class="d-flex">
+                                            <div class="input-group-prepend p-1">
+                                                <span class="input-group-text" id="dtext">Date from:</span>
+                                            </div>
+                                            <input type="date" name="min" class="form-control m-1" id="min" class="min"
+                                                style="font-size:12px;" required>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="input-group-prepend p-1">
+                                                <span class="input-group-text" id="dtext">Date to:</span>
+                                            </div>
+                                            <input type="date" name="max" class="form-control m-1" id="max" class="max"
+                                                style="font-size:12px;margin:1px;" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary ms-auto me-auto w-100" id="restatus">
+                                        <i class="fa-solid fa-arrows-spin"></i></span> New pension</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- === end modal === -->
             </div>
         </div>
     </div>
     <!-- Bootstrap / js-->
     <script src="lib/sweetalert.min.js"></script>
+    <?php include('lib/scriptalert.php');?>
+    <script>
+        
+    $("#restatus").click(function() {
+        swal({
+                title: "Continue? Please check your date",
+                text: "All status will back to pending?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        type: "POST",
+                        url: "function/resetrecords.php",
+                        data: $("#resetrecords").serialize(),
+                        success: function(data) {
+                            setInterval(function() {
+                                location.reload();
+                            }, 900);
+                        }
+                    });
+                } else {
+                    //   swal("Your file is safe!");
+                }
+            });
+
+    });
+    </script>
     <script>
     $('#id_status').on('change', function() {
         if ($('#id_status option:selected').val() == 'Received') {
