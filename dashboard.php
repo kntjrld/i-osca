@@ -15,6 +15,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="media/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <!-- Bootstrap css -->
@@ -62,7 +63,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
             <li <?php if($_SESSION['user_level']=="staff") echo 'style="display:none;"'; ?>><a href="activities"
                     id="nav-list">
                     <i class="fas fa-solid fa-clock-rotate-left"></i>
-                    <span class="nav-item">Activities</span>
+                    <span class="nav-item">History</span>
                 </a></li>
             <li><a href="profile" id="nav-list">
                     <i class="fas fa-user"></i>
@@ -135,7 +136,6 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
                     <div class="cardName">Without Pension</div>
                 </div>
             </div>
-
         </div>
 
         <!-- Data analytics -->
